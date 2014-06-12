@@ -12,7 +12,7 @@
     <servlet>
         <description>Root servlet of our web application (or is there no root servlet at all?!)</description>
         <servlet-name>Main</servlet-name>
-        <servlet-class>ami.web.core.servlets.test</servlet-class>
+        <servlet-class>ami.web.core.servlets.Main</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -30,5 +30,5 @@
         <!-- index.jsp - worked at 13:57pm -->
         <welcome-file>/index.jsp</welcome-file>
     </welcome-file-list>
-      
+    
 </web-app>

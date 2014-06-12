@@ -1,0 +1,12 @@
+/* 
+    Document   : main
+    Created on : 12-Jun-2014, 20:25:42
+    Author     : Jonathan Perry
+    Description: The main JavaScript file for our Ambient Intelligence web application.
+                 All code has been written with reusability in mind.
+*/
+
+root { 
+    display: block;
+}
+

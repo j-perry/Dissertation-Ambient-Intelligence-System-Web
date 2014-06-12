@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Jonathan Perry
  */
 @WebServlet(name = "test", urlPatterns = {"/test"})
-public class test extends HttpServlet {
+public class Main extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
