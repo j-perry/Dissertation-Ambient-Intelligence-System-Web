@@ -19,6 +19,18 @@
         <servlet-name>Insert</servlet-name>
         <servlet-class>ami.web.core.servlets.Insert</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Temperature</servlet-name>
+        <servlet-class>ami.web.core.servlets.Temperature</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Atmosphere</servlet-name>
+        <servlet-class>ami.web.core.servlets.Atmosphere</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NetworkedDevices</servlet-name>
+        <servlet-class>ami.web.core.servlets.NetworkedDevices</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Overview</servlet-name>
         <url-pattern>/overview</url-pattern>
@@ -30,6 +42,18 @@
     <servlet-mapping>
         <servlet-name>Insert</servlet-name>
         <url-pattern>/insert</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Temperature</servlet-name>
+        <url-pattern>/temperature</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Atmosphere</servlet-name>
+        <url-pattern>/atmosphere</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NetworkedDevices</servlet-name>
+        <url-pattern>/networked-devices</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
