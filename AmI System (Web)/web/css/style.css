@@ -6,7 +6,6 @@
                  All code has been written with reusability in mind.
 */
 
-root { 
-    display: block;
+body {
+    background-color: #EEE;    
 }
-

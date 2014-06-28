@@ -1,34 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    
     <!--
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
     -->
-    
     <!-- where we map all our servlets -->
     <servlet>
-        <description>Root servlet of our web application (or is there no root servlet at all?!)</description>
-        <servlet-name>Main</servlet-name>
-        <servlet-class>ami.web.core.servlets.Main</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>Overview</servlet-name>
+        <servlet-class>ami.web.core.servlets.Overview</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Retrieve</servlet-name>
+        <servlet-class>ami.web.core.servlets.Retrieve</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Insert</servlet-name>
+        <servlet-class>ami.web.core.servlets.Insert</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Main</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <servlet-name>Overview</servlet-name>
+        <url-pattern>/overview</url-pattern>
     </servlet-mapping>
-            
+    <servlet-mapping>
+        <servlet-name>Retrieve</servlet-name>
+        <url-pattern>/retrieve</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Insert</servlet-name>
+        <url-pattern>/insert</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <welcome-file-list>
         <!-- index.jsp - worked at 13:57pm -->
         <welcome-file>/index.jsp</welcome-file>
     </welcome-file-list>
-    
 </web-app>
