@@ -1,6 +1,6 @@
 <%-- 
-    Document   : temperature
-    Created on : 30-Jun-2014, 11:06:16
+    Document   : overview
+    Created on : 30-Jun-2014, 12:25:31
     Author     : Jonathan Perry
 --%>
 
@@ -11,15 +11,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <!-- insert template ? -->
+        <title>Overview</title>
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
         <t:menu>
             <jsp:attribute name="menu" />
         </t:menu>
-        
-        <h1>Temperature</h1>
+
+        <h1>Overview!</h1>
     </body>
 </html>
