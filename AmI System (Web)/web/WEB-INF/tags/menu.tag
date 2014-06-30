@@ -12,4 +12,11 @@
 <%-- any content can be specified here e.g.: --%>
 <div id="menu">
     <jsp:invoke fragment="menu" />
+    <ul>
+        <li>AmI System</li>
+        <li>Overview</li>
+        <li>Temperature</li>
+        <li>Atmosphere</li>
+        <li>Networked Devices</li>
+    </ul>
 </div>

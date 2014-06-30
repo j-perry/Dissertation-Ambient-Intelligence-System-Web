@@ -14,11 +14,12 @@
         <link rel="stylesheet" href="css/style.css" />
         <title>Ambient Intelligence Web Application</title>
     </head>
-    <body>
+    <body id="wrapper">
         <t:menu>
             <jsp:attribute name="menu" />
         </t:menu>
         
-        <p>Menu</p>
+        
+        
     </body>
 </html>
