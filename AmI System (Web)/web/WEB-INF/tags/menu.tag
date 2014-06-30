@@ -4,12 +4,12 @@
     Author     : Jonathan Perry
 --%>
 
-<%@tag description="put the tag description here" pageEncoding="UTF-8"%>
+<%@tag description="Menu to be implement in each JSP created." pageEncoding="UTF-8"%>
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="menu" fragment="true" %>
 
-<%-- any content can be specified here e.g.: --%>
+<%-- Menu structure --%>
 <div id="menu">
     <jsp:invoke fragment="menu" />
     <ul>
