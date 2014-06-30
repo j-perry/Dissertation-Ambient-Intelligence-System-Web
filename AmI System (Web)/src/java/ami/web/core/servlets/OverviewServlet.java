@@ -47,7 +47,20 @@ public class OverviewServlet extends HttpServlet {
             out.println("<link rel=\"stylesheet\" href=\"css/style.css\" />");
             out.println("<title>Overview</title>");
         out.println("</head>");
-        out.println("<body>");
+        out.println("<body id\"wrapper\">");
+        
+        out.println("<div id=\"menu\">");
+        // menu
+        out.println("<ul>" +
+"        <li>AmI System</li>" +
+"        <li>Overview</li>" +
+"        <li>Temperature</li>" +
+"        <li>Atmosphere</li>" +
+"        <li>Networked Devices</li>" +
+"    </ul>");
+        
+        out.println("</div>");
+        out.println("<div>");
 
         try {
             ArrayList<Integer> results = dbTemp.getResults();
@@ -56,7 +69,7 @@ public class OverviewServlet extends HttpServlet {
             if(!results.isEmpty()) {
                 for (Integer entry : results) {
                     value = entry.intValue();
-                    out.println("<h3>DatabaseTest: " + value + "</h3>");
+                    out.println("<p>DatabaseTest: " + value + "</p>");
                 }
             }
             else {
@@ -66,6 +79,8 @@ public class OverviewServlet extends HttpServlet {
             ex.printStackTrace();
         }
 
+        
+        out.println("</div>");
         out.println("</body>");
         out.println("</html>");
         
