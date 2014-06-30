@@ -27,6 +27,10 @@
         <servlet-name>TemperatureServlet</servlet-name>
         <servlet-class>ami.web.core.servlets.TemperatureServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NetworkedDevicesServlet</servlet-name>
+        <servlet-class>ami.web.core.servlets.NetworkedDevicesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Overview</servlet-name>
         <url-pattern>/overview</url-pattern>
@@ -46,6 +50,10 @@
     <servlet-mapping>
         <servlet-name>TemperatureServlet</servlet-name>
         <url-pattern>/temperature</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NetworkedDevicesServlet</servlet-name>
+        <url-pattern>/networked-devices</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
