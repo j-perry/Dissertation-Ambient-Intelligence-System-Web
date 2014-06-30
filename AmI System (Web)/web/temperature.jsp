@@ -10,6 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <!-- insert template ? -->
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
         <h1>Temperature</h1>

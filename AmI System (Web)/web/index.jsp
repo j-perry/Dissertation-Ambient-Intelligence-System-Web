@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +15,10 @@
         <title>Ambient Intelligence Web Application</title>
     </head>
     <body>
-        <h1>Hmm. Things are a bit lonely atm on this canvas...</h1>
+        <t:menu>
+            <jsp:attribute name="menu" />
+        </t:menu>
+        
+        <p>Menu</p>
     </body>
 </html>

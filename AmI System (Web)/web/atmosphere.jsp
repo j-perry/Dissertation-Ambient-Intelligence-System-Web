@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +14,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <t:menu>
+            <jsp:attribute name="menu" />
+        </t:menu>
+        
         <h1>Atmosphere</h1>
     </body>
 </html>

@@ -1,13 +1,15 @@
 <%-- 
-    Document   : test
-    Created on : 28-Jun-2014, 20:50:08
+    Document   : menu
+    Created on : 30-Jun-2014, 11:44:56
     Author     : Jonathan Perry
 --%>
 
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
-<%@attribute name="message"%>
+<%@attribute name="menu" fragment="true" %>
 
 <%-- any content can be specified here e.g.: --%>
-<h2>${message}</h2>
+<div id="menu">
+    <jsp:invoke fragment="menu" />
+</div>
