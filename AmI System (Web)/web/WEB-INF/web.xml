@@ -44,16 +44,16 @@
         <url-pattern>/insert</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AtmosphereServlet</servlet-name>
-        <url-pattern>/atmosphere</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>TemperatureServlet</servlet-name>
         <url-pattern>/temperature</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NetworkedDevicesServlet</servlet-name>
         <url-pattern>/networked-devices</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <url-pattern>/AtmosphereServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
