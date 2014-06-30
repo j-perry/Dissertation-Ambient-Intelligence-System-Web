@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jonathan Perry
  */
-@WebServlet(name = "NetworkedDevices", urlPatterns = {"/networked-devices"})
-public class NetworkedDevices extends HttpServlet {
+@WebServlet(name = "AtmosphereServlet", urlPatterns = {"/Atmosphere"})
+public class AtmosphereServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -38,13 +38,10 @@ public class NetworkedDevices extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-                out.println("<link rel=\"stylesheet\" href=\"css/style.css\" />");
-            out.println("<title>Overview</title>");
+            out.println("<title>Servlet AtmosphereServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            
-                out.println("<h1>Servlet NetworkedDevices at " + request.getContextPath() + "</h1>");
-                
+            out.println("<h1>Servlet AtmosphereServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
