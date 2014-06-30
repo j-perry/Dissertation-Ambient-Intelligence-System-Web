@@ -15,11 +15,9 @@
         <!-- insert template ? -->
         <link rel="stylesheet" href="css/style.css" />
     </head>
-    <body>
+    <body id="wrapper">
         <t:menu>
             <jsp:attribute name="menu" />
         </t:menu>
-        
-        <h1>Temperature</h1>
     </body>
 </html>

@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Networked Devices</title>
     </head>
-    <body>
+    <body id="wrapper">
         <t:menu>
             <jsp:attribute name="menu" />
         </t:menu>
