@@ -8,6 +8,8 @@ import ami.web.core.db.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,8 +38,8 @@ public class OverviewServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        Database db = new Database();
-        db.open();
+        Temperature dbTemp = new Temperature();
+        dbTemp.open();
         
         out.println("<!DOCTYPE html>");
         out.println("<html>");
@@ -48,16 +50,27 @@ public class OverviewServlet extends HttpServlet {
         out.println("<body>");
 
         try {
-            out.println("<h1>DatabaseTest: " + db.insert() + "</h1>");
+            ArrayList<Integer> results = dbTemp.getResults();
+            int value = 0;
+            
+            if(!results.isEmpty()) {
+                for (Integer entry : results) {
+                    value = entry.intValue();
+                    out.println("<h3>DatabaseTest: " + value + "</h3>");
+                }
+            }
+            else {
+                out.println("<h1>DatabaseTest: " + "EMPTY" + "</h1>");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         out.println("</body>");
         out.println("</html>");
-
-        // close the stream 
-        out.close();
+        
+        // close the stream
+        out.close();        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -87,17 +100,14 @@ public class OverviewServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {        
+        String records = "Hello World!";
+        
+        request.setAttribute("record", records);
+        
+        String url = "/overview.jsp";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+        rd.forward(request, response);
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 }

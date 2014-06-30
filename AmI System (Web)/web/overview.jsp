@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+<% String record = "hello world"; %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,6 +21,6 @@
             <jsp:attribute name="menu" />
         </t:menu>
 
-        <h1>Overview!</h1>
+        <h1><%= record %></h1>
     </body>
 </html>

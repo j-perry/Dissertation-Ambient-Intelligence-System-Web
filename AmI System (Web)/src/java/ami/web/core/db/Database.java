@@ -59,7 +59,7 @@ public class Database implements IDatabase {
         }
     }
     
-    public String insert() {        
+    public int insert() {        
         // select statement
         query = "INSERT INTO test (Name)" +
                 "VALUES ('Jonathan')";
@@ -75,7 +75,7 @@ public class Database implements IDatabase {
             ex.printStackTrace();
         }
         
-        return String.valueOf(status);
+        return status;
     }
     
     /**
