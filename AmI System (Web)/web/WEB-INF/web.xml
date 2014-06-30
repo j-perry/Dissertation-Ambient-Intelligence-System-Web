@@ -20,12 +20,12 @@
         <servlet-class>ami.web.core.servlets.Insert</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Test</servlet-name>
-        <servlet-class>ami.web.core.servlets.Test</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AtmosphereServlet</servlet-name>
         <servlet-class>ami.web.core.servlets.AtmosphereServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TemperatureServlet</servlet-name>
+        <servlet-class>ami.web.core.servlets.TemperatureServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Overview</servlet-name>
@@ -40,12 +40,12 @@
         <url-pattern>/insert</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AtmosphereServlet</servlet-name>
         <url-pattern>/atmosphere</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TemperatureServlet</servlet-name>
+        <url-pattern>/temperature</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
