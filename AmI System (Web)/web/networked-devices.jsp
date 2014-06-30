@@ -1,6 +1,6 @@
 <%-- 
-    Document   : atmosphere
-    Created on : 30-Jun-2014, 10:59:17
+    Document   : networked-devices
+    Created on : 30-Jun-2014, 11:08:20
     Author     : Jonathan Perry
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Atmosphere</h1>
+        <h1>Networked Devices</h1>
     </body>
 </html>

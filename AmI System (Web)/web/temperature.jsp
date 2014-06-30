@@ -1,6 +1,6 @@
 <%-- 
-    Document   : atmosphere
-    Created on : 30-Jun-2014, 10:59:17
+    Document   : temperature
+    Created on : 30-Jun-2014, 11:06:16
     Author     : Jonathan Perry
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Atmosphere</h1>
+        <h1>Temperature</h1>
     </body>
 </html>
