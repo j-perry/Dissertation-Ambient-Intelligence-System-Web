@@ -72,6 +72,9 @@ public class View extends HttpServlet {
         String msg = null;
         List<Integer> results = null;
         
+        /**
+         * Get the required content from the database
+         */
         if(type.equals("overview")) {
             Temperature dbTemp = new Temperature();
             dbTemp.open();

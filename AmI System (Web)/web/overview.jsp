@@ -25,8 +25,8 @@
                 <tr>
                     <td>${result}</td>
                 </tr>
-            </c:forEach>   
-        </table>
+            </c:forEach>
+        <table>
 
-    </body>
+</body>
 </html>
