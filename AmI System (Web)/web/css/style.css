@@ -21,6 +21,16 @@ body {
     height: 45px;
     color: #FFF;
 }
+#app-title {
+    float: left;
+    padding-left: 5%;    
+    padding-right: 50px;
+}
+#app-title span a {
+    font-size: 20px;
+    color: #FFF;
+    text-decoration: none;
+}
 #nav  {
     float: left;
 }

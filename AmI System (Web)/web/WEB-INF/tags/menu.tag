@@ -16,6 +16,7 @@
     <div id="app-title">
         <span><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/">AmI System</a></span>       
     </div>
+    
     <div id="nav">        
         <form action="View" method="get">
             
