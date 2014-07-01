@@ -19,6 +19,7 @@
             <jsp:attribute name="menu" />
         </t:menu>
         
-        <h1>Atmosphere</h1>
+        
+        
     </body>
 </html>
