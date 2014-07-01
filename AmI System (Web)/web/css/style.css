@@ -31,6 +31,11 @@ body {
     color: #FFF;
     text-decoration: none;
 }
+#app-title span a:hover {
+    border-bottom: 2px solid #FFF;
+    padding-bottom: 3px;
+    cursor: pointer;
+}
 #nav  {
     float: left;
 }
@@ -46,4 +51,9 @@ button {
     padding: 0;
     margin: 0;
     margin-right: 15px;
+}
+button:hover {
+    border-bottom: 2px solid #FFF;
+    padding-bottom: 3px;
+    cursor: pointer;
 }
