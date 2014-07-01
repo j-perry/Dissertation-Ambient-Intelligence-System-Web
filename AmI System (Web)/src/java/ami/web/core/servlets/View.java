@@ -4,8 +4,10 @@
  */
 package ami.web.core.servlets;
 
+import ami.web.core.db.Temperature;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,8 +69,25 @@ public class View extends HttpServlet {
         
         String type = request.getParameter("type");
         String viewUrl = type + ".jsp";
+        String msg = null;
+        List<Integer> results = null;
         
-        request.setAttribute("test", new String(type));
+        if(type.equals("overview")) {
+            Temperature dbTemp = new Temperature();
+            dbTemp.open();
+            results = dbTemp.getResults();
+        }
+        else if(type.equals("temperature")) {
+            msg = "Temperature";
+        }
+        else if(type.equals("atmosphere")) {
+            msg = "Atmosphere";
+        }
+        else if(type.equals("networked-devices")) {
+            msg = "Networked Devices";
+        }
+        
+        request.setAttribute("results", results);
         RequestDispatcher view = request.getRequestDispatcher(viewUrl);
         view.forward(request, response);
     }

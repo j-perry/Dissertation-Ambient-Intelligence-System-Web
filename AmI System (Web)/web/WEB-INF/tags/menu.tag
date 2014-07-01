@@ -16,7 +16,8 @@
     <div id="app-title">
         <span>AmI System</span>       
     </div>
-    <div id="nav">        <form action="View" method="get">
+    <div id="nav">        
+        <form action="View" method="get">
             <!-- Overview -->
             <button name="type"
                     value="overview"

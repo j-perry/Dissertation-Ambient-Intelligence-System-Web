@@ -4,10 +4,11 @@
     Author     : Jonathan Perry
 --%>
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<% String record = (String) request.getAttribute("test"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +20,13 @@
         <t:menu>
             <jsp:attribute name="menu" />
         </t:menu>
+        <table>
+            <c:forEach items="${results}" var="result">
+                <tr>
+                    <td>${result}</td>
+                </tr>
+            </c:forEach>   
+        </table>
 
-        <h1><%= record %></h1>
     </body>
 </html>
