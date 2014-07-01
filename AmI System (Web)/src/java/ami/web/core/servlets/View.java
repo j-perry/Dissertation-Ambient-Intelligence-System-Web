@@ -69,8 +69,8 @@ public class View extends HttpServlet {
         
         String type = request.getParameter("type");
         String viewUrl = type + ".jsp";
-        String msg = null;
         List<Integer> results = null;
+        String msg = null;
         
         /**
          * Get the required content from the database
@@ -79,15 +79,24 @@ public class View extends HttpServlet {
             Temperature dbTemp = new Temperature();
             dbTemp.open();
             results = dbTemp.getResults();
+            
+//            if(results.isEmpty()) {
+//                msg = "Empty";
+//            }
+//            else {
+//                msg = "Not Empty";
+//            }
         }
         else if(type.equals("temperature")) {
-            msg = "Temperature";
+            Temperature dbTemp = new Temperature();
+            dbTemp.open();
+            results = dbTemp.getResults();
         }
         else if(type.equals("atmosphere")) {
-            msg = "Atmosphere";
+            
         }
         else if(type.equals("networked-devices")) {
-            msg = "Networked Devices";
+            
         }
         
         request.setAttribute("results", results);

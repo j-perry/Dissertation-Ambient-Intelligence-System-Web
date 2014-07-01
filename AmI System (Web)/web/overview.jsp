@@ -21,12 +21,18 @@
             <jsp:attribute name="menu" />
         </t:menu>
         <table>
-            <c:forEach items="${results}" var="result">
-                <tr>
-                    <td>${result}</td>
-                </tr>
-            </c:forEach>
+            
+            <% 
+                List<Integer> results = (List<Integer>) request.getAttribute("results");
+
+                for(Integer value : results) {
+            %>
+                    <tr><td><%= value.toString() %></td></tr>
+            <%
+                }
+            %>
+                        
         <table>
 
-</body>
+    </body>
 </html>

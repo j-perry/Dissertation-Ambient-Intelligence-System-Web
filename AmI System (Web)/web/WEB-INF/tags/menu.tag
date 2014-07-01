@@ -14,10 +14,11 @@
     <jsp:invoke fragment="menu" />
     
     <div id="app-title">
-        <span>AmI System</span>       
+        <span><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/">AmI System</a></span>       
     </div>
     <div id="nav">        
         <form action="View" method="get">
+            
             <!-- Overview -->
             <button name="type"
                     value="overview"
@@ -43,7 +44,5 @@
                     class="nav-btn">Networked Devices</button>
         </form>
     </div>
-
-
 
 </div>

@@ -4,10 +4,11 @@
     Author     : Jonathan Perry
 --%>
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<% String record = (String) request.getAttribute("test"); %>
+<% List<Integer> results = (List) request.getAttribute("results"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +22,13 @@
             <jsp:attribute name="menu" />
         </t:menu>
 
-        <h1><%= record %></h1>
+        <h1>
+            <%=
+                for(Integer value : results) {
+                    value.intValue();
+                }
+            %>
+        </h1>
         
     </body>
 </html>

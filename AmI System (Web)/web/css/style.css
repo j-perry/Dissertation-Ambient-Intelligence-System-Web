@@ -21,12 +21,6 @@ body {
     height: 45px;
     color: #FFF;
 }
-#app-title {
-    float: left;
-    padding-left: 5%;
-    margin-right: 50px;
-    font-size: 20px;
-}
 #nav  {
     float: left;
 }
