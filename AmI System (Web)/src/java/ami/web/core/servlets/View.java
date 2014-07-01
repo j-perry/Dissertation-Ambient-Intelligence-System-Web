@@ -65,11 +65,14 @@ public class View extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        request.setAttribute("test", new String("Our MVC framework works. Yay!"));
-        RequestDispatcher view = request.getRequestDispatcher("overview.jsp");
+        String type = request.getParameter("type");
+        String viewUrl = type + ".jsp";
+        
+        request.setAttribute("test", new String(type));
+        RequestDispatcher view = request.getRequestDispatcher(viewUrl);
         view.forward(request, response);
     }
-
+    
     /**
      * Handles the HTTP
      * <code>POST</code> method.

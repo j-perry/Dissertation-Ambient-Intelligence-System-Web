@@ -14,7 +14,6 @@
     <jsp:invoke fragment="menu" />
     
     <form action="View" method="get">
-        <h3>AmI System</h3>
         <!-- Overview -->
         <button name="type"
                 value="overview"
@@ -23,20 +22,20 @@
         
         <!-- Temperature -->
         <button name="type"
-                type="submit"
                 value="temperature"
+                type="submit"
                 class="nav-btn">Temperature</button>
         
         <!-- Atmosphere -->
         <button name="type"
-                type="submit"
                 value="atmosphere"
+                type="submit"
                 class="nav-btn">Atmosphere</button>
         
         <!-- Networked Devices -->
         <button name="type"
+                value="networked-devices"
                 type="submit"
-                value="networked_devices"
                 class="nav-btn">Networked Devices</button>
     </form>
         
