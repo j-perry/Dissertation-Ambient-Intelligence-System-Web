@@ -19,7 +19,7 @@
             <jsp:attribute name="menu" />
         </t:menu>
         
-        <h1>Index.jsp</h1>
+        
         
     </body>
 </html>
