@@ -22,11 +22,19 @@ body {
 }
 ul {
     float: left;
-    width: 90%;
+    width: 95%;
     list-style: none;
     font-size: 1.3em;
 }
 ul li {
     padding-left: 25px;
     float: left;
+}
+p {
+    margin: 0;
+    padding: 0;
+}
+button {
+    font-size: 24px;
+    color: #FFF;
 }

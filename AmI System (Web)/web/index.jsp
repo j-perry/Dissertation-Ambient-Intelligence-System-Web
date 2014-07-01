@@ -18,8 +18,6 @@
         <t:menu>
             <jsp:attribute name="menu" />
         </t:menu>
-        
-        
-        
+                
     </body>
 </html>

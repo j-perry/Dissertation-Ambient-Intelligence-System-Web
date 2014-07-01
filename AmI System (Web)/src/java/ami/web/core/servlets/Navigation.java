@@ -4,11 +4,8 @@
  */
 package ami.web.core.servlets;
 
-import ami.web.core.db.*;
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jonathan Perry
  */
-@WebServlet(name = "Overview", urlPatterns = {"/overview"})
-public class OverviewServlet extends HttpServlet {
+@WebServlet(name = "Navigation", urlPatterns = {"/Navigation"})
+public class Navigation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,59 +32,22 @@ public class OverviewServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        Temperature dbTemp = new Temperature();
-        dbTemp.open();
-        
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-            out.println("<link rel=\"stylesheet\" href=\"css/style.css\" />");
-            out.println("<title>Overview</title>");
-        out.println("</head>");
-        out.println("<body id\"wrapper\">");
-        
-        out.println("<div id=\"menu\">");
-        // menu
-        out.println("<ul>" +
-"        <li>AmI System</li>" +
-"        <li>Overview</li>" +
-"        <li>Temperature</li>" +
-"        <li>Atmosphere</li>" +
-"        <li>Networked Devices</li>" +
-"    </ul>");
-        
-        out.println("</div>");
-        
-        out.println("<div>");
-
         try {
-            ArrayList<Integer> results = dbTemp.getResults();
-            int value = 0;
-            
-            if(!results.isEmpty()) {
-                for (Integer entry : results) {
-                    value = entry.intValue();
-                    out.println("<p>DatabaseTest: " + value + "</p>");
-                }
-            }
-            else {
-                out.println("<h1>DatabaseTest: " + "EMPTY" + "</h1>");
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Navigation</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Navigation at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        } finally {            
+            out.close();
         }
-        
-        
-        out.println("</div>");
-        
-        out.println("</body>");
-        out.println("</html>");
-        
-        // close the stream
-        out.close();        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -117,14 +77,21 @@ public class OverviewServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-        String records = "Hello World!";
+            throws ServletException, IOException {
+        //processRequest(request, response);
         
-        request.setAttribute("record", records);
-        
-        String url = "/overview.jsp";
-        RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-        rd.forward(request, response);
-        processRequest(request, response);
+        request.setAttribute("test", new String("Our MVC framework works. Yay!"));
+        RequestDispatcher view = request.getRequestDispatcher("overview.jsp");
+        view.forward(request, response);
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 }

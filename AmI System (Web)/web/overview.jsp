@@ -7,8 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<% String record = "hello world"; %>
-
+<% String record = (String) request.getAttribute("test"); %>
 <!DOCTYPE html>
 <html>
     <head>
