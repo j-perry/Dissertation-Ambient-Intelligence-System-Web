@@ -13,30 +13,36 @@
 <div id="menu">
     <jsp:invoke fragment="menu" />
     
-    <form action="View" method="get">
-        <!-- Overview -->
-        <button name="type"
-                value="overview"
-                type="submit"
-                class="nav-btn">Overview</button>
-        
-        <!-- Temperature -->
-        <button name="type"
-                value="temperature"
-                type="submit"
-                class="nav-btn">Temperature</button>
-        
-        <!-- Atmosphere -->
-        <button name="type"
-                value="atmosphere"
-                type="submit"
-                class="nav-btn">Atmosphere</button>
-        
-        <!-- Networked Devices -->
-        <button name="type"
-                value="networked-devices"
-                type="submit"
-                class="nav-btn">Networked Devices</button>
-    </form>
-        
+    <div id="app-title">
+        <span>AmI System</span>       
+    </div>
+    <div id="nav">        <form action="View" method="get">
+            <!-- Overview -->
+            <button name="type"
+                    value="overview"
+                    type="submit"
+                    class="nav-btn">Overview</button>
+
+            <!-- Temperature -->
+            <button name="type"
+                    value="temperature"
+                    type="submit"
+                    class="nav-btn">Temperature</button>
+
+            <!-- Atmosphere -->
+            <button name="type"
+                    value="atmosphere"
+                    type="submit"
+                    class="nav-btn">Atmosphere</button>
+
+            <!-- Networked Devices -->
+            <button name="type"
+                    value="networked-devices"
+                    type="submit"
+                    class="nav-btn">Networked Devices</button>
+        </form>
+    </div>
+
+
+
 </div>

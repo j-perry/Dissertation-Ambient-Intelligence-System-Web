@@ -21,7 +21,7 @@
             <jsp:attribute name="menu" />
         </t:menu>
 
-        <h1><%= record %></h1>      
+        <h1><%= record %></h1>
         
     </body>
 </html>
