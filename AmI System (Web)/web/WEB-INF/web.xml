@@ -61,7 +61,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>View</servlet-name>
-        <url-pattern>/view</url-pattern>
+        <url-pattern>/View</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
