@@ -32,8 +32,8 @@
         <servlet-class>ami.web.core.servlets.NetworkedDevicesServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Navigation</servlet-name>
-        <servlet-class>ami.web.core.servlets.Navigation</servlet-class>
+        <servlet-name>View</servlet-name>
+        <servlet-class>ami.web.core.servlets.View</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Overview</servlet-name>
@@ -60,8 +60,8 @@
         <url-pattern>/NetworkedDevices</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Navigation</servlet-name>
-        <url-pattern>/navigation</url-pattern>
+        <servlet-name>View</servlet-name>
+        <url-pattern>/view</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

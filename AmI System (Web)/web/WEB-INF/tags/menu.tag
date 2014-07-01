@@ -13,27 +13,30 @@
 <div id="menu">
     <jsp:invoke fragment="menu" />
     
-    <form action="navigation" method="post">
+    <form action="view" method="get">
         <h3>AmI System</h3>
         <!-- Overview -->
-        <button name="overview"
+        <button name="id"
+                value="overview"
                 type="submit"
                 class="nav-btn">Overview</button>
         
         <!-- Temperature -->
-        <button name="temperature"
+        <button name="id"
                 type="submit"
-                value="Temperature"
+                value="temperature"
                 class="nav-btn">Temperature</button>
         
         <!-- Atmosphere -->
-        <button name="atmosphere"
+        <button name="id"
                 type="submit"
+                value="atmosphere"
                 class="nav-btn">Atmosphere</button>
         
         <!-- Networked Devices -->
-        <button name="networked_devices"
+        <button name="id"
                 type="submit"
+                value="networked_devices"
                 class="nav-btn">Networked Devices</button>
     </form>
     

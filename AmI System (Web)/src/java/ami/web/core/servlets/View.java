@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Jonathan Perry
  */
 @WebServlet(name = "Navigation", urlPatterns = {"/Navigation"})
-public class Navigation extends HttpServlet {
+public class View extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -63,7 +63,11 @@ public class Navigation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        
+        request.setAttribute("test", new String("Our MVC framework works. Yay!"));
+        RequestDispatcher view = request.getRequestDispatcher("overview.jsp");
+        view.forward(request, response);
     }
 
     /**
@@ -79,10 +83,7 @@ public class Navigation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
-        request.setAttribute("test", new String("Our MVC framework works. Yay!"));
-        RequestDispatcher view = request.getRequestDispatcher("overview.jsp");
-        view.forward(request, response);
+                
     }
 
     /**
