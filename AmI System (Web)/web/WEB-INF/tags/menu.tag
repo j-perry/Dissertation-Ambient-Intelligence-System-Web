@@ -39,15 +39,5 @@
                 value="networked_devices"
                 class="nav-btn">Networked Devices</button>
     </form>
-    
-    <!--
-    <ul>
-        <li>AmI System</li>
-        <li><a href="overview">Overview</a></li>
-        <li><a href="temperature">Temperature</a></li>
-        <li><a href="atmosphere">Atmosphere</a></li>
-        <li><a href="networked-devices">Networked Devices</a></li>
-    </ul>
-    -->
-    
+        
 </div>
