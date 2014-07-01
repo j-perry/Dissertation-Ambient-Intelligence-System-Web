@@ -18,16 +18,16 @@ body {
     background-color: #111;
     width: 100%;
     padding-top: 20px;
-    height: 45px;
+    height: 40px;
     color: #FFF;
 }
 #app-title {
     float: left;
-    padding-left: 5%;    
+    padding-left: 2%;    
     padding-right: 50px;
 }
 #app-title span a {
-    font-size: 20px;
+    font-size: 14px;
     color: #FFF;
     text-decoration: none;
 }
@@ -44,7 +44,7 @@ p {
     padding: 0;
 }
 button {
-    font-size: 20px;
+    font-size: 14px;
     color: #FFF;
     border: none;
     background: none;
