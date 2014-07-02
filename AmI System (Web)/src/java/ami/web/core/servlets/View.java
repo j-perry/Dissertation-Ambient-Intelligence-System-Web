@@ -79,13 +79,6 @@ public class View extends HttpServlet {
             Temperature dbTemp = new Temperature();
             dbTemp.open();
             results = dbTemp.getResults();
-            
-//            if(results.isEmpty()) {
-//                msg = "Empty";
-//            }
-//            else {
-//                msg = "Not Empty";
-//            }
         }
         else if(type.equals("temperature")) {
             Temperature dbTemp = new Temperature();
