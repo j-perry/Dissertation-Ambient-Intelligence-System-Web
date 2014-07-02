@@ -20,19 +20,30 @@
         <t:menu>
             <jsp:attribute name="menu" />
         </t:menu>
-        <table>
+        
+        <div id="content-wrapper">
             
-            <% 
-                List<Integer> results = (List<Integer>) request.getAttribute("results");
+            <t:page-header>
+                <jsp:attribute name="header" />
+            </t:page-header>
+            
+            <table>
 
-                for(Integer value : results) {
-            %>
-                    <tr><td><%= value.toString() %></td></tr>
-            <%
-                }
-            %>
-                        
-        <table>
+                <%
+                    List<Integer> results = (List<Integer>) request.getAttribute("results");
+
+                    for (Integer value : results) {
+                %>
+                <tr><td><%= value.toString()%></td></tr>
+                <%
+                    }
+                %>
+
+            <table>
+            
+        </div>
+        
+        
 
     </body>
 </html>

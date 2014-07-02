@@ -16,14 +16,15 @@ body {
 }
 #menu {
     background-color: #111;
-    width: 100%;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
     padding-top: 20px;
     height: 40px;
     color: #FFF;
 }
 #app-title {
     float: left;
-    padding-left: 2%;    
     padding-right: 50px;
 }
 #app-title span a {
@@ -56,4 +57,12 @@ button:hover {
     border-bottom: 2px solid #FFF;
     padding-bottom: 3px;
     cursor: pointer;
+}
+#content-wrapper {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}
+#content-wrapper #page-header {
+    margin-top: 25px;
 }

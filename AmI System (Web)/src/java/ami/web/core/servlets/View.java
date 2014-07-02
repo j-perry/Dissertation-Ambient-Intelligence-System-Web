@@ -96,9 +96,13 @@ public class View extends HttpServlet {
             
         }
         else if(type.equals("networked-devices")) {
-            
+            type = "Networked Devices";
         }
         
+        // set the first letter to uppercase
+        type = type.substring(0, 1).toUpperCase() + type.substring(1);
+        
+        request.setAttribute("type", type);
         request.setAttribute("results", results);
         RequestDispatcher view = request.getRequestDispatcher(viewUrl);
         view.forward(request, response);
