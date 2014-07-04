@@ -27,23 +27,39 @@
                 <jsp:attribute name="header" />
             </t:page-header>
             
-            <table>
-
+            <div class="section temperature">
+                
+                <h2>Temperature</h2>
+                
                 <%
                     List<Integer> results = (List<Integer>) request.getAttribute("results");
 
                     for (Integer value : results) {
                 %>
-                <tr><td><%= value.toString()%></td></tr>
+                <%= value.toString() + ", " %>
                 <%
                     }
                 %>
-
-            <table>
+                
+            </div>
             
+            <div class="section atmosphere">
+                
+                <h2>Atmosphere</h2>
+                
+            </div>
+            
+            <div class="section motion">
+                
+                <h2>Motion</h2>
+                
+            </div>
+                                    
         </div>
         
-        
+        <t:footer>
+            <jsp:attribute name="footer" />
+        </t:footer>
 
     </body>
 </html>

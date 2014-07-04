@@ -66,10 +66,49 @@ button:hover {
 /*      Content   
 ***********************/
 #content-wrapper {
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 90%;
+    width: 100%;
 }
 #content-wrapper #page-header {
     margin-top: 25px;
+    margin-bottom: 25px;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 90%;
+    text-decoration: underline;
+}
+
+/*      Overview (Section)
+*********************************/
+div.section {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    float: left;
+    min-height: 500px;
+}
+div.section h2 {
+    padding-bottom: 2px;
+}
+.temperature {
+    background-color: #F4D03F;
+}
+.atmosphere {
+    background-color: #EEE;    
+}
+.motion {    
+    background-color: #BE90D4;
+}
+
+/*      Footer
+*******************/
+#footer {
+    float: left;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #FFF;
 }

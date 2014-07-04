@@ -5,6 +5,7 @@
 package ami.web.core.servlets;
 
 import ami.web.core.db.Temperature;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -14,6 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.*;
 
 /**
  *
@@ -70,7 +73,10 @@ public class View extends HttpServlet {
         String type = request.getParameter("type");
         String viewUrl = type + ".jsp";
         List<Integer> results = null;
-        String msg = null;
+        String msg = null;        
+        JSONObject jsonObj = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        FileWriter fWriter = null;
         
         /**
          * Get the required content from the database
@@ -79,6 +85,14 @@ public class View extends HttpServlet {
             Temperature dbTemp = new Temperature();
             dbTemp.open();
             results = dbTemp.getResults();
+            
+            // get first parameter pass
+            for(int i = 0; i < results.size(); i++) {
+                jsonArray.add(results.get(i));
+            }
+            
+            jsonObj.put("results", jsonArray);
+            
         }
         else if(type.equals("temperature")) {
             Temperature dbTemp = new Temperature();
@@ -86,6 +100,9 @@ public class View extends HttpServlet {
             results = dbTemp.getResults();
         }
         else if(type.equals("atmosphere")) {
+            
+        }
+        else if(type.equals("motion")) {
             
         }
         else if(type.equals("networked-devices")) {

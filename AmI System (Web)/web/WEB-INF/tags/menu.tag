@@ -37,6 +37,12 @@
                     value="atmosphere"
                     type="submit"
                     class="nav-btn">Atmosphere</button>
+                    
+            <!-- Motion -->
+            <button name="type"
+                    value="motion"
+                    type="submit"
+                    class="nav-btn">Motion</button>
 
             <!-- Networked Devices -->
             <button name="type"
