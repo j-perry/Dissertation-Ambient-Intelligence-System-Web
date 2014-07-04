@@ -128,7 +128,7 @@ public class View extends HttpServlet {
         type = type.substring(0, 1).toUpperCase() + type.substring(1);
         
         request.setAttribute("type", type);
-        request.setAttribute("results", results);
+//        request.setAttribute("results", results);
         RequestDispatcher view = request.getRequestDispatcher(viewUrl);
         view.forward(request, response);
     }

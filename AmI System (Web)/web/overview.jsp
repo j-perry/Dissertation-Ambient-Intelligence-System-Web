@@ -31,15 +31,7 @@
                 
                 <h2>Temperature</h2>
                 
-                <%
-                    List<Integer> results = (List<Integer>) request.getAttribute("results");
-
-                    for (Integer value : results) {
-                %>
-                <%= value.toString() + ", " %>
-                <%
-                    }
-                %>
+                
                 
             </div>
             
