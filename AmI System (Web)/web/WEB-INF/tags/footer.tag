@@ -12,6 +12,6 @@
 <%-- any content can be specified here e.g.: --%>
 <div id="footer">
     
-    <h4>Jonathan Perry, 2014. MSc Advanced Computer Science.</h4>
+    <h4>Jonathan Perry (2014). MSc Advanced Computer Science.</h4>
     
 </div>

@@ -86,13 +86,31 @@ public class View extends HttpServlet {
             dbTemp.open();
             results = dbTemp.getResults();
             
-            // get first parameter pass
-            for(int i = 0; i < results.size(); i++) {
-                jsonArray.add(results.get(i));
+            for(int value : results) {
+                jsonArray.add(value);
             }
+                        
+            jsonObj.put("overview-temperature", jsonArray);
             
-            jsonObj.put("results", jsonArray);
+            // create the path for which we need to save our JSON data structure to
+            // for parsing using JavaScript
+            String filename = "overview-temperature.json";
             
+            String fWriterPath = getServletContext().getRealPath("/");
+            fWriterPath += "js/";
+            fWriterPath += filename;
+            
+            try {
+                fWriter = new FileWriter(fWriterPath);
+                fWriter.write(jsonObj.toJSONString() );
+                fWriter.flush();
+            }
+            catch(IOException ex) {
+                ex.printStackTrace();
+            }
+            finally {                
+                fWriter.close();
+            }            
         }
         else if(type.equals("temperature")) {
             Temperature dbTemp = new Temperature();
@@ -104,9 +122,6 @@ public class View extends HttpServlet {
         }
         else if(type.equals("motion")) {
             
-        }
-        else if(type.equals("networked-devices")) {
-            type = "Networked Devices";
         }
         
         // set the first letter to uppercase

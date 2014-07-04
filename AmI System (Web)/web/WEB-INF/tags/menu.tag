@@ -44,11 +44,6 @@
                     type="submit"
                     class="nav-btn">Motion</button>
 
-            <!-- Networked Devices -->
-            <button name="type"
-                    value="networked-devices"
-                    type="submit"
-                    class="nav-btn">Networked Devices</button>
         </form>
     </div>
 

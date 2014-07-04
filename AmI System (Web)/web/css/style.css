@@ -20,9 +20,9 @@ body {
 ************************/
 #menu {
     background-color: #FFF;
-    width: 90%;
-    padding-left: 5%;
-    padding-right: 5%;
+    width: 84%;
+    padding-left: 8%;
+    padding-right: 8%;
     padding-top: 20px;
     height: 40px;
     color: #FFF;
@@ -71,18 +71,18 @@ button:hover {
 #content-wrapper #page-header {
     margin-top: 25px;
     margin-bottom: 25px;
-    padding-left: 5%;
-    padding-right: 5%;
-    width: 90%;
-    text-decoration: underline;
+    padding-left: 8%;
+    padding-right: 8%;
+    width: 84%;
+    text-decoration: none;
 }
 
 /*      Overview (Section)
 *********************************/
 div.section {
-    width: 90%;
-    padding-left: 5%;
-    padding-right: 5%;
+    width: 84%;
+    padding-left: 8%;
+    padding-right: 8%;
     padding-top: 25px;
     padding-bottom: 25px;
     float: left;
@@ -105,10 +105,10 @@ div.section h2 {
 *******************/
 #footer {
     float: left;
-    width: 90%;
-    padding-left: 5%;
-    padding-right: 5%;
+    width: 84%;
+    padding-left: 8%;
+    padding-right: 8%;
     padding-top: 15px;
     padding-bottom: 15px;
-    background-color: #FFF;
+    background-color: #EEE;
 }
