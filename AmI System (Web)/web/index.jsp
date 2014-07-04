@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/style.css" />
-        <title>Ambient Intelligence Web Application</title>
+        <title>Ambient Intelligence System</title>
     </head>
     <body id="wrapper">
         <t:menu>
