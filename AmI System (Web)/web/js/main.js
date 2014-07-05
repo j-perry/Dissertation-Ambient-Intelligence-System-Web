@@ -55,9 +55,9 @@ jQuery(document).ready(function() {
             datasets: [
                 {
                     label: "My First dataset",
-                    fillColor: "rgba(220,220,220,0.2)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
+                    fillColor: "rgba(52, 152, 219,1)",
+                    strokeColor: "rgba(52, 152, 219,1)",
+                    pointColor: "rgba(52, 152, 219,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
@@ -65,9 +65,9 @@ jQuery(document).ready(function() {
                 },
                 {
                     label: "My Second dataset",
-                    fillColor: "rgba(151,187,205,0.2)",
-                    strokeColor: "rgba(151,187,205,1)",
-                    pointColor: "rgba(151,187,205,1)",
+                    fillColor: "rgba(242,38,19,1)",
+                    strokeColor: "rgba(242,38,19,1)",
+                    pointColor: "rgba(242,38,19,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",

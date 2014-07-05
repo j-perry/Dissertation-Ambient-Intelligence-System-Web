@@ -5,6 +5,7 @@
 package ami.web.core.servlets;
 
 import ami.web.core.db.*;
+import ami.web.core.models.Temperature;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,7 +39,7 @@ public class OverviewServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        Temperature dbTemp = new Temperature();
+        TemperatureTable dbTemp = new TemperatureTable();
         dbTemp.open();
         
         out.println("<!DOCTYPE html>");
@@ -64,7 +65,7 @@ public class OverviewServlet extends HttpServlet {
         out.println("<div>");
 
         try {
-            ArrayList<Integer> results = dbTemp.getResults();
+            ArrayList<Temperature> results = dbTemp.getResults();
             int value = 0;
             
             if(!results.isEmpty()) {

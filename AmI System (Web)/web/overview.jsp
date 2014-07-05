@@ -36,7 +36,7 @@
                 
                 <!-- <div id="test"></div> -->
                 
-                <canvas id="myChart" width="800" height="400"></canvas>
+                <canvas id="myChart" width="1100" height="400"></canvas>
                 
             </div>
             
@@ -44,7 +44,7 @@
                 
                 <h2>Atmosphere</h2>
                 
-                <canvas id="myChart2" width="800" height="400"></canvas>
+                <canvas id="myChart2" width="1100" height="400"></canvas>
                 
             </div>
             
@@ -52,7 +52,7 @@
                 
                 <h2>Motion</h2>
                 
-                <canvas id="myChart3" width="800" height="400"></canvas>
+                <canvas id="myChart3" width="1100" height="400"></canvas>
                 
             </div>
                                     
