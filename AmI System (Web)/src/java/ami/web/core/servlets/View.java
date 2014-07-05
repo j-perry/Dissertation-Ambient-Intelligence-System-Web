@@ -4,7 +4,8 @@
  */
 package ami.web.core.servlets;
 
-import ami.web.core.db.Temperature;
+import ami.web.core.models.Temperature;
+import ami.web.core.db.TemperatureTable;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -44,13 +45,13 @@ public class View extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Navigation</title>");            
+            out.println("<title>Servlet Navigation</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Navigation at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -69,70 +70,85 @@ public class View extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
+
         String type = request.getParameter("type");
         String viewUrl = type + ".jsp";
-        List<Integer> results = null;
-        String msg = null;        
+        String msg = null;
         JSONObject jsonObj = new JSONObject();
-        JSONArray jsonArray = new JSONArray();
         FileWriter fWriter = null;
-        
+
+        //
+
         /**
          * Get the required content from the database
          */
-        if(type.equals("overview")) {
-            Temperature dbTemp = new Temperature();
+        if (type.equals("overview")) {
+            TemperatureTable dbTemp = new TemperatureTable();
             dbTemp.open();
-            results = dbTemp.getResults();
-            
-            for(int value : results) {
-                jsonArray.add(value);
+            List<Temperature> results = dbTemp.getResults();
+            JSONArray values = new JSONArray();
+            JSONArray dates = new JSONArray();
+            JSONArray times = new JSONArray();
+
+            // value
+            for (Temperature result : results) {
+                values.add(result.getValue());
             }
-                        
-            jsonObj.put("overviewtemperature", jsonArray);
-            
+
+            jsonObj.put("value", values);
+
+            // date
+            for (Temperature result : results) {
+                dates.add(result.getDate());
+            }
+
+            jsonObj.put("date", dates);
+
+            // time
+            for (Temperature result : results) {
+                times.add(result.getTime());
+            }
+
+            jsonObj.put("time", times);
+
             // create the path for which we need to save our JSON data structure to
             // for parsing using JavaScript
             String filename = "overview_temperature.json";
-            
+
             String fWriterPath = getServletContext().getRealPath("/");
             fWriterPath += "js/";
             fWriterPath += filename;
-            
+
             try {
                 fWriter = new FileWriter(fWriterPath);
-                fWriter.write(jsonObj.toJSONString() );
+                fWriter.write(jsonObj.toJSONString());
                 fWriter.flush();
-            }
-            catch(IOException ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
-            }
-            finally {                
+            } finally {
                 fWriter.close();
-            }            
-        }
-        else if(type.equals("temperature")) {
-            Temperature dbTemp = new Temperature();
+            }
+        } else if (type.equals("temperature")) {
+            TemperatureTable dbTemp = new TemperatureTable();
+
             dbTemp.open();
+            List<Temperature> results = null;
             results = dbTemp.getResults();
+        } else if (type.equals("atmosphere")) {
+            // TODO
+        } else if (type.equals("motion")) {
+            // TODO
         }
-        else if(type.equals("atmosphere")) {
-            
-        }
-        else if(type.equals("motion")) {
-            
-        }
-        
+
         // set the first letter to uppercase
         type = type.substring(0, 1).toUpperCase() + type.substring(1);
-        
+
+        // populate and send a HTTP request object with header info
         request.setAttribute("type", type);
-//        request.setAttribute("results", results);
         RequestDispatcher view = request.getRequestDispatcher(viewUrl);
         view.forward(request, response);
     }
-    
+
     /**
      * Handles the HTTP
      * <code>POST</code> method.
@@ -146,7 +162,6 @@ public class View extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-                
     }
 
     /**

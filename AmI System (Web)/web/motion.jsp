@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Networked Devices</title>
+        <title>Motion</title>
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body id="wrapper">
