@@ -79,17 +79,23 @@ jQuery(document).ready(function() {
         // chart
         var ctx = document.getElementById("myChart").getContext("2d");
         var myLineChart = new Chart(ctx).Line(data, {
-            bezierCurve: false
+            bezierCurve: false,
+            scaleShowGridLines : false,
+            scaleGridLineColor : "rgba(0,0,0, 1)"
         });
 
         var ctx = document.getElementById("myChart2").getContext("2d");
         var myLineChart = new Chart(ctx).Line(data, {
-            bezierCurve: false
+            bezierCurve: false,
+            scaleShowGridLines : false,
+            scaleGridLineColor : "rgba(0,0,0, 1)"
         });
 
         var ctx = document.getElementById("myChart3").getContext("2d");
         var myLineChart = new Chart(ctx).Line(data, {
-            bezierCurve: false
+            bezierCurve: false,
+            scaleShowGridLines : false,
+            scaleGridLineColor : "rgba(0,0,0, 1)"
         });
         
     });
