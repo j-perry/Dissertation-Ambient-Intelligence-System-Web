@@ -16,6 +16,7 @@
         <title>Overview</title>
         <link rel="stylesheet" href="css/style.css" />
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/chart-js/Chart.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </head>
     <body id="wrapper">
@@ -33,7 +34,9 @@
                 
                 <h2>Temperature</h2>
                 
-                <div id="test"></div>
+                <!-- <div id="test"></div> -->
+                
+                <canvas id="myChart" width="800" height="400"></canvas>
                 
             </div>
             
@@ -41,11 +44,15 @@
                 
                 <h2>Atmosphere</h2>
                 
+                <canvas id="myChart2" width="800" height="400"></canvas>
+                
             </div>
             
             <div class="section motion">
                 
                 <h2>Motion</h2>
+                
+                <canvas id="myChart3" width="800" height="400"></canvas>
                 
             </div>
                                     

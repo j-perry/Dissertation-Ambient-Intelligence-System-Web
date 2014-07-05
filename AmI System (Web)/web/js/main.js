@@ -18,7 +18,10 @@ jQuery(document).ready(function() {
 
         // values
         for (var i in data.value) {
-            values += data.value[i] + ", ";
+            if(i == 20)
+                break;
+            else            
+                values += data.value[i] + ", ";
         }
 
         // remove the comma on the end of the variable
@@ -26,21 +29,69 @@ jQuery(document).ready(function() {
 
         // date
         for (var i in data.date) {
-            date += data.date[i] + ", ";
+            if(i == 20)
+                break;
+            else 
+                date += data.date[i] + ", ";
         }
         
         date = date.substr(0, date.length - 2);
 
         // time
         for (var i in data.time) {
-            time += data.time[i] + ", ";
+            if(i == 20)
+                break;
+            else
+                time += data.time[i] + ", ";
         }
         
         time = time.substr(0, time.length - 2);
 
         console.log(values);
-        document.getElementById("test").innerHTML = values;
+        //document.getElementById("test").innerHTML = values;
+        
+        var data = {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [
+                {
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [65, 59, 80, 81, 56, 55, 40]
+                },
+                {
+                    label: "My Second dataset",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [28, 48, 40, 19, 86, 27, 90]
+                }
+            ]
+        };
+        
+        // chart
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var myLineChart = new Chart(ctx).Line(data, {
+            bezierCurve: false
+        });
 
+        var ctx = document.getElementById("myChart2").getContext("2d");
+        var myLineChart = new Chart(ctx).Line(data, {
+            bezierCurve: false
+        });
+
+        var ctx = document.getElementById("myChart3").getContext("2d");
+        var myLineChart = new Chart(ctx).Line(data, {
+            bezierCurve: false
+        });
+        
     });
 
 });
