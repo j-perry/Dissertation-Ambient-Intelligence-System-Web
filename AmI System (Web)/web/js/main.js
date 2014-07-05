@@ -65,8 +65,8 @@ jQuery(document).ready(function() {
                 },
                 {
                     label: "My Second dataset",
-                    fillColor: "rgba(242,38,19,1)",
-                    strokeColor: "rgba(242,38,19,1)",
+                    fillColor: "rgba(242,38,19, 0.9)",
+                    strokeColor: "rgba(242,38,19, 0.9)",
                     pointColor: "rgba(242,38,19,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
