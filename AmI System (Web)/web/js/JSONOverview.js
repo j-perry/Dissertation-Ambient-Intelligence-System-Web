@@ -4,6 +4,14 @@
  */
 function JSONOverview() {
     
+    var Url;
     
+    this.getUrl = function() {
+        return Url;
+    };
+    
+    this.setUrl = function(Url) {
+        this.Url = Url;
+    };
     
 };
