@@ -57,20 +57,20 @@ jQuery(document).ready(function() {
                     label: "My First dataset",
                     fillColor: "rgba(52, 152, 219,1)",
                     strokeColor: "rgba(52, 152, 219,1)",
-                    pointColor: "rgba(17,17,17,1)",
-                    pointStrokeColor: "#111",
+                    pointColor: "rgba(52, 152, 219,1)",
+                    pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(255, 255, 255,1)",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
                     data: [65, 59, 80, 81, 56, 55, 40]
                 },
                 {
                     label: "My Second dataset",
                     fillColor: "rgba(242,38,19,1)",
                     strokeColor: "rgba(242,38,19,1)",
-                    pointColor: "rgba(17,17,17,1)",
-                    pointStrokeColor: "#111",
+                    pointColor: "rgba(242,38,19,1)",
+                    pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(255, 255, 255,1)",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
                     data: [28, 48, 40, 19, 86, 27, 90]
                 }
             ]
