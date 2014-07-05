@@ -15,6 +15,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Overview</title>
         <link rel="stylesheet" href="css/style.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
     </head>
     <body id="wrapper">
         <t:menu>
@@ -31,7 +33,7 @@
                 
                 <h2>Temperature</h2>
                 
-                
+                <div id="test"></div>
                 
             </div>
             

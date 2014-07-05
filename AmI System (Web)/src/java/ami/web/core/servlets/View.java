@@ -90,11 +90,11 @@ public class View extends HttpServlet {
                 jsonArray.add(value);
             }
                         
-            jsonObj.put("overview-temperature", jsonArray);
+            jsonObj.put("overviewtemperature", jsonArray);
             
             // create the path for which we need to save our JSON data structure to
             // for parsing using JavaScript
-            String filename = "overview-temperature.json";
+            String filename = "overview_temperature.json";
             
             String fWriterPath = getServletContext().getRealPath("/");
             fWriterPath += "js/";
