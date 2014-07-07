@@ -12,15 +12,16 @@ jQuery(document).ready(function() {
     var values = "";
     var date = "";
     var time = "";
+    var weekdays = new Array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
 
     // get JSON values
     $.getJSON(path, function(data) {
 
         // values
         for (var i in data.value) {
-            if(i == 20)
-                break;
-            else            
+//            if(i == 5000)
+//                break;
+//            else            
                 values += data.value[i] + ", ";
         }
 
@@ -39,19 +40,19 @@ jQuery(document).ready(function() {
 
         // time
         for (var i in data.time) {
-            if(i == 20)
+            if(i == 5)
                 break;
             else
-                time += data.time[i] + ", ";
+                time += "\"" + data.time[i] + "\"" + ", ";
         }
         
         time = time.substr(0, time.length - 2);
 
-        console.log(values);
+        console.log(weekdays);
         //document.getElementById("test").innerHTML = values;
         
         var data = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: [weekdays[0], weekdays[1], weekdays[2], weekdays[3], weekdays[4]],
             datasets: [
                 {
                     label: "My First dataset",
@@ -61,7 +62,7 @@ jQuery(document).ready(function() {
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [65, 59, 80, 81, 56, 55, 40]
+                    data: [29, 31, 29, 30, 31]
                 },
                 {
                     label: "My Second dataset",
@@ -71,7 +72,7 @@ jQuery(document).ready(function() {
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [28, 48, 40, 19, 86, 27, 90]
+                    data: [28, 27, 31, 29, 30]
                 }
             ]
         };

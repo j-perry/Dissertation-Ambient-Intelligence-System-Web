@@ -43,6 +43,12 @@
                     value="motion"
                     type="submit"
                     class="nav-btn">Motion</button>
+                    
+            <!-- Light -->
+            <button name="type"
+                    value="light"
+                    type="submit"
+                    class="nav-btn">Light</button>        
 
         </form>
     </div>

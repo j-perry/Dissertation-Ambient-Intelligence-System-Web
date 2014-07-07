@@ -69,8 +69,8 @@ public class OverviewServlet extends HttpServlet {
             int value = 0;
             
             if(!results.isEmpty()) {
-                for (Integer entry : results) {
-                    value = entry.intValue();
+                for (Temperature temp : results) {
+                    value = temp.getValue();
                     out.println("<p>DatabaseTest: " + value + "</p>");
                 }
             }
