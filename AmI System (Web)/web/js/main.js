@@ -99,6 +99,13 @@ jQuery(document).ready(function() {
             scaleGridLineColor : "rgba(0,0,0, 1)"
         });
         
+        var ctx = document.getElementById("myChart4").getContext("2d");
+        var myLineChart = new Chart(ctx).Line(data, {
+            bezierCurve: false,
+            scaleShowGridLines : false,
+            scaleGridLineColor : "rgba(0,0,0, 1)"
+        });
+        
     });
 
 });

@@ -55,6 +55,14 @@
                 <canvas id="myChart3" width="1100" height="400"></canvas>
                 
             </div>
+            
+            <div class="section light">
+                
+                <h2>Light</h2>
+                
+                <canvas id="myChart4" width="1100" height="400"></canvas>
+                
+            </div>
                                     
         </div>
         

@@ -15,6 +15,7 @@
         <title>Temperature</title>
         <!-- insert template ? -->
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/context.css" />
     </head>
     <body id="wrapper">
         <t:menu>
