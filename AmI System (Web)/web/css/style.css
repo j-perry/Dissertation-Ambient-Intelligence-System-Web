@@ -16,14 +16,12 @@ body {
     margin: 0 auto;    
 }
 
-h1 {
-    color: #111;
-}
-
 .size {
     width: 84%;
     padding-left: 8%;
     padding-right: 8%;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 /*      Menu
@@ -89,7 +87,22 @@ button:hover {
 
 /*      Index
 *********************************/
-
+#status {
+    background-color: #6C7A89;
+    color: #FFF;
+}
+#history {
+    background-color: #111;
+    color: #FFF;
+}
+#history #sub-heading {
+    background-color: #EEE;
+    color: #111;
+}
+#history #content {
+    background-color: #2ECC71;
+    color: #FFF;
+}
 
 /*      Overview (Section)
 *********************************/
