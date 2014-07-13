@@ -19,7 +19,13 @@
             <jsp:attribute name="menu" />
         </t:menu>
         
-        
+        <div id="content-wrapper">
+            
+            <div id="page-header">
+                <h1>Welcome</h1>
+            </div>
+            
+        </div>
         
     </body>
 </html>
