@@ -26,17 +26,19 @@
             </div>
             
             <div id="status" class="size">
-                <h1>The time now is <u>18:45PM</u>. We'll get started at <u>9:00AM</u> and finish at <u>17:30PM</u>, tomorrow until Friday.</h1>
+                <h1>The time now is <u>18:45PM</u>.</h1>
+                <h1>Tomorrow, we'll get started at <u>9:00AM</u> and finish at <u>17:30PM</u> until Friday.</h1>
+                <h1>> Have a look at your progress...</h1>
             </div>
             
             <div id="history">
                 <div id="sub-heading" class="size">
-                    <h1>History so far...</h1>
+                    <h1>This is the history so far...</h1>
                 </div>
                 
                 <div id="content" class="size">
                     <h1><u>49 hours</u> and <u>52 minutes</u> have been accumulated.</h1>
-                    <h1>The system has identified <u>x3 employers</u> located in <u>x1 room</u>.</h1>
+                    <h1>The system has identified <u>x3 employees</u> located in <u>x1 room</u>.</h1>
                 </div>               
             </div>
             
@@ -46,7 +48,7 @@
                 </div>
                 
                 <div id="content" class="size">
-                    <h1>There are <u>x2 agents</u> and <u>x8 sensors</u> currently setup.</h1>
+                    <h1>There are currently <u>x2 agents</u> and <u>x8 sensors</u> setup.</h1>
                     <h1>So far <u>x4 context</u> types are available for analysis.</h1>
                 </div>
             </div>

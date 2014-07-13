@@ -20,8 +20,8 @@ body {
     width: 84%;
     padding-left: 8%;
     padding-right: 8%;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 125px;
+    padding-bottom: 125px;
 }
 
 /*      Menu
@@ -95,8 +95,10 @@ button:hover {
     
 }
 #history #sub-heading {
-    background-color: #EEE;
-    color: #111;
+    background-color: #111;
+    color: #EEE;    
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 #history #content {
     background-color: #2ECC71;
@@ -108,6 +110,8 @@ button:hover {
 #context #sub-heading {
     background-color: #EEE;
     color: #111;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 #context #content {
     background-color: #663399;
