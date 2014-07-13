@@ -26,8 +26,8 @@
             </div>
             
             <div id="status" class="size">
-                <h1>The time now is <u>18:45PM</u>.</h1>
-                <h1>Tomorrow, we'll get started at <u>9:00AM</u> and finish at <u>17:30PM</u> until Friday.</h1>
+                <h1>The time now is <u>18:45:29 PM</u>.</h1>
+                <h1>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</h1>
                 <h1>> Have a look at your progress...</h1>
             </div>
             
