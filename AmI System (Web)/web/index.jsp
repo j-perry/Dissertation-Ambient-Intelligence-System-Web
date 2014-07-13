@@ -36,6 +36,10 @@
                 <h1>The system has identified <u>x3 employers</u> located in <u>x1 room</u>.</h1>
             </div>
             
+            <t:footer>
+                <jsp:attribute name="footer" />
+            </t:footer>
+            
         </div>
         
     </body>
