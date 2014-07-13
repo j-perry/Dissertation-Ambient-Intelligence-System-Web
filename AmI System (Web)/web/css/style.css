@@ -16,6 +16,12 @@ body {
     margin: 0 auto;    
 }
 
+.size {
+    width: 84%;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
 /*      Menu
 ************************/
 #menu {
