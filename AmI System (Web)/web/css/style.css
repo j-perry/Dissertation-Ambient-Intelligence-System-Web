@@ -16,6 +16,10 @@ body {
     margin: 0 auto;    
 }
 
+h1 {
+    color: #111;
+}
+
 .size {
     width: 84%;
     padding-left: 8%;
