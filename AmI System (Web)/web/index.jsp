@@ -31,14 +31,24 @@
             
             <div id="history">
                 <div id="sub-heading" class="size">
-                    <h1>So far...</h1>
+                    <h1>History so far...</h1>
                 </div>
                 
                 <div id="content" class="size">
                     <h1><u>49 hours</u> and <u>52 minutes</u> have been accumulated.</h1>
-                    <h1>There are <u>x2 agents</u> and <u>x8 sensors</u> currently setup.</h1>
                     <h1>The system has identified <u>x3 employers</u> located in <u>x1 room</u>.</h1>
                 </div>               
+            </div>
+            
+            <div id="context">
+                <div id="sub-heading" class="size">
+                    <h1>The environment status...</h1>
+                </div>
+                
+                <div id="content" class="size">
+                    <h1>There are <u>x2 agents</u> and <u>x8 sensors</u> currently setup.</h1>
+                    <h1>So far <u>x4 context</u> types are available for analysis.</h1>
+                </div>
             </div>
             
             <t:footer>

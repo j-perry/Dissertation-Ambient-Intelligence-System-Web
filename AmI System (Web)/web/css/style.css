@@ -92,8 +92,7 @@ button:hover {
     color: #FFF;
 }
 #history {
-    background-color: #111;
-    color: #FFF;
+    
 }
 #history #sub-heading {
     background-color: #EEE;
@@ -101,6 +100,17 @@ button:hover {
 }
 #history #content {
     background-color: #2ECC71;
+    color: #FFF;
+}
+#context {
+    
+}
+#context #sub-heading {
+    background-color: #EEE;
+    color: #111;
+}
+#context #content {
+    background-color: #663399;
     color: #FFF;
 }
 
