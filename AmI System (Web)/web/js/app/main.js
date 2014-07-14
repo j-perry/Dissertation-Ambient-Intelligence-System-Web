@@ -110,9 +110,7 @@ jQuery(document).ready(function() {
     var i = 0;
     
     setInterval(function() {
-        require(['../jp373/js/app/Time'], function(time) {
-            document.getElementById("clock-time").innerHTML = time.getFullGMT();
-        });
+        setTime();
         
 //        document.getElementById("clock-time").innerHTML = i++;
 //        console.log(i);
@@ -127,7 +125,9 @@ jQuery(document).ready(function() {
      * 
      */
     function setTime() {
-        
+        require(['../jp373/js/app/Time'], function(time) {
+            document.getElementById("clock-time").innerHTML = time.getFullGMT();
+        });
     }
     
 });
