@@ -7,20 +7,61 @@
 
 // when the view has loaded
 jQuery(document).ready(function() {
+    
+    /*      Paths (views)
+    *******************************/ 
+    var index = "http://tomcat.inf.susx.ac.uk:8080/jp373/";
+    var overview = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview";
+    var temperature = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature";
+    var atmosphere = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere";
+    var motion = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion";
+    var light = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=light";
+    
+    // get the current URL
+    var url = document.URL;
+    
+    console.log(url);
+    
+    // ok, to reduce latency and improve load times, we need to only load the data we need
+    // we'll do this by validating which view we're on, and display the relevant content for it
+    switch(url) {
+        case index:
+            init_index();
+            break;
+        case overview:
+            init_overview();
+            break;
+        case temperature:
+            break;
+        case atmosphere:
+            break;
+        case motion:
+            break;
+        case light:
+            break;
+        default:
+            break;
+    }       
+});
 
-    var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/overview_temperature.json";
-    var values = "";
-    var date = "";
-    var time = "";
-    var weekdays = new Array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
-
+/**
+ * 
+ * @returns {undefined}
+ */
+function init_index() {
     // display the clock (time)
     setInterval(function() {
         updateTime();
     }, 0);
+}
 
-    displayLinecharts(path, weekdays);
-});
+/**
+ * 
+ * @returns {undefined}
+ */
+function init_overview() {
+    
+}
 
 /**
  * Displays the current time (hour:minutes:seconds)
@@ -34,7 +75,13 @@ function updateTime() {
 /**
  * 
  */
-function displayLinecharts(path, weekdays) {
+function displayLinecharts() {
+    var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/overview_temperature.json";
+    var values = "";
+    var date = "";
+    var time = "";
+    var weekdays = new Array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
+    
     // get JSON values
     $.getJSON(path, function(data) {
 
