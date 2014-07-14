@@ -64,6 +64,20 @@ define(path, function(time) {
             }
         };
 
+        /*
+         * 
+         * @returns {undefined}
+         */
+        this.day = function() {
+            d = new Date();        
+            var days = [ "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" ];
+            
+            // returns "Monday", "Thursday", etc.
+            var day = days[d.getDay()];
+            
+            return day;
+        };
+
         /**
          * 
          * @returns {String}
