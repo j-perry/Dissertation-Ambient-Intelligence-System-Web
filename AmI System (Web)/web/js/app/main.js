@@ -54,13 +54,13 @@ jQuery(document).ready(function() {
  */
 function init_index() {
     require(['../jp373/js/app/views/Index'], function(index) {
-        // TODO
+        index.setupAll();
     });
     
-    // display the clock (time)
-    setInterval(function() {
-        updateTime();
-    }, 0);
+//    // display the clock (time)
+//    setInterval(function() {
+//        updateTime();
+//    }, 0);
 }
 
 /**
