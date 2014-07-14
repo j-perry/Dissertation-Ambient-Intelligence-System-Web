@@ -24,9 +24,6 @@ jQuery(document).ready(function() {
 
         // values
         for (var i in data.value) {
-//            if(i == 5000)
-//                break;
-//            else            
                 values += data.value[i] + ", ";
         }
 
