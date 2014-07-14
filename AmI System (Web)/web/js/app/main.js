@@ -111,13 +111,13 @@ jQuery(document).ready(function() {
     
     // display the clock (time)
     setInterval(function() {
-        setTime();
+        displayTime();
     }, 1000);
     
     /**
      * 
      */
-    function setTime() {
+    function displayTime() {
         require(['../jp373/js/app/Time'], function(time) {
             document.getElementById("clock-time").innerHTML = time.getFullGMT();
         });
