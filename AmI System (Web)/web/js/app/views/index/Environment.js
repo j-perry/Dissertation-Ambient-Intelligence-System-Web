@@ -10,4 +10,6 @@ define(path, function() {
         
         
     };
+    
+    return new Environment();
 });
