@@ -109,16 +109,9 @@ jQuery(document).ready(function() {
     
     var i = 0;
     
+    // display the clock (time)
     setInterval(function() {
         setTime();
-        
-//        document.getElementById("clock-time").innerHTML = i++;
-//        console.log(i);
-//         require([path, [optional], [..]], function(def param)
-//        require(['../jp373/js/app/Time'], function(time) {
-//            document.getElementById("clock-time").innerHTML = (i + 1);
-//            console.log(time.getFullGMT() );
-//        });
     }, 1000);
     
     /**
