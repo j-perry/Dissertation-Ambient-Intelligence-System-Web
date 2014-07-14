@@ -85,39 +85,6 @@ button:hover {
     text-decoration: none;
 }
 
-/*      Index
-*********************************/
-#status {
-    background-color: #6C7A89;
-    color: #FFF;
-}
-#history {
-    
-}
-#history #sub-heading {
-    background-color: #111;
-    color: #EEE;    
-    padding-top: 25px;
-    padding-bottom: 25px;
-}
-#history #content {
-    background-color: #2ECC71;
-    color: #FFF;
-}
-#context {
-    
-}
-#context #sub-heading {
-    background-color: #3498db;
-    color: #FFF;
-    padding-top: 25px;
-    padding-bottom: 25px;
-}
-#context #content {
-    background-color: #FFF; /* #663399; */
-    color: #111;
-}
-
 /*      Overview (Section)
 *********************************/
 div.section {

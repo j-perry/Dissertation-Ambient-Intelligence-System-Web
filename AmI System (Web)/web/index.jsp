@@ -29,7 +29,7 @@
             <div id="status" class="size">
                 <p>The time now is <u>18:45:29 PM</u>.</p>
                 <p>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</p>
-                <p>> Have a look at your progress...</p>
+                <p>> Until then, have a look at your progress...</p>
             </div>
             
             <div id="history">
