@@ -10,4 +10,6 @@ define(path, function(overview) {
         
         
     }
- });
+    
+    return new Overview();
+});

@@ -10,4 +10,6 @@ define(path, function(atmosphere) {
         
         
     }
- });
+    
+    return new Atmosphere();
+});

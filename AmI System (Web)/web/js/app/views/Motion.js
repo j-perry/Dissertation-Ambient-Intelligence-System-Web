@@ -10,4 +10,6 @@ define(path, function(motion) {
         
         
     }
- });
+    
+    return new Motion();
+});

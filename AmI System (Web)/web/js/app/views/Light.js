@@ -10,4 +10,6 @@ define(path, function(light) {
         
         
     }
+    
+    return new Light();
 });

@@ -10,4 +10,6 @@ define(path, function(temperature) {
         
         
     }
- });
+    
+    return new Temperature();
+});

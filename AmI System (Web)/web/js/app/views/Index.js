@@ -6,16 +6,15 @@ var path = '../jp373/js/app/views/Index';
 
 define(path, function(index) {
     function Index() {
-                
+        
         /**
          * Sets up all the methods in this class (is this good design practice?!)
          * @returns {undefined}
          */
         this.setupAll = function() {
-            // display the clock (time)
-            setInterval(function() {
-                updateTime();
-            }, 0);
+//            alert("hello");
+            
+            this.updateTime();
         };
         
         /**
@@ -23,9 +22,12 @@ define(path, function(index) {
          * @returns {undefined}
          */
         this.updateTime = function() {
-            require(['../jp373/js/app/Time'], function(time) {
-                document.getElementById("clock-time").innerHTML = time.getFullGMT();
-            });
+            // display the clock (time)
+            setInterval(function() {
+                require(['../jp373/js/app/Time'], function(time) {
+                    document.getElementById("clock-time").innerHTML = time.getFullGMT();
+                });
+            }, 0);
         };
                 
     }
