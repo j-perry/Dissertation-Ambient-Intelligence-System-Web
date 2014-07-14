@@ -52,10 +52,10 @@ define(path, function(time) {
             d = new Date();
 
             if (d.getHours() < 12) {
-                return " AM";
+                return "AM";
             }
             else {
-                return " PM";
+                return "PM";
             }
         };
 
@@ -66,7 +66,7 @@ define(path, function(time) {
         this.getFullGMT = function() {
             return this.getHour() + ":" +
                    this.getMinutes() + ":" +
-                   this.getSeconds() +
+                   this.getSeconds() + " " +
                    this.dayPeriod();
         };
 
