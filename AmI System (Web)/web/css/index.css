@@ -2,6 +2,43 @@
     Document   : index
     Created on : 13-Jul-2014, 21:07:38
     Author     : Jonathan Perry
-    Description:
-        Purpose of the stylesheet follows.
+    Description: For use in index.jsp view        
 */
+
+p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/*      Index
+*********************************/
+#status {
+    background-color: #6C7A89;
+    color: #FFF;
+}
+#history {
+    
+}
+#history #sub-heading {
+    background-color: #2ECC71;
+    color: #EEE;    
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+#history #content {
+    background-color: #C8F7C5;
+    color: #111;
+}
+#context {
+    
+}
+#context #sub-heading {
+    background-color: #4B77BE; /* #3498db; */
+    color: #FFF;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+#context #content {
+    background-color: #89C4F4; /* #663399; */
+    color: #111;
+}

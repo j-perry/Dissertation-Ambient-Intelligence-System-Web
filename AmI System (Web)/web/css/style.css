@@ -108,14 +108,14 @@ button:hover {
     
 }
 #context #sub-heading {
-    background-color: #663399;
-    color: #111;
+    background-color: #3498db;
+    color: #FFF;
     padding-top: 25px;
     padding-bottom: 25px;
 }
 #context #content {
-    background-color: #3498db; /* #663399; */
-    color: #FFF;
+    background-color: #FFF; /* #663399; */
+    color: #111;
 }
 
 /*      Overview (Section)

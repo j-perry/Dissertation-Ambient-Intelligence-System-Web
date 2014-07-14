@@ -27,30 +27,30 @@
             </div>
             
             <div id="status" class="size">
-                <h1>The time now is <u>18:45:29 PM</u>.</h1>
-                <h1>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</h1>
-                <h1>> Have a look at your progress...</h1>
+                <p>The time now is <u>18:45:29 PM</u>.</p>
+                <p>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</p>
+                <p>> Have a look at your progress...</p>
             </div>
             
             <div id="history">
                 <div id="sub-heading" class="size">
-                    <h1>This is the history so far...</h1>
+                    <h2>System history</h2>
                 </div>
                 
                 <div id="content" class="size">
-                    <h1><u>49 hours</u> and <u>52 minutes</u> have been accumulated.</h1>
-                    <h1>The system has identified <u>x3 employees</u> located in <u>x1 room</u>.</h1>
+                    <p><u>49 hours</u> and <u>52 minutes</u> have been accumulated.</p>
+                    <p>The system has identified <u>x3 employees</u> located in <u>x1 room</u>.</p>
                 </div>               
             </div>
             
             <div id="context">
                 <div id="sub-heading" class="size">
-                    <h1>The environment status...</h1>
+                    <h2>The environment status...</h2>
                 </div>
                 
                 <div id="content" class="size">
-                    <h1>There are currently <u>x2 agents</u> and <u>x8 sensors</u> setup.</h1>
-                    <h1>So far <u>x4 context</u> types are available for analysis.</h1>
+                    <p>There are currently <u>x2 agents</u> and <u>x8 sensors</u> setup.</p>
+                    <p>So far <u>x4 context</u> types are available for analysis.</p>
                 </div>
             </div>
             
