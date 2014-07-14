@@ -49,7 +49,7 @@ jQuery(document).ready(function() {
 });
 
 /**
- * 
+ * Initialises JavaScript content for the index view
  * @returns {undefined}
  */
 function init_index() {
@@ -60,7 +60,7 @@ function init_index() {
 }
 
 /**
- * 
+ * Initialises JavaScript content for the overview view
  * @returns {undefined}
  */
 function init_overview() {
@@ -68,7 +68,7 @@ function init_overview() {
 }
 
 /**
- * 
+ * Initialises JavaScript content for the temperature view
  * @returns {undefined}
  */
 function init_temperature() {
@@ -76,7 +76,7 @@ function init_temperature() {
 }
 
 /**
- * 
+ * Initialises JavaScript content for the atmosphere view
  * @returns {undefined}
  */
 function init_atmosphere() {
@@ -84,7 +84,7 @@ function init_atmosphere() {
 }
 
 /**
- * 
+ * Initialises JavaScript content for the motion view
  * @returns {undefined}
  */
 function init_motion() {
@@ -92,7 +92,7 @@ function init_motion() {
 }
 
 /**
- * 
+ * Initialises JavaScript content for the light view
  * @returns {undefined}
  */
 function init_light() {
