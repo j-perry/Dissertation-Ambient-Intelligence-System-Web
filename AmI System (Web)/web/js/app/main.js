@@ -13,45 +13,13 @@ jQuery(document).ready(function() {
     var date = "";
     var time = "";
     var weekdays = new Array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
-            
+
     // display the clock (time)
     setInterval(function() {
         updateTime();
     }, 0);
 
-    // get JSON values
-    $.getJSON(path, function(data) {
-
-        // values
-        for (var i in data.value) {
-                values += data.value[i] + ", ";
-        }
-
-        // remove the comma on the end of the variable
-        values = values.substr(0, values.length - 2);
-
-        // date
-        for (var i in data.date) {
-            if(i == 20)
-                break;
-            else 
-                date += data.date[i] + ", ";
-        }
-        
-        date = date.substr(0, date.length - 2);
-
-        // time
-        for (var i in data.time) {
-            if(i == 5)
-                break;
-            else
-                time += "\"" + data.time[i] + "\"" + ", ";
-        }
-        
-        time = time.substr(0, time.length - 2);
-        
-        displayLinecharts(weekdays);
-    });
+    displayLinecharts(weekdays);
 });
 
 /**
@@ -64,6 +32,38 @@ function updateTime() {
 }
 
 function displayLinecharts(weekdays) {
+    // get JSON values
+    $.getJSON(path, function(data) {
+
+        // values
+        for (var i in data.value) {
+            values += data.value[i] + ", ";
+        }
+
+        // remove the comma on the end of the variable
+        values = values.substr(0, values.length - 2);
+
+        // date
+        for (var i in data.date) {
+            if (i == 20)
+                break;
+            else
+                date += data.date[i] + ", ";
+        }
+
+        date = date.substr(0, date.length - 2);
+
+        // time
+        for (var i in data.time) {
+            if (i == 5)
+                break;
+            else
+                time += "\"" + data.time[i] + "\"" + ", ";
+        }
+
+        time = time.substr(0, time.length - 2);
+    });
+
     var data = {
         labels: [weekdays[0], weekdays[1], weekdays[2], weekdays[3], weekdays[4]],
         datasets: [
@@ -89,7 +89,7 @@ function displayLinecharts(weekdays) {
             }
         ]
     };
-        
+
     // chart
     var ctx = document.getElementById("myChart").getContext("2d");
     var myLineChart = new Chart(ctx).Line(data, {
