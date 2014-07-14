@@ -2,6 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-function Motion() {
-    
-}
+var path = '../jp373/js/app/views/Motion';
+
+define(path, function(motion) {
+    function Motion() {
+        
+        
+        
+    }
+ });

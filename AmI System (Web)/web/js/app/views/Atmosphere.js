@@ -2,6 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-function Atmosphere() {
-    
-}
+var path = '../jp373/js/app/views/Atmosphere';
+
+define(path, function(atmosphere) {
+    function Atmosphere() {
+        
+        
+        
+    }
+ });
