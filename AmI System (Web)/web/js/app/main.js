@@ -53,6 +53,10 @@ jQuery(document).ready(function() {
  * @returns {undefined}
  */
 function init_index() {
+    require(['../jp373/js/app/views/Index'], function(index) {
+        // TODO
+    });
+    
     // display the clock (time)
     setInterval(function() {
         updateTime();
@@ -64,6 +68,10 @@ function init_index() {
  * @returns {undefined}
  */
 function init_overview() {
+    require(['../jp373/js/app/views/Overview'], function(overview) {
+        // TODO
+    });
+    
     displayLinecharts();
 }
 
@@ -72,7 +80,9 @@ function init_overview() {
  * @returns {undefined}
  */
 function init_temperature() {
-    
+    require(['../jp373/js/app/views/Temperature'], function(temperature) {
+        // TODO
+    });
 }
 
 /**
@@ -80,7 +90,9 @@ function init_temperature() {
  * @returns {undefined}
  */
 function init_atmosphere() {
-    
+    require(['../jp373/js/app/views/Atmosphere'], function(atmosphere) {
+        // TODO
+    });
 }
 
 /**
@@ -88,7 +100,9 @@ function init_atmosphere() {
  * @returns {undefined}
  */
 function init_motion() {
-    
+    require(['../jp373/js/app/views/Motion'], function(motion) {
+        // TODO
+    });
 }
 
 /**
@@ -96,7 +110,9 @@ function init_motion() {
  * @returns {undefined}
  */
 function init_light() {
-    
+    require(['../jp373/js/app/views/Motion'], function(motion) {
+        // TODO
+    });
 }
 
 
