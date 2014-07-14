@@ -8,7 +8,7 @@ function Time() {
     
     /**
      * 
-     * @returns {undefined}
+     * @returns {Integer}
      */
     this.getHour = function() {
         d = new Date();
@@ -17,7 +17,7 @@ function Time() {
     
     /**
      * 
-     * @returns {undefined}
+     * @returns {Integer}
      */
     this.getMinutes = function() {
         d = new Date();
@@ -26,7 +26,7 @@ function Time() {
     
     /**
      * 
-     * @returns {undefined}
+     * @returns {Integer}
      */
     this.getSeconds = function() {
         d = new Date();
@@ -37,16 +37,32 @@ function Time() {
      * 
      * @returns {String}
      */
+    this.dayPeriod = function() {
+        d = new Date();
+        
+        if(d.getHours() < 12) {
+            return "AM";
+        }
+        else {
+            return "PM";
+        }
+    };
+    
+    /**
+     * 
+     * @returns {String}
+     */
     this.getFullGMT = function() {
         return new String(getHour() + ":" +
                           getMinutes() + ":" + 
-                          getSeconds() );
+                          getSeconds() +
+                          dayPeriod() );
     };
     
     /**
      * 
      * @param {type} i
-     * @returns {undefined}
+     * @returns {String}
      */
     this.format = function(i) {
         if(i < 10) {

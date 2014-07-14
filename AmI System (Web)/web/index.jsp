@@ -11,6 +11,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script data-main="js/app.js" src="js/jquery/require.js"></script>
+        
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/index.css" />
         <title>Ambient Intelligence System</title>

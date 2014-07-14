@@ -107,5 +107,14 @@ jQuery(document).ready(function() {
         });
         
     });
+    
+    /*
+    function getTime() {
+        require(["/time/Time"], function(util) {
+            Time t = new Time();
+        });
+        
+    }
+    */
 
 });
