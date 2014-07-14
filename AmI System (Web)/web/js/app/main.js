@@ -60,7 +60,7 @@ function init_index() {
  * @returns {undefined}
  */
 function init_overview() {
-    
+    displayLinecharts();
 }
 
 /**
