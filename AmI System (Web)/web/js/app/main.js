@@ -56,11 +56,6 @@ function init_index() {
     require(['../jp373/js/app/views/Index'], function(index) {
         index.setupAll();
     });
-    
-//    // display the clock (time)
-//    setInterval(function() {
-//        updateTime();
-//    }, 0);
 }
 
 /**
@@ -116,15 +111,6 @@ function init_light() {
 }
 
 
-
-/**
- * Displays the current time (hour:minutes:seconds)
- */
-function updateTime() {
-    require(['../jp373/js/app/Time'], function(time) {
-        document.getElementById("clock-time").innerHTML = time.getFullGMT();
-    });
-}
 
 /**
  * 

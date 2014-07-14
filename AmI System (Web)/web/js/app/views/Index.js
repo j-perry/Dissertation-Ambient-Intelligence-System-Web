@@ -8,7 +8,7 @@ define(path, function(index) {
     function Index() {
                 
         /**
-         * 
+         * Sets up all the methods in this class (is this good design practice?!)
          * @returns {undefined}
          */
         this.setupAll = function() {
@@ -19,7 +19,7 @@ define(path, function(index) {
         };
         
         /**
-         * 
+         * Displays the current time (hour:minutes:seconds)
          * @returns {undefined}
          */
         this.updateTime = function() {
