@@ -114,7 +114,7 @@ jQuery(document).ready(function() {
 });
 
 /**
- * 
+ * Displays the current time (hour:minutes:seconds)
  */
 function displayTime() {
     require(['../jp373/js/app/Time'], function(time) {
