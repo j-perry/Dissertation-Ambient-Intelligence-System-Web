@@ -52,10 +52,10 @@ define(path, function(time) {
             d = new Date();
 
             if (d.getHours() < 12) {
-                return "AM";
+                return " AM";
             }
             else {
-                return "PM";
+                return " PM";
             }
         };
 

@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" data-main="js/app.js" src="js/jquery/require.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/index.css" />
@@ -29,7 +30,7 @@
             </div>
             
             <div id="status" class="size">
-                <p>The time now is <u>18:45:29 PM</u>.</p>
+                <p>The time now is <u><span id="clock-time"></span></u>.</p>
                 <p>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</p>
                 <p>> Until then, have a look at your progress...</p>
             </div>

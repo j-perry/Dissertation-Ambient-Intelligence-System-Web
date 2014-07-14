@@ -105,12 +105,29 @@ jQuery(document).ready(function() {
             scaleShowGridLines : false,
             scaleGridLineColor : "rgba(0,0,0, 1)"
         });
-        
-        // require([path, [optional], [..]], function(def param)
+    });
+    
+    var i = 0;
+    
+    setInterval(function() {
         require(['../jp373/js/app/Time'], function(time) {
-            alert(time.getFullGMT() );
+            document.getElementById("clock-time").innerHTML = time.getFullGMT();
         });
         
-    });
+//        document.getElementById("clock-time").innerHTML = i++;
+//        console.log(i);
+//         require([path, [optional], [..]], function(def param)
+//        require(['../jp373/js/app/Time'], function(time) {
+//            document.getElementById("clock-time").innerHTML = (i + 1);
+//            console.log(time.getFullGMT() );
+//        });
+    }, 1000);
+    
+    /**
+     * 
+     */
+    function setTime() {
+        
+    }
     
 });
