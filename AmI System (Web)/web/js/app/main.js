@@ -54,7 +54,6 @@ jQuery(document).ready(function() {
         time = time.substr(0, time.length - 2);
 
         console.log(weekdays);
-        //document.getElementById("test").innerHTML = values;
         
         var data = {
             labels: [weekdays[0], weekdays[1], weekdays[2], weekdays[3], weekdays[4]],
