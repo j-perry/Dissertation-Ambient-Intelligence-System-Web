@@ -32,12 +32,16 @@ jQuery(document).ready(function() {
             init_overview();
             break;
         case temperature:
+            init_temperature();
             break;
         case atmosphere:
+            init_atmosphere();
             break;
         case motion:
+            init_motion();
             break;
         case light:
+            init_light();
             break;
         default:
             break;
@@ -62,6 +66,40 @@ function init_index() {
 function init_overview() {
     displayLinecharts();
 }
+
+/**
+ * 
+ * @returns {undefined}
+ */
+function init_temperature() {
+    
+}
+
+/**
+ * 
+ * @returns {undefined}
+ */
+function init_atmosphere() {
+    
+}
+
+/**
+ * 
+ * @returns {undefined}
+ */
+function init_motion() {
+    
+}
+
+/**
+ * 
+ * @returns {undefined}
+ */
+function init_light() {
+    
+}
+
+
 
 /**
  * Displays the current time (hour:minutes:seconds)
