@@ -13,6 +13,14 @@ jQuery(document).ready(function() {
     var date = "";
     var time = "";
     var weekdays = new Array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
+    
+    // initial placeholder, reduce latency loading JSON data
+    displayTime();
+        
+    // display the clock (time)
+    setInterval(function() {
+        updateTime();
+    }, 1000);
 
     // get JSON values
     $.getJSON(path, function(data) {
@@ -105,18 +113,22 @@ jQuery(document).ready(function() {
             scaleShowGridLines : false,
             scaleGridLineColor : "rgba(0,0,0, 1)"
         });
-    });
-        
-    // display the clock (time)
-    setInterval(function() {
-        displayTime();
-    }, 1000);
+    });   
 });
+
+/**
+ * Displays the time (initial)
+ * @returns {undefined}
+ */
+function displayTime() {
+    // why write out the same lines of code in this function?!
+    updateTime();
+}
 
 /**
  * Displays the current time (hour:minutes:seconds)
  */
-function displayTime() {
+function updateTime() {
     require(['../jp373/js/app/Time'], function(time) {
         document.getElementById("clock-time").innerHTML = time.getFullGMT();
     });
