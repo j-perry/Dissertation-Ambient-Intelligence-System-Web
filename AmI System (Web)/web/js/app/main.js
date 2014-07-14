@@ -106,15 +106,11 @@ jQuery(document).ready(function() {
             scaleGridLineColor : "rgba(0,0,0, 1)"
         });
         
-    });
-    
-    /*
-    function getTime() {
-        require(["/time/Time"], function(util) {
-            Time t = new Time();
+        // require([path, [optional], [..]], function(def param)
+        require(['../jp373/js/app/Time'], function(time) {
+            alert(time.getFullGMT() );
         });
         
-    }
-    */
-
+    });
+    
 });
