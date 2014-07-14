@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
         updateTime();
     }, 0);
 
-    displayLinecharts(weekdays);
+    displayLinecharts(path, weekdays);
 });
 
 /**
@@ -31,7 +31,10 @@ function updateTime() {
     });
 }
 
-function displayLinecharts(weekdays) {
+/**
+ * 
+ */
+function displayLinecharts(path, weekdays) {
     // get JSON values
     $.getJSON(path, function(data) {
 
