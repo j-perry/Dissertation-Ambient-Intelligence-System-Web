@@ -8,11 +8,7 @@ define(path, function(time) {
     function Time() {
 
         var d;
-                
-//        this.test = function() {
-//            alert("Hello");
-//        };
-
+        
         /**
          * 
          * @returns {Integer}
@@ -40,6 +36,11 @@ define(path, function(time) {
         this.getSeconds = function() {
             d = new Date();
             var secs = d.getSeconds();
+            
+            if(secs < 10) {
+                secs = "0" + secs;
+            }
+            
             return secs;
         };
 
