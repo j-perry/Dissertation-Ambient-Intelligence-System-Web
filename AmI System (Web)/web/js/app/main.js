@@ -112,15 +112,14 @@ jQuery(document).ready(function() {
     // display the clock (time)
     setInterval(function() {
         displayTime();
-    }, 1000);
-    
-    /**
-     * 
-     */
-    function displayTime() {
-        require(['../jp373/js/app/Time'], function(time) {
-            document.getElementById("clock-time").innerHTML = time.getFullGMT();
-        });
-    }
-    
+    }, 1000);       
 });
+
+/**
+ * 
+ */
+function displayTime() {
+    require(['../jp373/js/app/Time'], function(time) {
+        document.getElementById("clock-time").innerHTML = time.getFullGMT();
+    });
+}
