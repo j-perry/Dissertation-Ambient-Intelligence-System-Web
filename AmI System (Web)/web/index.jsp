@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="css/index.css" />
         <title>Ambient Intelligence System</title>
     </head>
+    
     <body id="wrapper">
         <t:menu>
             <jsp:attribute name="menu" />

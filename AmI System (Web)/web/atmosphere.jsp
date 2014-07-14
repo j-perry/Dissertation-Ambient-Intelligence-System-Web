@@ -12,9 +12,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Atmosphere</title>
+        
+        <script type="text/javascript" data-main="js/app.js" src="js/jquery/require.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        
         <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/context.css" />
+        <link rel="stylesheet" href="css/context.css" />        
     </head>
+    
     <body id="wrapper">
         <t:menu>
             <jsp:attribute name="menu" />

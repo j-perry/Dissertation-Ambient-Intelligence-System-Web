@@ -14,12 +14,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Overview</title>
+        
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/overview.css" />
+        
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="js/chart-js/Chart.js"></script>
         
         <script type="text/javascript" data-main="js/app.js" src="js/jquery/require.js"></script>
     </head>
+    
     <body id="wrapper">
         <t:menu>
             <jsp:attribute name="menu" />
