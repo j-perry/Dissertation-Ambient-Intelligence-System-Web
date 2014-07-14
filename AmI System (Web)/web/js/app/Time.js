@@ -26,6 +26,11 @@ define(path, function(time) {
         this.getMinutes = function() {
             d = new Date();
             var mins = d.getMinutes();
+            
+            if(mins < 10) {
+                mins = "0" + mins;
+            }
+            
             return mins;
         };
 
