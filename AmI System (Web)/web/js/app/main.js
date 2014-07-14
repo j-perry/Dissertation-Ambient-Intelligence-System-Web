@@ -52,64 +52,9 @@ jQuery(document).ready(function() {
         }
         
         time = time.substr(0, time.length - 2);
-
-        console.log(weekdays);
         
-        var data = {
-            labels: [weekdays[0], weekdays[1], weekdays[2], weekdays[3], weekdays[4]],
-            datasets: [
-                {
-                    label: "My First dataset",
-                    fillColor: "rgba(52, 152, 219,1)",
-                    strokeColor: "rgba(52, 152, 219,1)",
-                    pointColor: "rgba(52, 152, 219,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [29, 31, 29, 30, 31]
-                },
-                {
-                    label: "My Second dataset",
-                    fillColor: "rgba(242,38,19, 0.9)",
-                    strokeColor: "rgba(242,38,19, 0.9)",
-                    pointColor: "rgba(242,38,19,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [28, 27, 31, 29, 30]
-                }
-            ]
-        };
-        
-        // chart
-        var ctx = document.getElementById("myChart").getContext("2d");
-        var myLineChart = new Chart(ctx).Line(data, {
-            bezierCurve: false,
-            scaleShowGridLines : false,
-            scaleGridLineColor : "rgba(0,0,0, 1)"
-        });
-
-        var ctx = document.getElementById("myChart2").getContext("2d");
-        var myLineChart = new Chart(ctx).Line(data, {
-            bezierCurve: false,
-            scaleShowGridLines : false,
-            scaleGridLineColor : "rgba(0,0,0, 1)"
-        });
-
-        var ctx = document.getElementById("myChart3").getContext("2d");
-        var myLineChart = new Chart(ctx).Line(data, {
-            bezierCurve: false,
-            scaleShowGridLines : false,
-            scaleGridLineColor : "rgba(0,0,0, 1)"
-        });
-        
-        var ctx = document.getElementById("myChart4").getContext("2d");
-        var myLineChart = new Chart(ctx).Line(data, {
-            bezierCurve: false,
-            scaleShowGridLines : false,
-            scaleGridLineColor : "rgba(0,0,0, 1)"
-        });
-    });   
+        displayLinecharts(weekdays);
+    });
 });
 
 /**
@@ -118,5 +63,62 @@ jQuery(document).ready(function() {
 function updateTime() {
     require(['../jp373/js/app/Time'], function(time) {
         document.getElementById("clock-time").innerHTML = time.getFullGMT();
+    });
+}
+
+function displayLinecharts(weekdays) {
+    var data = {
+        labels: [weekdays[0], weekdays[1], weekdays[2], weekdays[3], weekdays[4]],
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "rgba(52, 152, 219,1)",
+                strokeColor: "rgba(52, 152, 219,1)",
+                pointColor: "rgba(52, 152, 219,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [29, 31, 29, 30, 31]
+            },
+            {
+                label: "My Second dataset",
+                fillColor: "rgba(242,38,19, 0.9)",
+                strokeColor: "rgba(242,38,19, 0.9)",
+                pointColor: "rgba(242,38,19,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [28, 27, 31, 29, 30]
+            }
+        ]
+    };
+        
+    // chart
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myLineChart = new Chart(ctx).Line(data, {
+        bezierCurve: false,
+        scaleShowGridLines: false,
+        scaleGridLineColor: "rgba(0,0,0, 1)"
+    });
+
+    var ctx = document.getElementById("myChart2").getContext("2d");
+    var myLineChart = new Chart(ctx).Line(data, {
+        bezierCurve: false,
+        scaleShowGridLines: false,
+        scaleGridLineColor: "rgba(0,0,0, 1)"
+    });
+
+    var ctx = document.getElementById("myChart3").getContext("2d");
+    var myLineChart = new Chart(ctx).Line(data, {
+        bezierCurve: false,
+        scaleShowGridLines: false,
+        scaleGridLineColor: "rgba(0,0,0, 1)"
+    });
+
+    var ctx = document.getElementById("myChart4").getContext("2d");
+    var myLineChart = new Chart(ctx).Line(data, {
+        bezierCurve: false,
+        scaleShowGridLines: false,
+        scaleGridLineColor: "rgba(0,0,0, 1)"
     });
 }
