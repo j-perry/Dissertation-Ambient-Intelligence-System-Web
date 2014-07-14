@@ -106,13 +106,11 @@ jQuery(document).ready(function() {
             scaleGridLineColor : "rgba(0,0,0, 1)"
         });
     });
-    
-    var i = 0;
-    
+        
     // display the clock (time)
     setInterval(function() {
         displayTime();
-    }, 1000);       
+    }, 1000);
 });
 
 /**
