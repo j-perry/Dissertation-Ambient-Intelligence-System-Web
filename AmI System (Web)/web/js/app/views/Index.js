@@ -13,8 +13,6 @@ define(path, function(index) {
          */
         this.setupAll = function() {
             
-            //this.updateTime();
-            
             // welcome
             require(['../jp373/js/app/views/index/Welcome'], function(welcome) {
                 welcome.updateTime();
