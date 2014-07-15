@@ -4,7 +4,7 @@
  */
 var path = "../jp373/js/app/views/index/Environment";
 
-define(path, function() {
+define(path, function(environment) {
     function Environment() {
         
         /**
