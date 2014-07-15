@@ -15,7 +15,7 @@ define(path, function(index) {
             
             // welcome
             require(['../jp373/js/app/views/index/Welcome'], function(welcome) {
-                welcome.updateTime();
+                welcome.checkServiceStatus();
             });
             
             // system history
