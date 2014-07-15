@@ -32,8 +32,8 @@ define(path, function(welcome) {
                         status = "<div id='status' class='size'>" +
                                     "<h1>Welcome</h1>" +
                                     "<p>The time now is <u><span id='clock-time'></span></u>.</p>" +
-                                    "<p>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</p>" +
-                                    "<p> Until then, have a look at your progress...</p>" +
+                                    "<p>Analysis will run between <u>9:00 AM</u> and finish at <u>17:30 PM</u>.</p>" +
+                                    "<p>Have a look at your progress...</p>" +
                                  "</div>";
                         
                         document.getElementById(target).innerHTML = status;
