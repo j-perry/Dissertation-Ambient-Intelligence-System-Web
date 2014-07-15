@@ -22,21 +22,31 @@ define(path, function(welcome) {
                 
                 console.log(time);
                 
+                this.updateTime();
+                
                 if(day !== "Saturday" || day !== "Sunday") {
                     // check the current time is between 9am and 17:30pm
-                    var status = "";
+                    var status = "";                                 
+                    var target = 'content-wrapper';
                     
-                    if((time >= 9.30) && (time <= 17.30)) {    
+                    if((time >= 9.30) && (time <= 17.30)) {                        
                         // display a particular banner/colour
-                        html = "";
+                        status = "<div id='status' class='size in'>" +
+                                    "" +
+                                 "</div>";
                         
-                        document.getElementById('').innerHTML = status;
+                        document.getElementById(target).innerHTML = status;
                     }
-                    else {
+                    else {                        
                         // display an out of hours banner
-                        html = "";
+                        status = "<div id='status' class='size out'>" +
+                                    "<h1>Welcome</h1>" +
+                                    "<p>The time now is <u><span id='clock-time></span></u>.</p>" +
+                                    "<p>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</p>" +
+                                    "<p> Until then, have a look at your progress...</p>" +
+                                 "</div>";
                         
-                        document.getElementById('').innerHTML = status;
+                        document.getElementById(target).innerHTML = status;
                     }
                 }
                 
