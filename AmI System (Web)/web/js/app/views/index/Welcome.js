@@ -24,13 +24,19 @@ define(path, function(welcome) {
                 
                 if(day !== "Saturday" || day !== "Sunday") {
                     // check the current time is between 9am and 17:30pm
-                    if((time >= 9.30) && (time <= 17.30)) {
+                    var status = "";
+                    
+                    if((time >= 9.30) && (time <= 17.30)) {    
                         // display a particular banner/colour
-                        document.getElementById('').innerHTML = "";
+                        html = "";
+                        
+                        document.getElementById('').innerHTML = status;
                     }
                     else {
                         // display an out of hours banner
-                        document.getElementById('').innerHTML = "";
+                        html = "";
+                        
+                        document.getElementById('').innerHTML = status;
                     }
                 }
                 
