@@ -11,5 +11,7 @@ define(path, function(light) {
         
     }
     
+    // returning an instanceof this object is essential, otherwise it'll
+    // display a TypeError message
     return new Light();
 });
