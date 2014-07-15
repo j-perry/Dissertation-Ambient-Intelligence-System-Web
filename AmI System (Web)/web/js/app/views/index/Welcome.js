@@ -8,8 +8,9 @@ define(path, function(welcome) {
     function Welcome() {
                
         /**
-         * 
-         * @returns {undefined}
+         * Checks to see whether we are in 'office hours' or out of it.
+         * The function will check for it's status (based on day and time) and
+         * display the appropriate HTML.
          */
         this.checkServiceStatus = function() {
             // check if the current week day is between Monday and Friday
