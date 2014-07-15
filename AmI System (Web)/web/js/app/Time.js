@@ -15,11 +15,7 @@ define(path, function(time) {
          */
         this.getHour = function() {
             d = new Date();
-            var hour = d.getHours();
-            
-            if(hour < 10) {
-                hour = "0" + hour;
-            }
+            var hour = format(d.getHours() );
             
             return hour;
         };
@@ -30,11 +26,7 @@ define(path, function(time) {
          */
         this.getMinutes = function() {
             d = new Date();
-            var mins = d.getMinutes();
-            
-            if(mins < 10) {
-                mins = "0" + mins;
-            }
+            var mins = format(d.getMinutes() );
             
             return mins;
         };
@@ -45,11 +37,7 @@ define(path, function(time) {
          */
         this.getSeconds = function() {
             d = new Date();
-            var secs = d.getSeconds();
-            
-            if(secs < 10) {
-                secs = "0" + secs;
-            }
+            var secs = format(d.getSeconds() );
             
             return secs;
         };
