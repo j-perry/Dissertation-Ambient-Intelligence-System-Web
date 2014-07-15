@@ -10,7 +10,7 @@ define(path, function(time) {
         var d;
         
         /**
-         * 
+         * Gets the current hour
          * @returns {Integer}
          */
         this.getHour = function() {
@@ -21,7 +21,7 @@ define(path, function(time) {
         };
 
         /**
-         * 
+         * Gets the current minute in the hour
          * @returns {Integer}
          */
         this.getMinutes = function() {
@@ -32,7 +32,7 @@ define(path, function(time) {
         };
 
         /**
-         * 
+         * Gets the current second in the minute
          * @returns {Integer}
          */
         this.getSeconds = function() {
@@ -43,7 +43,7 @@ define(path, function(time) {
         };
 
         /**
-         * 
+         * Returns the day period (AM/PM)
          * @returns {String}
          */
         this.dayPeriod = function() {
@@ -58,7 +58,7 @@ define(path, function(time) {
         };
 
         /*
-         * 
+         * Returns the current day in the week
          * @returns {undefined}
          */
         this.day = function() {
@@ -72,7 +72,7 @@ define(path, function(time) {
         };
 
         /**
-         * 
+         * Returns the full clock time
          * @returns {String}
          */
         this.getFullGMT = function() {
@@ -83,7 +83,7 @@ define(path, function(time) {
         };
 
         /**
-         * 
+         * Formats HH/mm/ss
          * @param {type} i
          * @returns {String}
          */
