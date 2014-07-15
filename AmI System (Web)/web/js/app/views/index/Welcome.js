@@ -52,6 +52,7 @@ define(path, function(welcome) {
                 }
             });
             
+            // display the time
             this.updateTime();
         };
         
