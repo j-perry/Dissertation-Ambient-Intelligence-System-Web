@@ -16,6 +16,11 @@ define(path, function(time) {
         this.getHour = function() {
             d = new Date();
             var hour = d.getHours();
+            
+            if(hour < 10) {
+                hour = "0" + hour;
+            }
+            
             return hour;
         };
 
