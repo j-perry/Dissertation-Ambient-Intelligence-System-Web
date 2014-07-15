@@ -7,7 +7,29 @@ var path = "../jp373/js/app/views/index/Environment";
 define(path, function() {
     function Environment() {
         
+        /**
+         * 
+         * @returns {undefined}
+         */
+        this.numberOfAgentsDeployed = function() {
+            
+        };
         
+        /**
+         * 
+         * @returns {undefined}
+         */
+        this.numberOfSensorsDeployed = function() {
+            
+        };
+        
+        /**
+         * 
+         * @returns {undefined}
+         */
+        this.numberOfIdentifiedContexts = function() {
+            
+        };
         
     };
     

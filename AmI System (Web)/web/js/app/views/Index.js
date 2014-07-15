@@ -12,9 +12,24 @@ define(path, function(index) {
          * @returns {undefined}
          */
         this.setupAll = function() {
-//            alert("hello");
             
-            this.updateTime();
+            //this.updateTime();
+            
+            // welcome
+            require(['../jp373/js/app/views/index/Welcome'], function(welcome) {
+                welcome.updateTime();
+            });
+            
+            // system history
+            require(['../jp373/js/app/views/index/SystemHistory'], function(systemHistory) {
+                systemHistory.hoursAccumulated();
+            });
+            
+            // environment
+            require(['../jp373/js/app/views/index/Environment'], function(environment) {
+                // TODO
+            });
+            
         };
         
         /**
@@ -29,7 +44,7 @@ define(path, function(index) {
                 });
             }, 0);
         };
-                
+     
     }
     
     // returning an instanceof this object is essential, otherwise it'll
