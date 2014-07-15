@@ -37,7 +37,6 @@ define(path, function(welcome) {
                                  "</div>";
                         
                         document.getElementById(target).innerHTML = status;
-                        this.updateTime();
                     }
                     else {                        
                         // display an out of hours banner
@@ -49,7 +48,6 @@ define(path, function(welcome) {
                                  "</div>";
                         
                         document.getElementById(target).innerHTML = status;
-                        this.updateTime();
                     }
                 }
             });
