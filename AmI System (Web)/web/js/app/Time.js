@@ -15,7 +15,7 @@ define(path, function(time) {
          */
         this.getHour = function() {
             d = new Date();
-            var hour = format(d.getHours() );
+            var hour = this.format(d.getHours() );
             
             return hour;
         };
@@ -26,7 +26,7 @@ define(path, function(time) {
          */
         this.getMinutes = function() {
             d = new Date();
-            var mins = format(d.getMinutes() );
+            var mins = this.format(d.getMinutes() );
             
             return mins;
         };
@@ -37,7 +37,7 @@ define(path, function(time) {
          */
         this.getSeconds = function() {
             d = new Date();
-            var secs = format(d.getSeconds() );
+            var secs = this.format(d.getSeconds() );
             
             return secs;
         };
