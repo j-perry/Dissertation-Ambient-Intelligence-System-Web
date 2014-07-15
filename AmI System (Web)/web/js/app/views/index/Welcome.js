@@ -29,7 +29,7 @@ define(path, function(welcome) {
                     
                     if((time >= 9.30) && (time <= 17.30)) {                        
                         // display a particular banner/colour
-                        status = "<div id='status' class='size'>" +
+                        status = "<div id='status' class='size in'>" +
                                     "<h1>Welcome</h1>" +
                                     "<p>The time now is <u><span id='clock-time'></span></u>.</p>" +
                                     "<p>Analysis will run between <u>9:00 AM</u> and finish at <u>17:30 PM</u>.</p>" +
@@ -40,7 +40,7 @@ define(path, function(welcome) {
                     }
                     else {                        
                         // display an out of hours banner
-                        status = "<div id='status' class='size'>" +
+                        status = "<div id='status' class='size out'>" +
                                     "<h1>Welcome</h1>" +
                                     "<p>The time now is <u><span id='clock-time'></span></u>.</p>" +
                                     "<p>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</p>" +
