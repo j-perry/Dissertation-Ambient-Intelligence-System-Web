@@ -59,7 +59,7 @@ define(path, function(time) {
 
         /*
          * Returns the current day in the week
-         * @returns {undefined}
+         * @returns {String}
          */
         this.day = function() {
             d = new Date();        

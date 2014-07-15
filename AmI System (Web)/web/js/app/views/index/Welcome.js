@@ -22,8 +22,6 @@ define(path, function(welcome) {
                 
                 console.log(time);
                 
-                this.updateTime();
-                
                 if(day !== "Saturday" || day !== "Sunday") {
                     // check the current time is between 9am and 17:30pm
                     var status = "";                                 
@@ -31,26 +29,32 @@ define(path, function(welcome) {
                     
                     if((time >= 9.30) && (time <= 17.30)) {                        
                         // display a particular banner/colour
-                        status = "<div id='status' class='size in'>" +
-                                    "" +
-                                 "</div>";
-                        
-                        document.getElementById(target).innerHTML = status;
-                    }
-                    else {                        
-                        // display an out of hours banner
-                        status = "<div id='status' class='size out'>" +
+                        status = "<div id='status' class='size'>" +
                                     "<h1>Welcome</h1>" +
-                                    "<p>The time now is <u><span id='clock-time></span></u>.</p>" +
+                                    "<p>The time now is <u><span id='clock-time'></span></u>.</p>" +
                                     "<p>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</p>" +
                                     "<p> Until then, have a look at your progress...</p>" +
                                  "</div>";
                         
                         document.getElementById(target).innerHTML = status;
+                        this.updateTime();
+                    }
+                    else {                        
+                        // display an out of hours banner
+                        status = "<div id='status' class='size'>" +
+                                    "<h1>Welcome</h1>" +
+                                    "<p>The time now is <u><span id='clock-time'></span></u>.</p>" +
+                                    "<p>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</p>" +
+                                    "<p> Until then, have a look at your progress...</p>" +
+                                 "</div>";
+                        
+                        document.getElementById(target).innerHTML = status;
+                        this.updateTime();
                     }
                 }
-                
-            });            
+            });
+            
+            this.updateTime();
         };
         
         /**
@@ -61,7 +65,7 @@ define(path, function(welcome) {
             // display the clock (time)
             setInterval(function() {
                 require(['../jp373/js/app/Time'], function(time) {
-                    document.getElementById("clock-time").innerHTML = time.getFullGMT();
+                    document.getElementById('clock-time').innerHTML = time.getFullGMT();
                 });
             }, 0);
         };
