@@ -5,16 +5,25 @@
     Description: For use in index.jsp view        
 */
 
+h1 {
+    font-size: 60px;
+}
+
 p {
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: bold;
+}
+
+#content-wrapper span {
+    padding-bottom: 3px;
+    border-bottom: 2px solid #111;
 }
 
 /*      Index
 *********************************/
 #status {
-    background-color: #F4D03F; /*#6C7A89;*/
-    color: #FFF;
+    background-color: #EEE; /*#6C7A89;*/
+    color: #111;
 }
 #history {
     

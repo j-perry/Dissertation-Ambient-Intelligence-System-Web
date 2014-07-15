@@ -20,7 +20,7 @@ define(path, function(index) {
             
             // system history
             require(['../jp373/js/app/views/index/SystemHistory'], function(systemHistory) {
-                systemHistory.hoursAccumulated();
+                systemHistory.display();
             });
             
             // environment

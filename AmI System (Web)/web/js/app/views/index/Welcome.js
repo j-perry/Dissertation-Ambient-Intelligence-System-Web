@@ -6,7 +6,7 @@ var path = "../jp373/js/app/views/index/Welcome";
 
 define(path, function(welcome) {
     function Welcome() {
-               
+        
         /**
          * Checks to see whether we are in 'office hours' or out of it.
          * The function will check for it's status (based on day and time) and
@@ -15,7 +15,7 @@ define(path, function(welcome) {
         this.checkServiceStatus = function() {
             // check if the current week day is between Monday and Friday
             require(['../jp373/js/app/Time'], function(time) {
-               
+                
                 var day = time.day();
                 var hour = time.getHour();
                 var minute = time.getMinutes();
@@ -32,8 +32,8 @@ define(path, function(welcome) {
                         // display a particular banner/colour
                         status = "<div id='status' class='size in'>" +
                                     "<h1>Welcome</h1>" +
-                                    "<p>The time now is <u><span id='clock-time'></span></u>.</p>" +
-                                    "<p>Analysis will run between <u>9:00 AM</u> and finish at <u>17:30 PM</u>.</p>" +
+                                    "<p>The time now is <span id='clock-time'></span>.</p>" +
+                                    "<p>Analysis runs between <span>9:00 AM</span> and finishes at <span>17:30 PM</span>.</p>" +
                                     "<p>Have a look at your progress...</p>" +
                                  "</div>";
                         
@@ -43,9 +43,9 @@ define(path, function(welcome) {
                         // display an out of hours banner
                         status = "<div id='status' class='size out'>" +
                                     "<h1>Welcome</h1>" +
-                                    "<p>The time now is <u><span id='clock-time'></span></u>.</p>" +
-                                    "<p>Tomorrow, we'll get started at <u>9:00 AM</u> and finish at <u>17:30 PM</u> until Friday.</p>" +
-                                    "<p> Until then, have a look at your progress...</p>" +
+                                    "<p>The time now is <span id='clock-time'></span>.</p>" +
+                                    "<p>Tomorrow, we'll get started at <span>9:00 AM</span> and finish at <span>17:30 PM</span> until Friday.</p>" +
+                                    "<p>Until then, have a look at your progress...</p>" +
                                  "</div>";
                         
                         document.getElementById(target).innerHTML = status;

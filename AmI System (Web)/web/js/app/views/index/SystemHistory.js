@@ -11,10 +11,19 @@ define(path, function(systemHistory) {
          * 
          */
         this.display = function() {
-            var target = "";
-            var html = "";
+            var target = 'content-wrapper';            
+            var html = "<div id='history'>" +
+                           "<div id='sub-heading' class='size'>" +
+                               "<h2>System history</h2>" +
+                           "</div>" +
+                           
+                           "<div id='content' class='size'>" +
+                               "<p><u><span id='hours-accumulated'></span>49 hours</u> and <u><span id='minutes-accumulated'></span>52 minutes</u> have been accumulated.</p>" +
+                               "<p>The system has identified <u><span id='number-employees'></span>x3 employees</u> located in <u><span id='number-rooms'></span>x1 room</u>.</p>" +
+                           "</div>" +
+                       "</div>";
             
-            
+            document.getElementById(target).innerHTML = html;
         };
         
         /**

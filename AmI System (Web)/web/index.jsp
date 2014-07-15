@@ -28,7 +28,7 @@
         <div id="content-wrapper">
             
             
-                        
+            <!--            
             <div id="history">
                 <div id="sub-heading" class="size">
                     <h2>System history</h2>
@@ -39,6 +39,7 @@
                     <p>The system has identified <u><span id="number-employees"></span>x3 employees</u> located in <u><span id="number-rooms"></span>x1 room</u>.</p>
                 </div>               
             </div>
+            -->
             
             <div id="context">
                 <div id="sub-heading" class="size">
