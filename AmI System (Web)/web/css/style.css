@@ -16,6 +16,17 @@ body {
     margin: 0 auto;    
 }
 
+a {
+    text-decoration: none;
+}
+a:visited {
+    color: #111;
+}
+a:hover {
+    padding-bottom: 3px;
+    border-bottom: 2px solid #111;
+}
+
 .size {
     width: 84%;
     padding-left: 8%;
