@@ -9,6 +9,16 @@ define(path, function(systemHistory) {
         
         /**
          * 
+         */
+        this.display = function() {
+            var target = "";
+            var html = "";
+            
+            
+        };
+        
+        /**
+         * 
          * @returns {undefined}
          */
         this.hoursAccumulated = function() {

@@ -9,6 +9,16 @@ define(path, function(environment) {
         
         /**
          * 
+         */
+        this.display = function() {
+            var target = "";
+            var html = "";
+            
+            
+        };
+        
+        /**
+         * 
          * @returns {undefined}
          */
         this.numberOfAgentsDeployed = function() {
