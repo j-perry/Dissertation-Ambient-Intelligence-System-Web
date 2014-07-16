@@ -10,14 +10,14 @@
     padding-right: 8%;
     background-color: #EEE;
 }
-#hmmm { 
+#tabs { 
     padding: 0;
     background-color: #FFF;
 }
-#hmmm li { 
+#tabs li { 
     display: inline; 
 }
-#hmmm li a { 
+#tabs li a { 
     width: 30%;
     background: #111; 
     padding: 10px; 
@@ -28,10 +28,10 @@
     font-size: 24px;
     color: #FFF;
 }
-#hmmm li a:hover {
+#tabs li a:hover {
     text-decoration: underline;
 }
-#hmmm li.active a { 
+#tabs li.active a { 
     background: #FFF; 
     color: #111;
 }
