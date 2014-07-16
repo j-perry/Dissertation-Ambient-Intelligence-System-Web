@@ -12,7 +12,6 @@ define(path, function(overview) {
          */
         this.tabify = function() {
             $('#hmmm').tabify();
-//            alert("hello");
         };
         
     }
