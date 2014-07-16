@@ -94,7 +94,7 @@
             <div id="history">
 
                 <div id="sub-heading" class="size">
-                    <h2>System History</h2>
+                    <h2>The System History</h2>
                     <p><u><span id="hours-accumulated"></span>49 hours</u> and <u><span id="minutes-accumulated"></span>52 minutes</u> have been accumulated.</p>
                     <p>The system has identified <u><span id="number-employees"></span>x3 employees</u> located in <u><span id="number-rooms"></span>x1 room</u>.</p>
                 </div>

@@ -42,10 +42,10 @@
     text-decoration: none;
 }
 #history #sub-heading {
-    background-color: #F64747;
+    background-color: #6C7A89;
     color: #FFF;    
     padding-top: 25px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
 }
 #history #sub-heading h2 {
     margin-bottom: 100px;
@@ -65,7 +65,7 @@
     background-color: #4B77BE; /* #3498db; */
     color: #FFF;
     padding-top: 25px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
 }
 #environment #sub-heading h2 {
     margin-bottom: 100px;
