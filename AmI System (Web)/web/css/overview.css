@@ -18,14 +18,15 @@
     display: inline; 
 }
 #hmmm li a { 
+    width: 30%;
     background: #111; 
     padding: 10px; 
-    float:left; 
+    float: left;
     border-right: 1px solid #EEE; 
     border-bottom: none; 
-    text-decoration: none; 
-    color: #FFF; 
-    font-weight: bold;
+    text-decoration: none;
+    font-size: 24px;
+    color: #FFF;
 }
 #hmmm li.active a { 
     background: #FFF; 
