@@ -58,7 +58,7 @@
                 
                 <div class="section temperature">
 
-                    <h2>Temperature</h2>
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature">Temperature</a></h2>
 
                     <canvas id="myChart" width="1100" height="400"></canvas>
 
@@ -66,7 +66,7 @@
 
                 <div class="section atmosphere">
 
-                    <h2>Atmosphere</h2>
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere">Atmosphere</a></h2>
 
                     <canvas id="myChart2" width="1100" height="400"></canvas>
 
@@ -74,7 +74,7 @@
 
                 <div class="section motion">
 
-                    <h2>Motion</h2>
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion">Motion</a></h2>
 
                     <canvas id="myChart3" width="1100" height="400"></canvas>
 
@@ -82,7 +82,7 @@
 
                 <div class="section light">
 
-                    <h2>Light</h2>
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=light">Light</a></h2>
 
                     <canvas id="myChart4" width="1100" height="400"></canvas>
 
