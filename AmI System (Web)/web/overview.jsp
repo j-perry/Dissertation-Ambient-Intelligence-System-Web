@@ -41,13 +41,13 @@
                 
                 <ul id="tabs">
                     <li class="active">
-                        <a href="#context">Context</a>
+                        <a href="#context" id="cat-1">Context</a>
                     </li>                    
                     <li>
-                        <a href="#history">History</a>
+                        <a href="#history" id="cat-2">History</a>
                     </li>
                     <li>
-                        <a href="#environment">Environment</a>
+                        <a href="#environment" id="cat-3">Environment</a>
                     </li>
                 </ul>
                 

@@ -17,7 +17,7 @@
 #tabs li { 
     display: inline; 
 }
-#tabs li a { 
+#tabs li a {
     width: 30%;
     background: #111; 
     padding: 10px; 
@@ -31,10 +31,20 @@
 #tabs li a:hover {
     text-decoration: underline;
 }
-#tabs li.active a { 
-    background: #FFF; 
+
+#tabs li.active a[id="cat-1"] { 
+    background: #F4D03F;
     color: #111;
 }
+#tabs li.active a[id="cat-2"] { 
+    background: #6C7A89;
+    color: #FFF;
+}
+#tabs li.active a[id="cat-3"] { 
+    background: #4B77BE;
+    color: #FFF;
+}
+
 #history,
 #environment {
     float: left;
