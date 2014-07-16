@@ -30,14 +30,14 @@
         </t:menu>
         
         <div id="content-wrapper">
-                        
+            
             <t:page-header>
                 <jsp:attribute name="header" />
             </t:page-header>
             
-            <div id="tabs">
+            <div id="tabs-menu">
                 
-                <ul id="menu">
+                <ul id="hmmm">
                     <li class="active"><a href="#context">Context</a></li>                    
                     <li><a href="#history">History</a></li>
                     <li><a href="#environment">Environment</a></li>

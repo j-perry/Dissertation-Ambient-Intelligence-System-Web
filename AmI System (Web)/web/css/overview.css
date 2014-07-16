@@ -6,6 +6,40 @@
         Purpose of the stylesheet follows.
 */
 
+#tabs-menu {
+    padding-left: 8%;
+    padding-right: 8%;
+}
+#hmmm { 
+    padding: 0;
+    background-color: #FFF;
+}
+#hmmm li { 
+    display: inline; 
+}
+#hmmm li a { 
+    background: #111; 
+    padding: 10px; 
+    float:left; 
+    border-right: 1px solid #ccf; 
+    border-bottom: none; 
+    text-decoration: none; 
+    color: #FFF; 
+    font-weight: bold;
+}
+#hmmm li.active a { 
+    background: #FFF; 
+    color: #111;
+}
+
+#menu li {
+    float: left;
+    width: 25%;
+    height: 50px;
+    margin-right: 3.3%;
+    border: 1px solid #111;
+}
+
 #history {
     
 }
