@@ -5,3 +5,30 @@
     Description:
         Purpose of the stylesheet follows.
 */
+
+#history {
+    
+}
+#history #sub-heading {
+    background-color: #2ECC71;
+    color: #EEE;    
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+#history #content {
+    background-color: #C8F7C5;
+    color: #111;
+}
+#context {
+    
+}
+#context #sub-heading {
+    background-color: #4B77BE; /* #3498db; */
+    color: #FFF;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+#context #content {
+    background-color: #89C4F4; /* #663399; */
+    color: #111;
+}

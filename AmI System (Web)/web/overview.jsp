@@ -15,7 +15,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Overview</title>
         
-        <link rel="stylesheet" href="css/index.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/overview.css" />
         
