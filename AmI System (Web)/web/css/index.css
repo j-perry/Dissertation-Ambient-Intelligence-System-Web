@@ -22,6 +22,7 @@ p {
 /*      Index
 *********************************/
 #status {
+    margin-top: 75px;
     background-color: #EEE; /*#6C7A89;*/
     color: #111;
 }
