@@ -35,9 +35,11 @@
     background: #FFF; 
     color: #111;
 }
-
-#history {
-    
+#history,
+#environment {
+    float: left;
+    width: 100%;
+    text-decoration: none;
 }
 #history #sub-heading {
     background-color: #2ECC71;
@@ -49,10 +51,11 @@
     background-color: #C8F7C5;
     color: #111;
 }
-#context {
-    
+#environment {
+    width: 100%;
+    text-decoration: none;
 }
-#context #sub-heading {
+#environment #sub-heading {
     background-color: #4B77BE; /* #3498db; */
     color: #FFF;
     padding-top: 25px;
