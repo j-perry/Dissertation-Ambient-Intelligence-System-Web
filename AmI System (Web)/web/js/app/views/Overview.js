@@ -7,7 +7,13 @@ var path = '../jp373/js/app/views/Overview';
 define(path, function(overview) {
     function Overview() {
         
-        
+        /**
+         * 
+         */
+        this.tabify = function() {
+            $('#hmmm').tabify();
+//            alert("hello");
+        };
         
     }
     

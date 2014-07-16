@@ -20,6 +20,8 @@
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="js/chart-js/Chart.js"></script>
+        <script src="js/jquery/tabify/jquery.tabify.js"></script>
+        <script src="js/jquery/tabify/jquery.tabify.source.js"></script>
         
         <script type="text/javascript" data-main="js/app.js" src="js/jquery/require.js"></script>
     </head>
@@ -42,7 +44,7 @@
                     <li><a href="#history">History</a></li>
                     <li><a href="#environment">Environment</a></li>
                 </ul>
-                                
+                
             </div>
             
             <!-- context tab -->

@@ -64,7 +64,7 @@ function init_index() {
  */
 function init_overview() {
     require(['../jp373/js/app/views/Overview'], function(overview) {
-        // TODO
+        overview.tabify();
     });
     
     displayLinecharts();

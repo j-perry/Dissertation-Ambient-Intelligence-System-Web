@@ -6,7 +6,7 @@ requirejs.config({
     baseUrl: '../js/',
     paths: {
         app: '/app',
-        a: '/app'
+        tabify: '/jquery/tabify/jquery.tabify.js'
     }
 });
 
