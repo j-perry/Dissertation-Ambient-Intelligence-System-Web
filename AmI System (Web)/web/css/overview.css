@@ -42,10 +42,16 @@
     text-decoration: none;
 }
 #history #sub-heading {
-    background-color: #2ECC71;
-    color: #EEE;    
+    background-color: #EF4836;
+    color: #FFF;    
     padding-top: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 100px;
+}
+#history #sub-heading h2 {
+    margin-bottom: 100px;
+}
+#history #sub-heading p {
+    font-size: 24px;
 }
 #history #content {
     background-color: #C8F7C5;
@@ -59,7 +65,13 @@
     background-color: #4B77BE; /* #3498db; */
     color: #FFF;
     padding-top: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 100px;
+}
+#environment #sub-heading h2 {
+    margin-bottom: 100px;
+}
+#environment #sub-heading p {
+    font-size: 24px;
 }
 #context #content {
     background-color: #89C4F4; /* #663399; */
