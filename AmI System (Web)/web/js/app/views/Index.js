@@ -15,12 +15,12 @@ define(path, function(index) {
             
             // welcome
             require(['../jp373/js/app/views/index/Welcome'], function(welcome) {
-                welcome.checkServiceStatus();
+                //welcome.checkServiceStatus();
             });
             
             // system history
             require(['../jp373/js/app/views/index/SystemHistory'], function(systemHistory) {
-                systemHistory.display();
+                //systemHistory.display();
             });
             
             // environment

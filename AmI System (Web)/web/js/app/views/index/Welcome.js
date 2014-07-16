@@ -28,7 +28,7 @@ define(path, function(welcome) {
                     var status = "";                                 
                     var target = 'content-wrapper';
                     
-                    if((time >= 9.30) && (time <= 17.30)) {                        
+                    if((time >= 9.00) && (time <= 17.30)) {                        
                         // display a particular banner/colour
                         status = "<div id='status' class='size in'>" +
                                     "<h1>Welcome</h1>" +
@@ -47,7 +47,6 @@ define(path, function(welcome) {
                                     "<p>Tomorrow, we'll get started at <span>9:00 AM</span> and finish at <span>17:30 PM</span>.</p>" +
                                     "<p>Until then, have a <a href='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview' title='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview'>look at your progress...</a></p>" +
                                  "</div>";
-                        
                         document.getElementById(target).innerHTML = status;
                     }
                 }

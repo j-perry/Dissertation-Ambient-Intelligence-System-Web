@@ -15,6 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Overview</title>
         
+        <link rel="stylesheet" href="css/index.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/overview.css" />
         
@@ -30,47 +31,88 @@
         </t:menu>
         
         <div id="content-wrapper">
-            
+                        
             <t:page-header>
                 <jsp:attribute name="header" />
             </t:page-header>
             
-            <div class="section temperature">
+            <div id="tabs">
                 
-                <h2>Temperature</h2>
+                <ul id="menu">
+                    <li class="active"><a href="#context">Context</a></li>                    
+                    <li><a href="#history">History</a></li>
+                    <li><a href="#environment">Environment</a></li>
+                </ul>
+                                
+            </div>
+            
+            <!-- context tab -->
+            <div id="context">
                 
-                <!-- <div id="test"></div> -->
-                
-                <canvas id="myChart" width="1100" height="400"></canvas>
+                <div class="section temperature">
+
+                    <h2>Temperature</h2>
+
+                    <canvas id="myChart" width="1100" height="400"></canvas>
+
+                </div>
+
+                <div class="section atmosphere">
+
+                    <h2>Atmosphere</h2>
+
+                    <canvas id="myChart2" width="1100" height="400"></canvas>
+
+                </div>
+
+                <div class="section motion">
+
+                    <h2>Motion</h2>
+
+                    <canvas id="myChart3" width="1100" height="400"></canvas>
+
+                </div>
+
+                <div class="section light">
+
+                    <h2>Light</h2>
+
+                    <canvas id="myChart4" width="1100" height="400"></canvas>
+
+                </div>
+
+            </div>
                 
             </div>
             
-            <div class="section atmosphere">
+            <!-- history tab -->
+            <div id="history">
                 
-                <h2>Atmosphere</h2>
+                <div id="sub-heading" class="size">
+                    <h2>System history</h2>
+                </div>
                 
-                <canvas id="myChart2" width="1100" height="400"></canvas>
-                
-            </div>
-            
-            <div class="section motion">
-                
-                <h2>Motion</h2>
-                
-                <canvas id="myChart3" width="1100" height="400"></canvas>
+                <div id="content" class="size">
+                    <p><u><span id="hours-accumulated"></span>49 hours</u> and <u><span id="minutes-accumulated"></span>52 minutes</u> have been accumulated.</p>
+                    <p>The system has identified <u><span id="number-employees"></span>x3 employees</u> located in <u><span id="number-rooms"></span>x1 room</u>.</p>
+                </div>
                 
             </div>
             
-            <div class="section light">
+            <!-- environment tab -->
+            <div id="environment">
                 
-                <h2>Light</h2>
+                <div id="sub-heading" class="size">
+                    <h2>The environment status...</h2>
+                </div>
                 
-                <canvas id="myChart4" width="1100" height="400"></canvas>
+                <div id="content" class="size">
+                    <p>There are currently <u><span id="number-agents"></span>x2 agents</u> and <u><span id="number-sensors"></span>x8 sensors</u> setup.</p>
+                    <p>So far <u><span id="number-contexts"></span>x4 context</u> types are available for analysis.</p>
+                </div>
                 
             </div>
-                                    
-        </div>
-        
+                    
         <t:footer>
             <jsp:attribute name="footer" />
         </t:footer>
