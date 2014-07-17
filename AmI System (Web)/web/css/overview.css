@@ -37,8 +37,8 @@
     color: #111;
 }
 #tabs li.active a[id="cat-2"] { 
-    background: #6C7A89;
-    color: #FFF;
+    background: #CCC;
+    color: #111;
 }
 #tabs li.active a[id="cat-3"] { 
     background: #4B77BE;
@@ -52,8 +52,8 @@
     text-decoration: none;
 }
 #history #sub-heading {
-    background-color: #6C7A89;
-    color: #FFF;    
+    background-color: #CCC; /* #6C7A89; */
+    color: #111;    
     padding-top: 25px;
     padding-bottom: 150px;
 }
