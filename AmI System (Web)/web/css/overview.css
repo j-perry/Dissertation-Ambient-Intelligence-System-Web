@@ -33,16 +33,16 @@
 }
 
 #tabs li.active a[id="cat-1"] { 
-    background: #F4D03F;
+    background: #FFF; /* #F4D03F */
     color: #111;
 }
 #tabs li.active a[id="cat-2"] { 
-    background: #CCC;
+    background: #FFF;
     color: #111;
 }
 #tabs li.active a[id="cat-3"] { 
-    background: #4B77BE;
-    color: #FFF;
+    background: #CCC; /* #4B77BE */
+    color: #111;
 }
 
 #history,
@@ -92,5 +92,5 @@
     background-color: #FFF;
 }
 #environment div:nth-child(even) {
-    background-color: #CCC;
+    background-color: #EEE;
 }
