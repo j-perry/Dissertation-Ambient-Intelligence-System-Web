@@ -82,7 +82,7 @@
 
                 <div class="section motion">
 
-                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion">Motion</a></h2>
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion">Movement</a></h2>
 
                     <canvas id="myChart3" width="1100" height="400"></canvas>
 
