@@ -54,9 +54,16 @@
                 
             </div>
             
-            <!-- context tab -->
+            <!-- skills tab -->
             <div id="skills">
+                                
+                <!-- this is where our processed data will go -->
                 
+            </div>
+            
+            <!-- environment tab -->
+            <div id="environment">
+
                 <div class="section temperature">
 
                     <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature">Temperature</a></h2>
@@ -90,17 +97,8 @@
                 </div>
 
             </div>
-            
+
             <!-- history tab -->
-            <div id="environment">
-
-                <div id="sub-heading" class="size">
-                    
-                </div>
-
-            </div>
-
-            <!-- environment tab -->
             <div id="history">
 
                 <div id="sub-heading" class="size">
