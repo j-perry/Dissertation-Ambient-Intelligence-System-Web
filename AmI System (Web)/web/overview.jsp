@@ -42,6 +42,9 @@
                 <ul id="tabs">
                     <li class="active">
                         <a href="#context" id="cat-1">Context</a>
+                    </li>       
+                    <li>
+                        <a href="#skills" id="cat-1">Skills</a>
                     </li>                    
                     <li>
                         <a href="#history" id="cat-2">History</a>
