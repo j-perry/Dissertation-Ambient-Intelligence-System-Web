@@ -87,3 +87,10 @@
     background-color: #89C4F4; /* #663399; */
     color: #111;
 }
+
+#environment div:nth-child(odd) {
+    background-color: #FFF;
+}
+#environment div:nth-child(even) {
+    background-color: #CCC;
+}
