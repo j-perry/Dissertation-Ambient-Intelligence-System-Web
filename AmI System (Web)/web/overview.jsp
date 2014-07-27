@@ -102,11 +102,9 @@
             <div id="history">
 
                 <div id="sub-heading" class="size">
-                    <h2>System History</h2>
                     <p><u><span id="hours-accumulated"></span>49 hours</u> and <u><span id="minutes-accumulated"></span>52 minutes</u> have been accumulated.</p>
                     <p>The system has identified <u><span id="number-employees"></span>x3 employees</u> located in <u><span id="number-rooms"></span>x1 room</u>.</p>
                     
-                    <h2>System Environment</h2>
                     <p>There are currently <u><span id="number-agents"></span>x2 agents</u> and <u><span id="number-sensors"></span>x8 sensors</u> setup.</p>
                     <p>So far <u><span id="number-contexts"></span>x4 context</u> types are available for analysis.</p>
                 </div>
