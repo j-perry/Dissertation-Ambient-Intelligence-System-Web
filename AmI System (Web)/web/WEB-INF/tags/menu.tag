@@ -25,30 +25,12 @@
                     value="overview"
                     type="submit"
                     class="nav-btn">Overview</button>
-
-            <!-- Temperature -->
-            <button name="type"
-                    value="temperature"
-                    type="submit"
-                    class="nav-btn">Temperature</button>
-
-            <!-- Atmosphere -->
-            <button name="type"
-                    value="atmosphere"
-                    type="submit"
-                    class="nav-btn">Atmosphere</button>
                     
-            <!-- Motion -->
+            <!-- Skills -->
             <button name="type"
-                    value="motion"
+                    value="skills"
                     type="submit"
-                    class="nav-btn">Motion</button>
-                    
-            <!-- Light -->
-            <button name="type"
-                    value="light"
-                    type="submit"
-                    class="nav-btn">Light</button>        
+                    class="nav-btn">Skills</button>
 
         </form>
     </div>
