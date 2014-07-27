@@ -130,7 +130,7 @@ public class View extends HttpServlet {
                 fWriter.close();
             }
         } else if (type.equals("skills")) {
-            
+            type = "Skills";
         }
 
         // set the first letter to uppercase
