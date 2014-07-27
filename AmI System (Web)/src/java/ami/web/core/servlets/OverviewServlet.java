@@ -80,8 +80,7 @@ public class OverviewServlet extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-        
+                
         out.println("</div>");
         
         out.println("</body>");

@@ -41,27 +41,21 @@
                 
                 <ul id="tabs">
                     <li class="active">
-                        <a href="#context" id="cat-1">Context</a>
-                    </li>   
-                    
-                    <!--
-                    <li>
                         <a href="#skills" id="cat-1">Skills</a>
-                    </li>                    
-                    -->
-                    
+                    </li>                       
                     <li>
-                        <a href="#history" id="cat-2">History</a>
+                        <!-- contains context data -->
+                        <a href="#environment" id="cat-2">Environment</a>
                     </li>
                     <li>
-                        <a href="#environment" id="cat-3">Environment</a>
+                        <a href="#history" id="cat-3">History</a>
                     </li>
                 </ul>
                 
             </div>
             
             <!-- context tab -->
-            <div id="context">
+            <div id="skills">
                 
                 <div class="section temperature">
 
@@ -98,7 +92,7 @@
             </div>
             
             <!-- history tab -->
-            <div id="history">
+            <div id="environment">
 
                 <div id="sub-heading" class="size">
                     <h2>System History</h2>
@@ -109,7 +103,7 @@
             </div>
 
             <!-- environment tab -->
-            <div id="environment">
+            <div id="history">
 
                 <div id="sub-heading" class="size">
                     <h2>System Environment</h2>
