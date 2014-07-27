@@ -74,7 +74,7 @@
 
                 <div class="section atmosphere">
 
-                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere">Atmosphere</a></h2>
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere">Room Volume</a></h2>
 
                     <canvas id="myChart2" width="1100" height="400"></canvas>
 
