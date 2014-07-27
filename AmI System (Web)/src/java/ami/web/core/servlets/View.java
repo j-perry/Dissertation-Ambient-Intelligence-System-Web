@@ -129,16 +129,8 @@ public class View extends HttpServlet {
             } finally {
                 fWriter.close();
             }
-        } else if (type.equals("temperature")) {
-            TemperatureTable dbTemp = new TemperatureTable();
-
-            dbTemp.open();
-            List<Temperature> results = null;
-            results = dbTemp.getResults();
-        } else if (type.equals("atmosphere")) {
-            // TODO
-        } else if (type.equals("motion")) {
-            // TODO
+        } else if (type.equals("skills")) {
+            
         }
 
         // set the first letter to uppercase
