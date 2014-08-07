@@ -41,21 +41,29 @@
                 
                 <ul id="tabs">
                     <li class="active">
-                        <a href="#context" id="cat-1">Context</a>
-                    </li>                    
+                        <a href="#skills" id="cat-1">Skills</a>
+                    </li>                       
                     <li>
-                        <a href="#history" id="cat-2">History</a>
+                        <!-- contains context data -->
+                        <a href="#environment" id="cat-2">Environment</a>
                     </li>
                     <li>
-                        <a href="#environment" id="cat-3">Environment</a>
+                        <a href="#history" id="cat-3">History</a>
                     </li>
                 </ul>
                 
             </div>
             
-            <!-- context tab -->
-            <div id="context">
+            <!-- skills tab -->
+            <div id="skills">
+                                
+                <!-- this is where our processed data will go -->
                 
+            </div>
+            
+            <!-- environment tab -->
+            <div id="environment">
+
                 <div class="section temperature">
 
                     <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature">Temperature</a></h2>
@@ -66,7 +74,7 @@
 
                 <div class="section atmosphere">
 
-                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere">Atmosphere</a></h2>
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere">Room Volume</a></h2>
 
                     <canvas id="myChart2" width="1100" height="400"></canvas>
 
@@ -74,7 +82,7 @@
 
                 <div class="section motion">
 
-                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion">Motion</a></h2>
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion">Movement</a></h2>
 
                     <canvas id="myChart3" width="1100" height="400"></canvas>
 
@@ -89,23 +97,14 @@
                 </div>
 
             </div>
-            
+
             <!-- history tab -->
             <div id="history">
 
                 <div id="sub-heading" class="size">
-                    <h2>System History</h2>
                     <p><u><span id="hours-accumulated"></span>49 hours</u> and <u><span id="minutes-accumulated"></span>52 minutes</u> have been accumulated.</p>
                     <p>The system has identified <u><span id="number-employees"></span>x3 employees</u> located in <u><span id="number-rooms"></span>x1 room</u>.</p>
-                </div>
-
-            </div>
-
-            <!-- environment tab -->
-            <div id="environment">
-
-                <div id="sub-heading" class="size">
-                    <h2>System Environment</h2>
+                    
                     <p>There are currently <u><span id="number-agents"></span>x2 agents</u> and <u><span id="number-sensors"></span>x8 sensors</u> setup.</p>
                     <p>So far <u><span id="number-contexts"></span>x4 context</u> types are available for analysis.</p>
                 </div>
