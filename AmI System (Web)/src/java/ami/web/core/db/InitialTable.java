@@ -78,7 +78,23 @@ public class InitialTable implements IDatabase {
        DataBase dataBase = new DataBase();
        query = "SELECT * FROM Initial";
        
-       
+       try {
+           conn = DriverManager.getConnection(dbUrl, username, password);            
+           qryStatement = conn.createStatement();
+           ResultSet rs = qryStatement.executeQuery(query);
+           
+           while(rs.next() ) {
+               dataBase.setValue(rs.getInt("Value"));
+               dataBase.setType(rs.getString("Type"));
+               dataBase.setLinguisticType(rs.getString("LinguisticType"));
+               
+               entries.add(dataBase);
+           }
+           
+           rs.close();
+       } catch(SQLException ex) {
+           ex.printStackTrace();
+       }
               
        return entries;
     }
