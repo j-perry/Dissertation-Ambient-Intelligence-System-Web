@@ -75,14 +75,20 @@ public class InitialTable implements IDatabase {
      * 
      * @return 
      */
-    public ArrayList<DataBase> retrieveData() {
+    public ArrayList<DataBase> retrieveOverview() {
        ArrayList<DataBase> entries = new ArrayList<DataBase>();       
        DataBase dataBase = new DataBase();
+              
+       return entries;
+    }
+    
+    /**
+     * 
+     */
+    public ClientInfo getClientInfo() {
        ClientInfo clientInfo = new ClientInfo();
        
-       
-       
-       return entries;
+       return clientInfo;
     }
                 
 }
