@@ -34,7 +34,7 @@ define(path, function(welcome) {
                                     "<h1>Welcome</h1>" +
                                     "<p>The time now is <span id='clock-time'></span>.</p>" +
                                     "<p>Analysis runs between <span>9:00 AM</span> and finishes at <span>17:30 PM</span>.</p>" +
-                                    "<p>Have a <a href='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview' title='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview'>look at your progress...</a></p>" +
+                                    "<p>Have a <a href='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview' title='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview'>look at it's progress...</a></p>" +
                                  "</div>";
                         
                         document.getElementById(target).innerHTML = status;
@@ -45,7 +45,7 @@ define(path, function(welcome) {
                                     "<h1>Welcome</h1>" +
                                     "<p>The time now is <span id='clock-time'></span>.</p>" +
                                     "<p>Tomorrow, we'll get started at <span>9:00 AM</span> and finish at <span>17:30 PM</span>.</p>" +
-                                    "<p>Until then, have a <a href='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview' title='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview'>look at your progress...</a></p>" +
+                                    "<p>Until then, have a <a href='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview' title='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview'>look at it's progress...</a></p>" +
                                  "</div>";
                         document.getElementById(target).innerHTML = status;
                     }

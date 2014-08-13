@@ -1,7 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
+
 package ami.web.core.servlets;
 
 import ami.web.core.models.Temperature;
@@ -76,6 +75,7 @@ public class View extends HttpServlet {
         String msg = null;
         JSONObject jsonObj = new JSONObject();
         FileWriter fWriter = null;
+        
         
 
         //
