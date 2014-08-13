@@ -40,13 +40,7 @@
             <div id="tabs-menu">
                 
                 <ul id="tabs">
-                    <!--
                     <li class="active">
-                        <a href="#skills" id="cat-1">Skills</a>
-                    </li>
-                    -->
-                    
-                    <li>
                         <!-- contains context data -->
                         <a href="#environment" id="cat-2">Environment</a>
                     </li>
