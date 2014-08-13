@@ -38,10 +38,7 @@ public class InitialTable implements IDatabase {
         }
         catch(ClassNotFoundException ex) {
             ex.printStackTrace();
-            System.out.println("Driver cannot be found");
         }
-        
-        System.out.println("> Driver has been found");
     }
 
     /**
