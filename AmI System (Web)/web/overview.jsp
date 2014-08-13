@@ -51,16 +51,7 @@
                 </ul>
                 
             </div>
-            
-            <!-- skills tab 
-            <div id="skills">
-                                
-                 this is where our processed data will go
-                
-            </div>
-            
-            -->
-            
+                        
             <!-- environment tab -->
             <div id="environment">
 
