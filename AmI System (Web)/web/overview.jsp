@@ -40,13 +40,17 @@
             <div id="tabs-menu">
                 
                 <ul id="tabs">
+                    <!--
                     <li class="active">
                         <a href="#skills" id="cat-1">Skills</a>
-                    </li>                       
+                    </li>
+                    -->
+                    
                     <li>
                         <!-- contains context data -->
                         <a href="#environment" id="cat-2">Environment</a>
                     </li>
+                    
                     <li>
                         <a href="#history" id="cat-3">History</a>
                     </li>
@@ -54,19 +58,21 @@
                 
             </div>
             
-            <!-- skills tab -->
+            <!-- skills tab 
             <div id="skills">
                                 
-                <!-- this is where our processed data will go -->
+                 this is where our processed data will go
                 
             </div>
+            
+            -->
             
             <!-- environment tab -->
             <div id="environment">
 
                 <div class="section temperature">
 
-                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature">Temperature</a></h2>
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature">Room Temperature</a></h2>
 
                     <canvas id="myChart" width="1100" height="400"></canvas>
 
@@ -85,14 +91,6 @@
                     <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion">Movement</a></h2>
 
                     <canvas id="myChart3" width="1100" height="400"></canvas>
-
-                </div>
-
-                <div class="section light">
-
-                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=light">Light</a></h2>
-
-                    <canvas id="myChart4" width="1100" height="400"></canvas>
 
                 </div>
 
