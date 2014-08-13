@@ -9,6 +9,7 @@ import static ami.web.core.db.IDatabase.password;
 import static ami.web.core.db.IDatabase.username;
 import ami.web.core.models.client.ClientInfo;
 import ami.web.core.models.client.DataBase;
+import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -75,6 +76,7 @@ public class InitialTable implements IDatabase {
     public ArrayList<DataBase> retrieveOverview() {
        ArrayList<DataBase> entries = new ArrayList<DataBase>();       
        DataBase dataBase = new DataBase();
+       query = "SELECT * FROM Initial";
        
        
               
@@ -86,8 +88,25 @@ public class InitialTable implements IDatabase {
      */
     public ClientInfo getClientInfo() {
        ClientInfo clientInfo = new ClientInfo();
+       query = "SELECT * FROM SystemInfo";
        
-       
+       try {
+           conn = DriverManager.getConnection(dbUrl, username, password);            
+           qryStatement = conn.createStatement();
+           ResultSet rs = qryStatement.executeQuery(query);
+           
+           while(rs.next() ) {
+               clientInfo.setAccumulatedHours(rs.getInt("Hours") );
+               clientInfo.setAccumulatedMinutes(rs.getInt("Minutes") );
+               clientInfo.setMacAddrs(rs.getString("MacAddr") );
+               clientInfo.setNoSensors(rs.getInt("NoSensors") );
+//               clientInfo.setNoIndividualSensors(noIndividualSensors);
+               
+               rs.close();
+           }
+       } catch(SQLException ex) {
+           ex.printStackTrace();
+       }
        
        return clientInfo;
     }

@@ -52,7 +52,7 @@ public class ClientInfo {
      * @param hours 
      */
     public void setAccumulatedHours(int hours) {
-        this.hours = hours;
+        this.hours += hours;
     }
     
     /**
@@ -84,7 +84,7 @@ public class ClientInfo {
      * @param noIndividualSensors 
      */
     public void setNoIndividualSensors(int noIndividualSensors) {
-        this.noIndividualSensors = noIndividualSensors;
+        this.noIndividualSensors = (noIndividualSensors / 2);
     }
     
     /**
