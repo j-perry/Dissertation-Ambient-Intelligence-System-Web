@@ -28,9 +28,9 @@
                     
             <!-- Skills -->
             <button name="type"
-                    value="skills"
+                    value="temperature"
                     type="submit"
-                    class="nav-btn">Skills</button>
+                    class="nav-btn">Temperature</button>
 
         </form>
     </div>
