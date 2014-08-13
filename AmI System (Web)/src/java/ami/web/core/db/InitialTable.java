@@ -45,7 +45,7 @@ public class InitialTable implements IDatabase {
     }
 
     /**
-     * 
+     * Open a new JDBC connection
      */
     @Override
     public void open() {
@@ -59,7 +59,7 @@ public class InitialTable implements IDatabase {
     }
 
     /**
-     * 
+     * Close the JDBC connection
      */
     @Override
     public void close() {
@@ -72,7 +72,7 @@ public class InitialTable implements IDatabase {
     }
     
     /**
-     * 
+     * Retrieves raw data from the table
      * @return 
      */
     public ArrayList<DataBase> retrieveOverview() {
@@ -83,7 +83,7 @@ public class InitialTable implements IDatabase {
     }
     
     /**
-     * 
+     * Retrieves info about the clients connected to the system
      */
     public ClientInfo getClientInfo() {
        ClientInfo clientInfo = new ClientInfo();
