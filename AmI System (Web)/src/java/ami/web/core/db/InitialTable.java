@@ -78,6 +78,8 @@ public class InitialTable implements IDatabase {
     public ArrayList<DataBase> retrieveOverview() {
        ArrayList<DataBase> entries = new ArrayList<DataBase>();       
        DataBase dataBase = new DataBase();
+       
+       
               
        return entries;
     }
@@ -87,6 +89,8 @@ public class InitialTable implements IDatabase {
      */
     public ClientInfo getClientInfo() {
        ClientInfo clientInfo = new ClientInfo();
+       
+       
        
        return clientInfo;
     }

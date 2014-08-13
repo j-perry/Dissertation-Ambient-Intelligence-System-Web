@@ -6,7 +6,7 @@ package ami.web.core.models.client;
 import java.util.ArrayList;
 
 /**
- * Stores info from client
+ * Stores info from client devices
  * @author Jonathan Perry
  */
 public class ClientInfo {
