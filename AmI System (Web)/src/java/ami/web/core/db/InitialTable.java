@@ -7,7 +7,6 @@ import static ami.web.core.db.IDatabase.dbUrl;
 import static ami.web.core.db.IDatabase.driver;
 import static ami.web.core.db.IDatabase.password;
 import static ami.web.core.db.IDatabase.username;
-import ami.web.core.models.client.ClientInfo;
 import ami.web.core.models.client.DataBase;
 
 import java.sql.Connection;

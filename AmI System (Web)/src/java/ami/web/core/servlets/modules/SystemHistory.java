@@ -70,27 +70,29 @@ public class SystemHistory {
      */
     public void serializeDataToJson(String path) {
         overview = new JSONObject();
+        String KEY_HOURS = "hours";
+        String KEY_MINUTES = "minutes";
         
         // create the path for which we need to save our JSON data structure to
         // for parsing using JavaScript
         String filename = "overview.json";
-
+        
         String fWriterPath = path;
         fWriterPath += "js/";
         fWriterPath += filename;
-
+        
         // accumulated hours
         if (clientInfo.getAccumulatedHours() != 0) {
-            overview.put("hours", clientInfo.getAccumulatedHours());
+            overview.put(KEY_HOURS, clientInfo.getAccumulatedHours());
         } else {
-            overview.put("hours", (Integer) 0);
+            overview.put(KEY_HOURS, (Integer) 0);
         }
 
         // accumulated minutes
         if (clientInfo.getAccumulatedMinutes() != 0) {
-            overview.put("minute", clientInfo.getAccumulatedMinutes());
+            overview.put(KEY_MINUTES, clientInfo.getAccumulatedMinutes());
         } else {
-            overview.put("minutes", (Integer) 0);
+            overview.put(KEY_MINUTES, (Integer) 0);
         }
 
 //        // no. of hostnames

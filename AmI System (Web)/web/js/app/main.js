@@ -65,6 +65,7 @@ function init_index() {
 function init_overview() {
     require(['../jp373/js/app/views/Overview'], function(overview) {
         overview.tabify();
+        overview.display();
     });
     
     displayLinecharts();
@@ -196,13 +197,6 @@ function displayLinecharts() {
     });
 
     var ctx = document.getElementById("myChart3").getContext("2d");
-    var myLineChart = new Chart(ctx).Line(data, {
-        bezierCurve: false,
-        scaleShowGridLines: false,
-        scaleGridLineColor: "rgba(0,0,0, 1)"
-    });
-
-    var ctx = document.getElementById("myChart4").getContext("2d");
     var myLineChart = new Chart(ctx).Line(data, {
         bezierCurve: false,
         scaleShowGridLines: false,
