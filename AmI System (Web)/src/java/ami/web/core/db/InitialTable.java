@@ -67,7 +67,7 @@ public class InitialTable implements IDatabase {
             ex.printStackTrace();
         }
     }
-    
+        
     /**
      * Retrieves raw data from the table
      * @return 
@@ -96,34 +96,6 @@ public class InitialTable implements IDatabase {
        }
               
        return entries;
-    }
-    
-    /**
-     * Retrieves info about the clients connected to the system
-     */
-    public ClientInfo getClientInfo() {
-       ClientInfo clientInfo = new ClientInfo();
-       query = "SELECT * FROM SystemInfo";
-       
-       try {
-           conn = DriverManager.getConnection(dbUrl, username, password);            
-           qryStatement = conn.createStatement();
-           ResultSet rs = qryStatement.executeQuery(query);
-           
-           while(rs.next() ) {
-               clientInfo.setAccumulatedHours(rs.getInt("Hours") );
-               clientInfo.setAccumulatedMinutes(rs.getInt("Minutes") );
-               clientInfo.setMacAddrs(rs.getString("MacAddr") );
-               clientInfo.setNoSensors(rs.getInt("NoSensors") );
-//               clientInfo.setNoIndividualSensors(rs.getInt("NoSensors") );
-               
-               rs.close();
-           }
-       } catch(SQLException ex) {
-           ex.printStackTrace();
-       }
-       
-       return clientInfo;
     }
                 
 }

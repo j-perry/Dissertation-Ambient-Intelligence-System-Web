@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class ClientInfo {
     
-    private ArrayList<String> macAddrs;
+    private ArrayList<String> hostnames;
     private int hours;
     private int minutes;
     private int noIndividualSensors;
@@ -25,9 +25,9 @@ public class ClientInfo {
      * Assign the MAC address for each client on the system
      * @param macAddr 
      */
-    public void setMacAddrs(String macAddr) {
-        if(!macAddrs.contains(macAddr) ) {
-            this.macAddrs.add(macAddr);
+    public void setHostnames(String hostnames) {
+        if(!hostnames.contains(hostnames) ) {
+            this.hostnames.add(hostnames);
         }
     }
     
@@ -35,16 +35,16 @@ public class ClientInfo {
      * Get each MAC address for each client connected to the system
      * @return 
      */
-    public ArrayList<String> getMacAddrs() {
-        return macAddrs;
+    public ArrayList<String> getHostnames() {
+        return hostnames;
     }
     
     /**
      * Return the number of clients connected to the system
      * @return 
      */
-    public int getNoMacAddrs() {
-        return macAddrs.size();
+    public int getNoHostnames() {
+        return hostnames.size();
     }
     
     /**
