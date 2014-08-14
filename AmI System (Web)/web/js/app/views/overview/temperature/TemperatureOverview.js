@@ -18,6 +18,15 @@ define(path, function(temperatureOverview) {
                 
                 
             });
+            
+            // render chart
+            var ctx = document.getElementById("temperatureOverview").getContext("2d");
+            var myLineChart = new Chart(ctx).Line(data, {
+                bezierCurve: false,
+                scaleShowGridLines: false,
+                scaleGridLineColor: "rgba(0,0,0, 1)"
+            });
+    
         };
         
     }
