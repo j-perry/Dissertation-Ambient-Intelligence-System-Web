@@ -7,7 +7,7 @@ define(path, function(systemHistory) {
     function SystemHistory() {
         
         /**
-         * 
+         * Displays the system history
          */
         this.display = function() {            
             var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/overview.json";
