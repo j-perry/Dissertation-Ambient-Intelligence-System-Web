@@ -17,8 +17,6 @@ define(path, function(systemHistory) {
                 document.getElementById("hours-accumulated").innerHTML = data.hours + " hours";
                 document.getElementById("minutes-accumulated").innerHTML = data.minutes + " minutes";
                 document.getElementById("number-agents").innerHTML = data.hostname + " devices";
-                
-                console.log("HOSTNAME: " + data.hostname);
             });
             
         };
