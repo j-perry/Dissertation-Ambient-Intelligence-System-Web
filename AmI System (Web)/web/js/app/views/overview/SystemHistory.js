@@ -20,7 +20,7 @@ define(path, function(systemHistory) {
                 var temp_minutes = data.minutes;
                 
                 // minutes
-                while(temp_minutes > 60) { // 108, 48
+                while(temp_minutes > 60) {
                     hours++;
                     minutes += (60 - temp_minutes);
                     temp_minutes -= 60;
