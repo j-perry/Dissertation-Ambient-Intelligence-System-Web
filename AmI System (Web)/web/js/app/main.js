@@ -136,7 +136,7 @@ function displayLinecharts() {
 
         // date
         for (var i in data.date) {
-            if (i == 20)
+            if (i === 20)
                 break;
             else
                 date += data.date[i] + ", ";
@@ -146,7 +146,7 @@ function displayLinecharts() {
 
         // time
         for (var i in data.time) {
-            if (i == 5)
+            if (i === 5)
                 break;
             else
                 time += "\"" + data.time[i] + "\"" + ", ";
