@@ -68,7 +68,12 @@ public class ClientInfo {
      * @param minutes 
      */
     public void setAccumulatedMinutes(int minutes) {
-        this.minutes = minutes;
+        if(this.minutes < 59) {
+            this.minutes += minutes;
+        } else{
+            this.hours++;
+            this.minutes = (60 - minutes);
+        }
     }
     
     /**
