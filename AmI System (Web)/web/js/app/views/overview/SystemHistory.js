@@ -15,15 +15,33 @@ define(path, function(systemHistory) {
             // get JSON values
             $.getJSON(path, function(data) {
                 
-                // hours
-                if(data.hours === 1) {
-                    document.getElementById("hours-accumulated").innerHTML = data.hours + " hour";
-                } else {
-                    document.getElementById("hours-accumulated").innerHTML = data.hours + " hours";
-                }
+                var hours = data.hours;
+                var minutes = 0;
+                var temp_minutes = data.minutes;
+                
+                console.log("temp_minutes: " + temp_minutes);
                 
                 // minutes
-                document.getElementById("minutes-accumulated").innerHTML = data.minutes + " minutes";
+                while(temp_minutes > 60) { // 108, 48
+                    hours++;
+                    minutes += (60 - temp_minutes);
+                    temp_minutes -= 60;
+                }
+//                
+//                minutes += temp_minutes;
+                
+                // add anything left over
+//                minutes += temp_minutes;
+                
+                
+                document.getElementById("minutes-accumulated").innerHTML = temp_minutes + " minutes";
+                
+                // hours
+                if(hours === 1) {
+                    document.getElementById("hours-accumulated").innerHTML = hours + " hour";
+                } else {
+                    document.getElementById("hours-accumulated").innerHTML = hours + " hours";
+                }
                 
                 // no. host names
                 if(data.noHostnames === 0) {
