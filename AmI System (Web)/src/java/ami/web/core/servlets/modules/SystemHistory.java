@@ -38,36 +38,6 @@ public class SystemHistory {
     /**
      *
      */
-//    public void getAccumulatedHours() {
-//        this.clientInfo.setAccumulatedHours(initialTable.getAccumulatedHours() );
-//    }
-    /**
-     *
-     */
-//    public void getAccumulatedMinutes() {
-//        this.clientInfo.setAccumulatedMinutes(initialTable.getAccumulatedMinutes() );
-//    }
-    /**
-     *
-     */
-//    public void getHostnames() {
-//        this.clientInfo.setMacAddrs(initialTable.getHostnames() );
-//    }
-    /**
-     *
-     */
-//    public void getNoSensors() {
-//        this.clientInfo.getNoSensors(initialTable.getNoSensors() );
-//    }
-    /**
-     *
-     */
-//    public void getNoIndividualSensors() {
-//        this.clientInfo.getNoIndividualSensors(initialTable.getIndividualSensors() );
-//    }
-    /**
-     *
-     */
     public void serializeDataToJson(String path) {
         overview = new JSONObject();
         String KEY_HOURS = "hours";
@@ -95,7 +65,7 @@ public class SystemHistory {
             overview.put(KEY_MINUTES, (Integer) 0);
         }
         
-        // no hostnames
+        // no. hostnames
         overview.put("noHostnames", clientInfo.getHostnames().size() );
         
         // no sensors
@@ -104,7 +74,13 @@ public class SystemHistory {
         } else {
             overview.put("noSensors", (Integer) 0);
         }
-        
+                
+//        // no. individual sensors
+//        if(clientInfo.getNoIndividualSensors() != 0) {
+//            
+//        } else {
+//            
+//        }
         
         try {
             fWriter = new FileWriter(fWriterPath);
@@ -114,13 +90,6 @@ public class SystemHistory {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
-//        // no individual sensors
-//        if(clientInfo.getNoIndividualSensors() != 0) {
-//            
-//        } else {
-//            
-//        }
 
     }
 }
