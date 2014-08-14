@@ -1,8 +1,11 @@
+
+
 package ami.web.core.servlets.modules;
 
 import ami.web.core.db.InitialTable;
 import ami.web.core.db.SystemInfoTable;
 import ami.web.core.models.client.ClientInfo;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import org.json.simple.*;
@@ -82,6 +85,7 @@ public class SystemHistory {
 //            
 //        }
         
+        // write our JSON data to file
         try {
             fWriter = new FileWriter(fWriterPath);
             fWriter.write(overview.toJSONString());
