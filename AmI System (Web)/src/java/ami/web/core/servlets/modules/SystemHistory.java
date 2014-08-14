@@ -96,7 +96,7 @@ public class SystemHistory {
         }
         
         // no hostnames
-        overview.put("hostname", clientInfo.getHostnames().size() );
+        overview.put("noHostnames", clientInfo.getHostnames().size() );
         
         // no sensors
         if (clientInfo.getNoSensors() != 0) {

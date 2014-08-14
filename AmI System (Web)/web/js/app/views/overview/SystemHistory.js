@@ -16,7 +16,14 @@ define(path, function(systemHistory) {
             $.getJSON(path, function(data) {                
                 document.getElementById("hours-accumulated").innerHTML = data.hours + " hours";
                 document.getElementById("minutes-accumulated").innerHTML = data.minutes + " minutes";
-                document.getElementById("number-agents").innerHTML = data.hostname + " devices";
+                
+                if(data.noHostnames === 0) {
+                    document.getElementById("number-agents").innerHTML = data.noHostnames + " device";
+                } else {
+                    document.getElementById("number-agents").innerHTML = data.noHostnames + " devices";
+                }
+                
+                
                 
                 if(data.noSensors === 1) {
                     document.getElementById("number-sensors").innerHTML = data.noSensors + " sensor";
