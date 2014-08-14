@@ -17,54 +17,23 @@ define(path, function(systemHistory) {
                 document.getElementById("hours-accumulated").innerHTML = data.hours + " hours";
                 document.getElementById("minutes-accumulated").innerHTML = data.minutes + " minutes";
                 
+                // no. host names
                 if(data.noHostnames === 0) {
                     document.getElementById("number-agents").innerHTML = data.noHostnames + " device";
                 } else {
                     document.getElementById("number-agents").innerHTML = data.noHostnames + " devices";
                 }
                 
-                
-                
+                // no. sensors
                 if(data.noSensors === 1) {
                     document.getElementById("number-sensors").innerHTML = data.noSensors + " sensor";
                 } else {
                     document.getElementById("number-sensors").innerHTML = data.noSensors + " sensors";
                 }
                 
+                // no of individual sensors (p/ agent)
                 
             });
-            
-        };
-        
-        /**
-         * 
-         * @returns {undefined}
-         */
-        this.hoursAccumulated = function() {
-            
-        };
-        
-        /**
-         * 
-         * @returns {undefined}
-         */
-        this.minutesAccumulated = function() {
-            
-        };
-        
-        /**
-         * 
-         * @returns {undefined}
-         */
-        this.numberOfEmployeesIdentified = function() {
-            
-        };
-        
-        /**
-         * 
-         * @returns {undefined}
-         */
-        this.numberOfRoomsIdentified = function() {
             
         };
         
