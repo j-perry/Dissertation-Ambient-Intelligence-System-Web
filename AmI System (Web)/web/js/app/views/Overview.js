@@ -7,14 +7,14 @@ define(path, function(overview) {
     function Overview() {
         
         /**
-         * 
+         * Initialise tabs in view
          */
         this.tabify = function() {
             $('#tabs').tabify();
         };
         
         /**
-         * 
+         * Display the overview of all sensor data gathered
          */
         this.display = function() {
             
