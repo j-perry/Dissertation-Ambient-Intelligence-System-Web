@@ -1,10 +1,8 @@
-
-
-
 package ami.web.core.servlets;
 
 import ami.web.core.models.Temperature;
 import ami.web.core.db.TemperatureTable;
+import ami.web.core.servlets.modules.SystemHistory;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -75,15 +73,16 @@ public class View extends HttpServlet {
         String msg = null;
         JSONObject jsonObj = new JSONObject();
         FileWriter fWriter = null;
-        
-        
 
-        //
+
 
         /**
          * Get the required content from the database
          */
         if (type.equals("overview")) {
+            getSystemHistory();
+
+
             TemperatureTable dbTemp = new TemperatureTable();
             dbTemp.open();
             List<Temperature> results = dbTemp.getResults();
@@ -166,4 +165,16 @@ public class View extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void getSystemHistory() {
+        SystemHistory history = new SystemHistory();
+        history.getAccumulatedHours();
+        history.getAccumulatedMinutes();
+        history.getHostnames();
+        history.getNoSensors();
+        history.getNoIndividualSensors();
+
+        // write data to a JSON file
+        history.serializeDataToJson();
+    }
 }

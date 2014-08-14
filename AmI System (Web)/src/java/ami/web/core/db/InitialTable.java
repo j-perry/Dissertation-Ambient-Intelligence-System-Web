@@ -9,7 +9,6 @@ import static ami.web.core.db.IDatabase.password;
 import static ami.web.core.db.IDatabase.username;
 import ami.web.core.models.client.ClientInfo;
 import ami.web.core.models.client.DataBase;
-import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -116,7 +115,7 @@ public class InitialTable implements IDatabase {
                clientInfo.setAccumulatedMinutes(rs.getInt("Minutes") );
                clientInfo.setMacAddrs(rs.getString("MacAddr") );
                clientInfo.setNoSensors(rs.getInt("NoSensors") );
-//               clientInfo.setNoIndividualSensors(noIndividualSensors);
+//               clientInfo.setNoIndividualSensors(rs.getInt("NoSensors") );
                
                rs.close();
            }
