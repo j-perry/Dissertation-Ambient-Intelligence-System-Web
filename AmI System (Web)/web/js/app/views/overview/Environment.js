@@ -7,7 +7,7 @@ define(path, function(environment) {
     function Environment() {
         
         /**
-         * 
+         * Displays an overview of the temperature for both agents in the form of a chart graph(?)
          */
         this.displayTemperatureOverview = function() {
             // system history
