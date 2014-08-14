@@ -25,7 +25,11 @@ define(path, function(overview) {
             
             // environment
             require(['../jp373/js/app/views/overview/Environment'], function(environment) {
-                // TODO
+                // display the temperature (overview)
+                environment.displayTemperatureOverview();
+                
+                // ... others to follow
+                
             });
             
         };
