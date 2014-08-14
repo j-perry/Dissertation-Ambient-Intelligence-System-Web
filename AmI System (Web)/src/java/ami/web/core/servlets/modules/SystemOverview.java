@@ -5,7 +5,6 @@ package ami.web.core.servlets.modules;
 
 import ami.web.core.db.InitialTable;
 import ami.web.core.db.SystemInfoTable;
-import ami.web.core.models.client.ClientInfo;
 
 import java.io.FileWriter;
 import org.json.simple.JSONObject;
