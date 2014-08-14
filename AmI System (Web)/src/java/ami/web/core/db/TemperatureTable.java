@@ -1,7 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
+
 package ami.web.core.db;
 
 import static ami.web.core.db.IDatabase.dbUrl;
@@ -9,6 +8,7 @@ import static ami.web.core.db.IDatabase.driver;
 import static ami.web.core.db.IDatabase.password;
 import static ami.web.core.db.IDatabase.username;
 import ami.web.core.models.Temperature;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -35,10 +35,7 @@ public class TemperatureTable implements IDatabase {
         }
         catch(ClassNotFoundException ex) {
             ex.printStackTrace();
-            System.out.println("Driver cannot be found");
         }
-        
-        System.out.println("> Driver has been found");
     }
     
     /**
