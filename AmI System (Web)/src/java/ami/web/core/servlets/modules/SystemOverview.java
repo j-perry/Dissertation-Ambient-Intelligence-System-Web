@@ -16,14 +16,15 @@ import org.json.simple.JSONObject;
  */
 public class SystemOverview {
     
-    private ClientInfo clientInfo;
     private InitialTable initialTable;
     private SystemInfoTable systemInfoTable;
     private JSONObject overview;
     private FileWriter fWriter;
     
-    public SystemOverview() {
-        
+    public SystemOverview() {     
+        initialTable = new InitialTable();
+        systemInfoTable = new SystemInfoTable();
+        fWriter = null;
     }
     
     /**
