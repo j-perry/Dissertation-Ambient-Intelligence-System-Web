@@ -80,8 +80,10 @@ public class View extends HttpServlet {
          * Get the required content from the database
          */
         if (type.equals("overview")) {
-            getSystemHistory();
-
+            String path = getServletContext().getRealPath("/");
+            
+            // get the system history from the database and serialise it to JSON
+            getSystemHistory(path);
 
             TemperatureTable dbTemp = new TemperatureTable();
             dbTemp.open();
@@ -166,15 +168,13 @@ public class View extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void getSystemHistory() {
+    /**
+     * 
+     * @param path Servlet path
+     */
+    private void getSystemHistory(String path) {
         SystemHistory history = new SystemHistory();
-        history.getAccumulatedHours();
-        history.getAccumulatedMinutes();
-        history.getHostnames();
-        history.getNoSensors();
-        history.getNoIndividualSensors();
-
-        // write data to a JSON file
-        history.serializeDataToJson();
+        history.getData();
+        history.serializeDataToJson(path);
     }
 }
