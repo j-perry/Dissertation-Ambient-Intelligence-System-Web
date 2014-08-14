@@ -84,7 +84,6 @@ public class SystemHistory {
             overview.put("hours", clientInfo.getAccumulatedHours());
         } else {
             overview.put("hours", (Integer) 0);
-
         }
 
         // accumulated minutes
@@ -94,12 +93,12 @@ public class SystemHistory {
             overview.put("minutes", (Integer) 0);
         }
 
-        // no. of hostnames
-        if (clientInfo.getNoHostnames() != 0) {
-            overview.put("no_hostnames", clientInfo.getNoHostnames());
-        } else {
-            overview.put("no_hostnames", (Integer) 0);
-        }
+//        // no. of hostnames
+//        if (clientInfo.getNoHostnames() > 0) {
+//            overview.put("no_hostnames", clientInfo.getNoHostnames());
+//        } else {
+//            overview.put("no_hostnames", (Integer) 0);
+//        }
 
         try {
             fWriter = new FileWriter(fWriterPath);

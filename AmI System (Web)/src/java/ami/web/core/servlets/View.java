@@ -91,7 +91,7 @@ public class View extends HttpServlet {
             JSONArray values = new JSONArray();
             JSONArray dates = new JSONArray();
             JSONArray times = new JSONArray();
-
+            
             // value
             for (Temperature result : results) {
                 values.add(result.getValue());
