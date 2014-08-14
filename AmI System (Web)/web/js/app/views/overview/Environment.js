@@ -1,7 +1,6 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
+
 var path = "../jp373/js/app/views/index/Environment";
 
 define(path, function(environment) {
@@ -10,37 +9,13 @@ define(path, function(environment) {
         /**
          * 
          */
-        this.display = function() {
-            var target = "";
-            var html = "";
-            
-            
+        this.displayTemperatureOverview = function() {
+            // system history
+            require(['../jp373/js/app/views/overview/temperature/TemperatureOverview'], function(temperatureOverview) {
+                temperatureOverview.display();
+            });
         };
-        
-        /**
-         * 
-         * @returns {undefined}
-         */
-        this.numberOfAgentsDeployed = function() {
-            
-        };
-        
-        /**
-         * 
-         * @returns {undefined}
-         */
-        this.numberOfSensorsDeployed = function() {
-            
-        };
-        
-        /**
-         * 
-         * @returns {undefined}
-         */
-        this.numberOfIdentifiedContexts = function() {
-            
-        };
-        
+                
     };
     
     // returning an instanceof this object is essential, otherwise it'll

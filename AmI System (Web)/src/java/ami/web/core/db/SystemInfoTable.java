@@ -8,6 +8,7 @@ import static ami.web.core.db.IDatabase.driver;
 import static ami.web.core.db.IDatabase.password;
 import static ami.web.core.db.IDatabase.username;
 import ami.web.core.models.client.ClientInfo;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
