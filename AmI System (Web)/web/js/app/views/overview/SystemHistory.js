@@ -16,11 +16,9 @@ define(path, function(systemHistory) {
             $.getJSON(path, function(data) {                
                 document.getElementById("hours-accumulated").innerHTML = data.hours + " hours";
                 document.getElementById("minutes-accumulated").innerHTML = data.minutes + " minutes";
+                document.getElementById("number-agents").innerHTML = data.hostname + " devices";
                 
-                this.a = data.hours;
-                this.b = data.hours;
-                
-                console.log(a);
+                console.log("HOSTNAME: " + data.hostname);
             });
             
         };

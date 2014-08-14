@@ -3,7 +3,7 @@
 
 package ami.web.core.models.client;
 
-import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Stores info from client devices
@@ -11,40 +11,38 @@ import java.util.ArrayList;
  */
 public class ClientInfo {
     
-    private ArrayList<String> hostnames;
+    private Stack<String> hostnames;
     private int hours;
     private int minutes;
     private int noIndividualSensors;
     private int noSensors;
     
     public ClientInfo() {
-        
+        hostnames = new Stack<String>();
     }
     
     /**
-     * Assign the MAC address for each client on the system
-     * @param macAddr 
+     * Assign the host name for each client on the system
+     * @param hostnames
      */
-    public void setHostnames(String hostnames) {
-        if(!hostnames.contains(hostnames) ) {
-            this.hostnames.add(hostnames);
+    public void setHostnames(String hostname) {
+        if(hostnames.size() == 0) {
+            hostnames.push(hostname);
+        }
+        
+        if(!hostnames.contains(hostname)) {
+            this.hostnames.add(hostname);            
         }
     }
     
     /**
-     * Get each MAC address for each client connected to the system
+     * Get each host name for each client connected to the system
      * @return 
      */
-    public ArrayList<String> getHostnames() {
+    public Stack<String> getHostnames() {
+//    public String getHostname() {
         return hostnames;
-    }
-    
-    /**
-     * Return the number of clients connected to the system
-     * @return 
-     */
-    public int getNoHostnames() {
-        return hostnames.size();
+//        return hostname;
     }
     
     /**

@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -71,6 +72,7 @@ public class SystemInfoTable implements IDatabase {
     public ClientInfo getClientInfo() {
        ClientInfo clientInfo = new ClientInfo();
        query = "SELECT * FROM SystemInfo";
+       ArrayList<String> hostnames = new ArrayList<String>();
        
        try {
            conn = DriverManager.getConnection(dbUrl, username, password);            
@@ -80,7 +82,9 @@ public class SystemInfoTable implements IDatabase {
            while(rs.next() ) {
                clientInfo.setAccumulatedHours(rs.getInt("Hours") );
                clientInfo.setAccumulatedMinutes(rs.getInt("Minutes") );
+               
                clientInfo.setHostnames(rs.getString("HostName") );
+               
                clientInfo.setNoSensors(rs.getInt("NoSensors") );
 //               clientInfo.setNoIndividualSensors(rs.getInt("NoSensors") );
            }
