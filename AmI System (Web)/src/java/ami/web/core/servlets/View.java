@@ -84,9 +84,8 @@ public class View extends HttpServlet {
         if (type.equals("overview")) {
             String path = getServletContext().getRealPath("/");
             
-            // get the system history from the database and serialise it to JSON
-            getSystemHistory(path);
-            
+            // get the system history and overview from the database and serialise it to JSON
+            getSystemHistory(path);            
             getSystemOverview(path);
 
             TemperatureTable dbTemp = new TemperatureTable();
