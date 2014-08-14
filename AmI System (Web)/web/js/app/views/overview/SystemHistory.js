@@ -13,8 +13,16 @@ define(path, function(systemHistory) {
             var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/overview.json";
             
             // get JSON values
-            $.getJSON(path, function(data) {                
-                document.getElementById("hours-accumulated").innerHTML = data.hours + " hours";
+            $.getJSON(path, function(data) {
+                
+                // hours
+                if(data.hours === 1) {
+                    document.getElementById("hours-accumulated").innerHTML = data.hours + " hour";
+                } else {
+                    document.getElementById("hours-accumulated").innerHTML = data.hours + " hours";
+                }
+                
+                // minutes
                 document.getElementById("minutes-accumulated").innerHTML = data.minutes + " minutes";
                 
                 // no. host names
