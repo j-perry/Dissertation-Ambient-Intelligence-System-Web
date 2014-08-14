@@ -96,10 +96,15 @@ public class SystemHistory {
         }
         
         // no hostnames
-//        overview.put("no_hostnames", clientInfo.getHostname() );
-
-        // 
         overview.put("hostname", clientInfo.getHostnames().size() );
+        
+        // no sensors
+        if (clientInfo.getNoSensors() != 0) {
+            overview.put("noSensors", clientInfo.getNoSensors());
+        } else {
+            overview.put("noSensors", (Integer) 0);
+        }
+        
         
         try {
             fWriter = new FileWriter(fWriterPath);
@@ -116,13 +121,6 @@ public class SystemHistory {
 //        } else {
 //            
 //        }
-
-        // no sensors
-        if (clientInfo.getNoSensors() != 0) {
-            overview.put("no_sensors", clientInfo.getNoSensors());
-        } else {
-            overview.put("no_sensors", (Integer) 0);
-        }
 
     }
 }

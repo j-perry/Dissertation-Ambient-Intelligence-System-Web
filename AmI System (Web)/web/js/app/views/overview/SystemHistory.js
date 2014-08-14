@@ -17,6 +17,14 @@ define(path, function(systemHistory) {
                 document.getElementById("hours-accumulated").innerHTML = data.hours + " hours";
                 document.getElementById("minutes-accumulated").innerHTML = data.minutes + " minutes";
                 document.getElementById("number-agents").innerHTML = data.hostname + " devices";
+                
+                if(data.noSensors === 1) {
+                    document.getElementById("number-sensors").innerHTML = data.noSensors + " sensor";
+                } else {
+                    document.getElementById("number-sensors").innerHTML = data.noSensors + " sensors";
+                }
+                
+                
             });
             
         };

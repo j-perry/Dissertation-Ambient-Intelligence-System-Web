@@ -81,10 +81,8 @@ public class SystemInfoTable implements IDatabase {
            
            while(rs.next() ) {
                clientInfo.setAccumulatedHours(rs.getInt("Hours") );
-               clientInfo.setAccumulatedMinutes(rs.getInt("Minutes") );
-               
-               clientInfo.setHostnames(rs.getString("HostName") );
-               
+               clientInfo.setAccumulatedMinutes(rs.getInt("Minutes") );               
+               clientInfo.setHostnames(rs.getString("HostName") );               
                clientInfo.setNoSensors(rs.getInt("NoSensors") );
 //               clientInfo.setNoIndividualSensors(rs.getInt("NoSensors") );
            }
