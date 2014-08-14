@@ -3,6 +3,7 @@ package ami.web.core.servlets;
 import ami.web.core.models.Temperature;
 import ami.web.core.db.TemperatureTable;
 import ami.web.core.servlets.modules.SystemHistory;
+import ami.web.core.servlets.modules.SystemOverview;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -188,6 +189,6 @@ public class View extends HttpServlet {
     private void getSystemOverview(String path) {
         SystemOverview overview = new SystemOverview();
         overview.getData();
-        history.serializeDataToJson(path);
+        overview.serializeDataToJson(path);
     }
 }
