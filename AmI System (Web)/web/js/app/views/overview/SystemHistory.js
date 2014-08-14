@@ -19,20 +19,12 @@ define(path, function(systemHistory) {
                 var minutes = 0;
                 var temp_minutes = data.minutes;
                 
-                console.log("temp_minutes: " + temp_minutes);
-                
                 // minutes
                 while(temp_minutes > 60) { // 108, 48
                     hours++;
                     minutes += (60 - temp_minutes);
                     temp_minutes -= 60;
                 }
-//                
-//                minutes += temp_minutes;
-                
-                // add anything left over
-//                minutes += temp_minutes;
-                
                 
                 document.getElementById("minutes-accumulated").innerHTML = temp_minutes + " minutes";
                 
