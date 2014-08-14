@@ -68,11 +68,13 @@ public class ClientInfo {
      * @param minutes 
      */
     public void setAccumulatedMinutes(int minutes) {
+        final int MAX_MINS = 60;
+        
         if(this.minutes < 59) {
             this.minutes += minutes;
         } else{
             this.hours++;
-            this.minutes = (60 - minutes);
+            this.minutes = (MAX_MINS - minutes);
         }
     }
     
