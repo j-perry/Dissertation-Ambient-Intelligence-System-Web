@@ -37,6 +37,9 @@ define(path, function(systemHistory) {
                 
                 // no. host names
                 if(data.noHostnames === 0) {
+                    document.getElementById("number-agents").innerHTML = 0 + " devices";
+                }
+                else if(data.noHostnames === 1){
                     document.getElementById("number-agents").innerHTML = data.noHostnames + " device";
                 } else {
                     document.getElementById("number-agents").innerHTML = data.noHostnames + " devices";
