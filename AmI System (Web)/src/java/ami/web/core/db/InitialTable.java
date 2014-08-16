@@ -96,5 +96,35 @@ public class InitialTable implements IDatabase {
               
        return entries;
     }
+    
+    /**
+     * Retrieves raw data from the table by field
+     * @return 
+     */
+    public ArrayList<DataBase> retrieveOverviewByName(String field) {
+       ArrayList<DataBase> entries = new ArrayList<DataBase>();       
+       DataBase dataBase = new DataBase();
+       query = "SELECT * FROM Initial WHERE Type = '" + field + "'";
+       
+       try {
+           conn = DriverManager.getConnection(dbUrl, username, password);            
+           qryStatement = conn.createStatement();
+           ResultSet rs = qryStatement.executeQuery(query);
+           
+           while(rs.next() ) {
+               dataBase.setValue(rs.getInt("Value"));
+               dataBase.setType(rs.getString("Type"));
+               dataBase.setLinguisticType(rs.getString("LinguisticType"));
+               
+               entries.add(dataBase);
+           }
+           
+           rs.close();
+       } catch(SQLException ex) {
+           ex.printStackTrace();
+       }
+              
+       return entries;
+    }
                 
 }

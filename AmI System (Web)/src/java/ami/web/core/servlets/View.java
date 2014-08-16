@@ -183,11 +183,12 @@ public class View extends HttpServlet {
     
     /**
      * 
-     * @param path 
+     * @param path Servlet path
      */
     private void getSystemOverview(String path) {
         SystemOverview overview = new SystemOverview();
-        overview.getData();
+        overview.getTemperatureData();
         overview.serializeDataToJson(path);
     }
+    
 }

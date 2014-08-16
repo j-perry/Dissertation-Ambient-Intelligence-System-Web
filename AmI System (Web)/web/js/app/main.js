@@ -180,7 +180,7 @@ function displayLinecharts() {
             }
         ]
     };
-
+    
     //////          TO REMOVE
     // chart
     var ctx = document.getElementById("myChart").getContext("2d");
