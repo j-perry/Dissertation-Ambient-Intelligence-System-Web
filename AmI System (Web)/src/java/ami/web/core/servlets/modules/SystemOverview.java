@@ -57,10 +57,10 @@ public class SystemOverview {
      * We'll need to change this to the general table later!!!
      */
     public void getTemperatureData() {
-        String temp_field = "Temperature";
-
+        String temp_field = "temperature";
+        
         monitoringTable.open();
-        temperatureData = monitoringTable.retrieveOverviewByName(temp_field);
+        temperatureData = monitoringTable.retrieveOverviewByContext(temp_field);
         monitoringTable.close();
     }
 
@@ -72,13 +72,7 @@ public class SystemOverview {
     public void serializeDataToJson(String path) {
         JSONObject temperatureOverview = new JSONObject();
         
-
-
-
-
-        // others...
-
-
+        
         /*
          *      Temperature
          * 
@@ -86,8 +80,28 @@ public class SystemOverview {
         if (!temperatureData.isEmpty()) {
             // parse temperature data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureOverview = parseContext(temperatureData);
+//            temperatureOverview = parseContext(temperatureData);
+            temperatureOverview.put("Temperature", "Is Not Empty");
+            
+            // write temperature overview data to a JSON file            
+            String temperature_overview_file = "temperature_overview.json";
 
+            String fWriterPathTemperature = path;
+            fWriterPathTemperature += "js/json/logs/";
+            fWriterPathTemperature += temperature_overview_file;
+
+            try {
+                fWriter = new FileWriter(fWriterPathTemperature);
+                fWriter.write(temperatureOverview.toJSONString());
+                fWriter.flush();
+                fWriter.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else {
+            temperatureOverview.put("Temperature", "Is Empty");
+            
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_overview.json";
 

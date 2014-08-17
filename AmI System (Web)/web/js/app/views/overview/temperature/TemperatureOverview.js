@@ -17,9 +17,11 @@ define(path, function(temperatureOverview) {
             // get JSON values
             $.getJSON(path, function(data) {
                 
+                /*
+                
                 // for our data to go into
-                var hostname_one_data = new Array();
-                var hostname_two_data = new Array();
+                var agent_one = new Array();
+                var agent_two = new Array();
 
 
                 ///////////////////////////////////////////////////////////////
@@ -81,9 +83,7 @@ define(path, function(temperatureOverview) {
                 var hostname_two_friday = new Array();
                 
                 
-                /**
-                 * Compute our averages here
-                 */
+                // Compute our averages here
 
                 // monday
                 for (var i in data.hostname_two.monday.value) {
@@ -158,10 +158,10 @@ define(path, function(temperatureOverview) {
                     scaleShowGridLines: false,
                     scaleGridLineColor: "rgba(0,0,0, 1)"
                 });
-                
+                */
+               
             });
-
-            
+                        
 
         };
 

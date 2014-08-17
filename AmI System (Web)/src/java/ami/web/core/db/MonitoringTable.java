@@ -34,6 +34,8 @@ public class MonitoringTable implements IDatabase {
     private ResultSet resultSet;
     private Connection conn;
     
+    private final String tableName = "Monitoring";
+    
     public MonitoringTable() {
         // register the driver
         try {
@@ -78,7 +80,7 @@ public class MonitoringTable implements IDatabase {
     public ArrayList<DataBase> retrieveOverview() {
        ArrayList<DataBase> entries = new ArrayList<DataBase>();       
        DataBase dataBase = new DataBase();
-       query = "SELECT * FROM Initial";
+       query = "SELECT * FROM " + tableName;
        
        try {
            conn = DriverManager.getConnection(dbUrl, username, password);            
@@ -118,10 +120,10 @@ public class MonitoringTable implements IDatabase {
      * Retrieves raw data from the table by field
      * @return 
      */
-    public ArrayList<DataBase> retrieveOverviewByName(String field) {
+    public ArrayList<DataBase> retrieveOverviewByContext(String field) {
        ArrayList<DataBase> entries = new ArrayList<DataBase>();       
        DataBase dataBase = new DataBase();
-       query = "SELECT * FROM Initial WHERE Type = '" + field + "'";
+       query = "SELECT * FROM " + tableName + " WHERE Context= '" + field + "'";
        
        try {
            conn = DriverManager.getConnection(dbUrl, username, password);            
@@ -129,8 +131,15 @@ public class MonitoringTable implements IDatabase {
            ResultSet rs = qryStatement.executeQuery(query);
            
            while(rs.next() ) {
+               dataBase.setSessionId(rs.getInt("SessionId"));
+               dataBase.setHostname(rs.getString("Hostname"));
+               dataBase.setHour(rs.getInt("Hour"));
+               dataBase.setMinute(rs.getInt("Minute"));
+               dataBase.setDay(rs.getString("Day"));
+               dataBase.setMonth(rs.getString("Month"));
+               dataBase.setYear(rs.getInt("Year"));
                dataBase.setValue(rs.getInt("Value"));
-               dataBase.setType(rs.getString("Type"));
+               dataBase.setType(rs.getString("Context"));
                dataBase.setLinguisticType(rs.getString("LinguisticType"));
                
                entries.add(dataBase);

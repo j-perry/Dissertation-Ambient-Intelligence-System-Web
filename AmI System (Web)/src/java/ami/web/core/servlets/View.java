@@ -93,7 +93,7 @@ public class View extends HttpServlet {
             getSystemOverview(path);
             
 //            code below may not be required...
-//            getData();
+            getData();
             
         } else if (type.equals("temperature")) {
             String path = getServletContext().getRealPath("/");
@@ -154,52 +154,52 @@ public class View extends HttpServlet {
     }
     
     private void getData() {
-        /*
-            TemperatureTable dbTemp = new TemperatureTable();
-            dbTemp.open();
-            List<Temperature> results = dbTemp.getResults();
-            JSONArray values = new JSONArray();
-            JSONArray dates = new JSONArray();
-            JSONArray times = new JSONArray();
-            
-            // value
-            for (Temperature result : results) {
-                values.add(result.getValue());
-            }
-
-            jsonObj.put("value", values);
-
-            // date
-            for (Temperature result : results) {
-                dates.add(result.getDate());
-            }
-
-            jsonObj.put("date", dates);
-
-            // time
-            for (Temperature result : results) {
-                times.add(result.getTime());
-            }
-
-            jsonObj.put("time", times);
-
-            // create the path for which we need to save our JSON data structure to
-            // for parsing using JavaScript
-            String filename = "overview_temperature.json";
-
-            String fWriterPath = getServletContext().getRealPath("/");
-            fWriterPath += "js/json/logs/";
-            fWriterPath += filename;
-            
-            try {
-                fWriter = new FileWriter(fWriterPath);
-                fWriter.write(jsonObj.toJSONString());
-                fWriter.flush();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            } finally {
-                fWriter.close();
-            }
-            */
+//        /*
+//            TemperatureTable dbTemp = new TemperatureTable();
+//            dbTemp.open();
+//            List<Temperature> results = dbTemp.getResults();
+//            JSONArray values = new JSONArray();
+//            JSONArray dates = new JSONArray();
+//            JSONArray times = new JSONArray();
+//            
+//            // value
+//            for (Temperature result : results) {
+//                values.add(result.getValue());
+//            }
+//
+//            jsonObj.put("value", values);
+//
+//            // date
+//            for (Temperature result : results) {
+//                dates.add(result.getDate());
+//            }
+//
+//            jsonObj.put("date", dates);
+//
+//            // time
+//            for (Temperature result : results) {
+//                times.add(result.getTime());
+//            }
+//
+//            jsonObj.put("time", times);
+//
+//            // create the path for which we need to save our JSON data structure to
+//            // for parsing using JavaScript
+//            String filename = "overview_temperature.json";
+//
+//            String fWriterPath = getServletContext().getRealPath("/");
+//            fWriterPath += "js/json/logs/";
+//            fWriterPath += filename;
+//            
+//            try {
+//                fWriter = new FileWriter(fWriterPath);
+//                fWriter.write(jsonObj.toJSONString());
+//                fWriter.flush();
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            } finally {
+//                fWriter.close();
+//            }
+//            */
     }
 }
