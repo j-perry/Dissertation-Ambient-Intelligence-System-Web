@@ -143,6 +143,12 @@ public class SystemOverview {
         final String THURSDAY = "thursday";
         final String FRIDAY = "friday";
         
+        final int MONDAY_ID = 2;
+        final int TUESDAY_ID = 3;
+        final int WEDNESDAY_ID = 4;
+        final int THURSDAY_ID = 5;        
+        final int FRIDAY_ID = 6;
+        
         
         JSONObject agentResult = new JSONObject();
         
@@ -210,7 +216,7 @@ public class SystemOverview {
                 // https://community.oracle.com/thread/2094650?tstart=90840
                 switch (dayOfTheWeek) {
                     // Monday
-                    case 2:
+                    case MONDAY_ID:
                         if (agent_one_context_monday.isEmpty()) {
                             agent_one_context_monday.push(d.getValue());
                         } else {
@@ -219,7 +225,7 @@ public class SystemOverview {
                         }
                         break;
                     // Tuesday
-                    case 3:
+                    case TUESDAY_ID:
                         if (agent_one_context_tuesday.isEmpty()) {
                             agent_one_context_tuesday.push(d.getValue());
                         } else {
@@ -228,7 +234,7 @@ public class SystemOverview {
                         }
                         break;
                     // Wednesday
-                    case 4:
+                    case WEDNESDAY_ID:
                         if (agent_one_context_wednesday.isEmpty()) {
                             agent_one_context_wednesday.push(d.getValue());
                         } else {
@@ -237,7 +243,7 @@ public class SystemOverview {
                         }
                         break;
                     // Thursday
-                    case 5:
+                    case THURSDAY_ID:
                         if (agent_one_context_thursday.isEmpty()) {
                             agent_one_context_thursday.push(d.getValue());
                         } else {
@@ -246,7 +252,7 @@ public class SystemOverview {
                         }
                         break;
                     // Friday
-                    case 6:
+                    case FRIDAY_ID:
                         if (agent_one_context_friday.isEmpty()) {
                             agent_one_context_friday.push(d.getValue());
                         } else {
@@ -275,7 +281,7 @@ public class SystemOverview {
                 // weekday codes: https://community.oracle.com/thread/2094650?tstart=90840
                 switch (dayOfTheWeek) {
                     // Monday
-                    case 2:
+                    case MONDAY_ID:
                         if (agent_two_context_monday.isEmpty()) {
                             agent_two_context_monday.push(d.getValue());
                         } else {
@@ -284,7 +290,7 @@ public class SystemOverview {
                         }
                         break;
                     // Tuesday
-                    case 3:
+                    case TUESDAY_ID:
                         if (agent_two_context_tuesday.isEmpty()) {
                             agent_two_context_tuesday.push(d.getValue());
                         } else {
@@ -293,7 +299,7 @@ public class SystemOverview {
                         }
                         break;
                     // Wednesday
-                    case 4:
+                    case WEDNESDAY_ID:
                         if (agent_two_context_wednesday.isEmpty()) {
                             agent_two_context_wednesday.push(d.getValue());
                         } else {
@@ -302,7 +308,7 @@ public class SystemOverview {
                         }
                         break;
                     // Thursday
-                    case 5:
+                    case THURSDAY_ID:
                         if (agent_two_context_thursday.isEmpty()) {
                             agent_two_context_thursday.push(d.getValue());
                         } else {
@@ -311,7 +317,7 @@ public class SystemOverview {
                         }
                         break;
                     // Friday
-                    case 6:
+                    case FRIDAY_ID:
                         if (agent_two_context_friday.isEmpty()) {
                             agent_two_context_friday.push(d.getValue());
                         } else {
