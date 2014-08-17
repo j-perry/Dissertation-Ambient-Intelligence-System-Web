@@ -28,12 +28,15 @@ public class SystemOverview {
 
     private MonitoringTable monitoringTable;
     private FileWriter fWriter;
-    // Data from database
+    
+    // To store data from database
     private ArrayList<DataBase> temperatureData;
     private ArrayList<DataBase> ultrasonicData;
+    
     // JSON
     private JSONObject overviewTemp;
     private JSONObject overviewDistance;
+    
     // For JSON binding
     private String hostname_heading = "Agents";
     private String hostname_one = "Agent-One";
@@ -41,6 +44,7 @@ public class SystemOverview {
     private String pi_one = "raspberry-pi-1";
     private String pi_two = "raspberry-pi-2";
 
+    
     public SystemOverview() {
         monitoringTable = new MonitoringTable();
         temperatureData = new ArrayList<DataBase>();
@@ -103,6 +107,13 @@ public class SystemOverview {
 //        // ultrasonic
 //        else if(ultrasonicData.isEmpty() ) {
 //            overviewDistance = parseContext(temperatureData);
+//            
+//            // write temperature overview data to a JSON file            
+//            String temperature_overview_file = "ultrasonic_overview.json";
+//
+//            String fWriterPathTemperature = path;
+//            fWriterPathTemperature += "js/json/logs/";
+//            fWriterPathTemperature += temperature_overview_file;
 //            
 //            // write temperature overview data to file
 //            try {
