@@ -6,8 +6,6 @@
 package ami.web.core.servlets;
 
 // local libraries
-import ami.web.core.models.Temperature;
-import ami.web.core.db.TemperatureTable;
 import ami.web.core.servlets.modules.SystemHistory;
 import ami.web.core.servlets.modules.SystemOverview;
 
@@ -15,7 +13,6 @@ import ami.web.core.servlets.modules.SystemOverview;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -200,5 +197,4 @@ public class View extends HttpServlet {
         overview.getTemperatureData();
         overview.serializeDataToJson(path);
     }
-    
 }

@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * 
  * @author Jonathan Perry
  */
-public class InitialTable implements IDatabase {
+public class MonitoringTable implements IDatabase {
         
     private String query;
     
@@ -34,7 +34,7 @@ public class InitialTable implements IDatabase {
     private ResultSet resultSet;
     private Connection conn;
     
-    public InitialTable() {
+    public MonitoringTable() {
         // register the driver
         try {
             Class.forName(driver);
@@ -86,6 +86,19 @@ public class InitialTable implements IDatabase {
            ResultSet rs = qryStatement.executeQuery(query);
            
            while(rs.next() ) {
+               // session id
+               dataBase.setSessionId(rs.getInt("SessionId"));
+               
+               // time
+               dataBase.setHour(rs.getInt("Hour"));
+               dataBase.setMinute(rs.getInt("Month"));
+               
+               // date
+               dataBase.setDay(String.valueOf(rs.getInt("Day") ));
+               dataBase.setMonth(String.valueOf(rs.getInt("Month") ));
+               dataBase.setYear(rs.getInt("Year"));
+               
+               // general data
                dataBase.setValue(rs.getInt("Value"));
                dataBase.setType(rs.getString("Type"));
                dataBase.setLinguisticType(rs.getString("LinguisticType"));
