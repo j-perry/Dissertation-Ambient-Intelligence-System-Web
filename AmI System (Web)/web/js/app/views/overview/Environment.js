@@ -3,7 +3,7 @@
  * Jonathan Perry
  * Candidate No. 102235
  */
-var path = "../jp373/js/app/views/index/Environment";
+var path = "../jp373/js/app/views/overview/Environment";
 
 define(path, function(environment) {
     function Environment() {
@@ -17,7 +17,7 @@ define(path, function(environment) {
                 temperatureOverview.display();
             });
         };
-                
+        
     };
     
     // returning an instanceof this object is essential, otherwise it'll

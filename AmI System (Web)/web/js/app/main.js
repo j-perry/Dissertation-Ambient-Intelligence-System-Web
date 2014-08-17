@@ -114,13 +114,11 @@ function init_light() {
     });
 }
 
-
-
 /**
  * 
  */
 function displayLinecharts() {
-    var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/overview_temperature.json";
+    var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/overview_temperature.json";
     var values = "";
     var date = "";
     var time = "";

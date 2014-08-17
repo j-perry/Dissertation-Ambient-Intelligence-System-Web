@@ -51,7 +51,7 @@ public class SystemHistory {
         String filename = "overview.json";
         
         String fWriterPath = path;
-        fWriterPath += "js/";
+        fWriterPath += "js/json/logs/";
         fWriterPath += filename;
         
         // accumulated hours

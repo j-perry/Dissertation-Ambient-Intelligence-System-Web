@@ -1,10 +1,17 @@
+/*
+ * MSc Advanced Computer Science, University of Sussex
+ * Jonathan Perry
+ * Candidate No. 102235
+ */
 package ami.web.core.servlets;
 
+// local libraries
 import ami.web.core.models.Temperature;
 import ami.web.core.db.TemperatureTable;
 import ami.web.core.servlets.modules.SystemHistory;
 import ami.web.core.servlets.modules.SystemOverview;
 
+// Java APIs
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// third party APIs
 import org.json.simple.*;
 
 /**
@@ -69,15 +77,14 @@ public class View extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-
+        
         String type = request.getParameter("type");
         String viewUrl = type + ".jsp";
         String msg = null;
         JSONObject jsonObj = new JSONObject();
         FileWriter fWriter = null;
-
-
-
+        
+                
         /**
          * Get the required content from the database
          */
@@ -85,9 +92,10 @@ public class View extends HttpServlet {
             String path = getServletContext().getRealPath("/");
             
             // get the system history and overview from the database and serialise it to JSON
-            getSystemHistory(path);            
+            getSystemHistory(path);
             getSystemOverview(path);
 
+            /*
             TemperatureTable dbTemp = new TemperatureTable();
             dbTemp.open();
             List<Temperature> results = dbTemp.getResults();
@@ -121,9 +129,9 @@ public class View extends HttpServlet {
             String filename = "overview_temperature.json";
 
             String fWriterPath = getServletContext().getRealPath("/");
-            fWriterPath += "js/";
+            fWriterPath += "js/json/logs/";
             fWriterPath += filename;
-
+            
             try {
                 fWriter = new FileWriter(fWriterPath);
                 fWriter.write(jsonObj.toJSONString());
@@ -133,13 +141,15 @@ public class View extends HttpServlet {
             } finally {
                 fWriter.close();
             }
-        } else if (type.equals("skills")) {
-            type = "Skills";
+            */
+            
+        } else if (type.equals("temperature")) {
+            String path = getServletContext().getRealPath("/");
         }
 
         // set the first letter to uppercase
         type = type.substring(0, 1).toUpperCase() + type.substring(1);
-
+        
         // populate and send a HTTP request object with header info
         request.setAttribute("type", type);
         RequestDispatcher view = request.getRequestDispatcher(viewUrl);
@@ -172,7 +182,7 @@ public class View extends HttpServlet {
     }// </editor-fold>
 
     /**
-     * 
+     * Generates an overview of the system's history
      * @param path Servlet path
      */
     private void getSystemHistory(String path) {
@@ -182,7 +192,7 @@ public class View extends HttpServlet {
     }
     
     /**
-     * 
+     * Generates an overview of the system's contextual data (e.g., room temperature)
      * @param path Servlet path
      */
     private void getSystemOverview(String path) {

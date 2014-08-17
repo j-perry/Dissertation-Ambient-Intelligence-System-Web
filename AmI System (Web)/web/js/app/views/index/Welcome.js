@@ -32,7 +32,7 @@ define(path, function(welcome) {
                         status = "<div id='status' class='size in'>" +
                                     "<h1>Welcome</h1>" +
                                     "<p>The time now is <span id='clock-time'></span>.</p>" +
-                                    "<p>Analysis runs between <span>9:00 AM</span> and finishes at <span>17:30 PM</span>.</p>" +
+                                    "<p>Analysis runs between <span>9:00 AM</span> and finishes at <span>17:00 PM</span>.</p>" +
                                     "<p>Have a <a href='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview' title='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview'>look at it's progress...</a></p>" +
                                  "</div>";
                         
@@ -43,7 +43,7 @@ define(path, function(welcome) {
                         status = "<div id='status' class='size out'>" +
                                     "<h1>Welcome</h1>" +
                                     "<p>The time now is <span id='clock-time'></span>.</p>" +
-                                    "<p>Tomorrow, we'll get started at <span>9:00 AM</span> and finish at <span>17:30 PM</span>.</p>" +
+                                    "<p>Tomorrow, we'll get started at <span>9:00 AM</span> and finish at <span>17:00 PM</span>.</p>" +
                                     "<p>Until then, have a <a href='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview' title='http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview'>look at it's progress...</a></p>" +
                                  "</div>";
                         document.getElementById(target).innerHTML = status;

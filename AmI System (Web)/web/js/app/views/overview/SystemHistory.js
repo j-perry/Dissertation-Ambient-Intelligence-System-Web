@@ -12,7 +12,7 @@ define(path, function(systemHistory) {
          * Displays the system history
          */
         this.display = function() {            
-            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/overview.json";
+            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/overview.json";
             
             // get JSON values
             $.getJSON(path, function(data) {
