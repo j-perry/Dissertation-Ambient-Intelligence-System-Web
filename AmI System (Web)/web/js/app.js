@@ -1,6 +1,11 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/*
+ * MSc Advanced Computer Science, University of Sussex
+ * Jonathan Perry
+ * Candidate No. 102235
+ * 
+ * Description: JavaScript code uses the RequireJS framework for dynamically loading 
+ *              relevant classes.
+ * 
  */
 requirejs.config({
     baseUrl: '../js/',

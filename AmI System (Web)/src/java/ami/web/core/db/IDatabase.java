@@ -1,10 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * MSc Advanced Computer Science, University of Sussex
+ * Jonathan Perry
+ * Candidate No. 102235
  */
 package ami.web.core.db;
-
-import java.sql.SQLException;
 
 /**
  *

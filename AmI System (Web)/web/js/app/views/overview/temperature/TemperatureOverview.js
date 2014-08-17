@@ -1,13 +1,15 @@
-
-
-
+/*
+ * MSc Advanced Computer Science, University of Sussex
+ * Jonathan Perry
+ * Candidate No. 102235
+ */
 var path = "../jp373/js/app/views/index/Environment/TemperatureOverview.js";
 
 define(path, function(temperatureOverview) {
     function TemperatureOverview() {
-
+        
         /**
-         * 
+         * Display an overview of temperature data collected from both agents
          */
         this.display = function() {
             var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/temperature_overview.json";
@@ -43,7 +45,7 @@ define(path, function(temperatureOverview) {
 
                 // tuesday
                 for (var i in data.hostname_one.tuesday.value) {
-                    hostname_one_tuesday.push(data.hostname_one.one.tuesday.value[i] + ", ");
+                    hostname_one_tuesday.push(data.hostname_one.tuesday.value[i] + ", ");
                 }
 
                 // wednesday
@@ -149,7 +151,6 @@ define(path, function(temperatureOverview) {
                     ]
                 };
                 
-                
                 // render chart
                 var ctx = document.getElementById("temperatureOverview").getContext("2d");
                 var myLineChart = new Chart(ctx).Line(data, {
@@ -157,7 +158,7 @@ define(path, function(temperatureOverview) {
                     scaleShowGridLines: false,
                     scaleGridLineColor: "rgba(0,0,0, 1)"
                 });
-
+                
             });
 
             

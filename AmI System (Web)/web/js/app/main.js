@@ -1,8 +1,11 @@
-
-
-/* 
- * The main JavaScript file for our Ambient Intelligence web application.
- * All code has been written with reusability in mind.
+/*
+ * MSc Advanced Computer Science, University of Sussex
+ * Jonathan Perry
+ * Candidate No. 102235
+ * 
+ * Desciption: The main JavaScript file for our Ambient Intelligence web application.
+ *             All code has been written with reusability in mind.
+ *             
  */
 
 // when the view has loaded

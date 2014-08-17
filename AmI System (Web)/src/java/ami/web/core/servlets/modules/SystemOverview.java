@@ -9,6 +9,7 @@ import ami.web.core.models.client.DataBase;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
@@ -20,7 +21,7 @@ public class SystemOverview {
     private InitialTable initialTable;
     private FileWriter fWriter;
     private ArrayList<DataBase> temperatureData;
-        
+    
     private JSONObject overview_temperature;
 //    private JSONObject overview_motion;
     
@@ -48,17 +49,36 @@ public class SystemOverview {
      * @param path 
      */
     public void serializeDataToJson(String path) {
+        String hostname_one = "Agent 1";
+        String hostname_two = "Agent 2";
+        
+        // temperature
         overview_temperature = new JSONObject();
+        JSONArray array = new JSONArray();
+        JSONArray arr_hostname_one = new JSONArray();        
+        JSONArray arr_hostname_two = new JSONArray();
+        
         String temperature_overview_file = "temperature_overview.json";
         
         String fWriterPathTemperature = path;
         fWriterPathTemperature += "js/";
         fWriterPathTemperature += temperature_overview_file;
         
-        // temperature
+        // others...
+        
+        
+        /*
+         * temperature
+         */
         if(!temperatureData.isEmpty() ) {
             for(DataBase d : temperatureData) {
-                // sort data here and write it to JSON
+                // hostname
+                
+                
+                // bind them both together
+                // don't worry it is reverse!
+                overview_temperature.put(hostname_one, arr_hostname_one);
+                overview_temperature.put(hostname_two, arr_hostname_two);
             }
             
             // write data to file

@@ -1,6 +1,8 @@
-
-
-
+/*
+ * MSc Advanced Computer Science, University of Sussex
+ * Jonathan Perry
+ * Candidate No. 102235
+ */
 package ami.web.core.models.client;
 
 import java.util.Stack;
