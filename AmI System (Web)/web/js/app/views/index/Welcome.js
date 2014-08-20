@@ -1,7 +1,8 @@
 
 
 
-var path = "../jp373/js/app/views/index/Welcome";
+//var path = "../jp373/js/app/views/index/Welcome";
+var path = "../AmI_System__Web_/js/app/views/index/Welcome";
 
 define(path, function(welcome) {
     function Welcome() {
@@ -13,7 +14,10 @@ define(path, function(welcome) {
          */
         this.checkServiceStatus = function() {
             // check if the current week day is between Monday and Friday
-            require(['../jp373/js/app/Time'], function(time) {
+//            require(['../jp373/js/app/Time'], function(time) {
+            require(['../AmI_System__Web_js/app/Time'], function(time) {
+                
+                console.log("Hello");
                 
                 var day = time.day();
                 var hour = time.getHour();
@@ -62,7 +66,8 @@ define(path, function(welcome) {
         this.updateTime = function() {
             // display the clock (time)
             setInterval(function() {
-                require(['../jp373/js/app/Time'], function(time) {
+//                require(['../jp373/js/app/Time'], function(time) {
+                require(['../AmI_System__Web_/js/app/Time'], function(time) {
                     document.getElementById('clock-time').innerHTML = time.getFullGMT();
                 });
             }, 0);

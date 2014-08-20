@@ -12,8 +12,12 @@ import ami.web.core.models.client.DataBase;
 // Java APIs
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Stack;
 
 // third party libraries
@@ -28,23 +32,20 @@ public class SystemOverview {
 
     private MonitoringTable monitoringTable;
     private FileWriter fWriter;
-    
     // To store data from database
     private ArrayList<DataBase> temperatureData;
     private ArrayList<DataBase> ultrasonicData;
-    
     // JSON
     private JSONObject overviewTemp;
     private JSONObject overviewDistance;
-    
     // For JSON binding
     private String hostname_heading = "Agents";
     private String hostname_one = "Agent-One";
     private String hostname_two = "Agent-Two";
     private String pi_one = "raspberry-pi-1";
     private String pi_two = "raspberry-pi-2";
+    String value;
 
-    
     public SystemOverview() {
         monitoringTable = new MonitoringTable();
         temperatureData = new ArrayList<DataBase>();
@@ -58,10 +59,11 @@ public class SystemOverview {
      */
     public void getTemperatureData() {
         String temp_field = "temperature";
-        
+
         monitoringTable.open();
         temperatureData = monitoringTable.retrieveOverviewByContext(temp_field);
         monitoringTable.close();
+
     }
 
     /**
@@ -71,8 +73,8 @@ public class SystemOverview {
      */
     public void serializeDataToJson(String path) {
         JSONObject temperatureOverview = new JSONObject();
-        
-        
+
+
         /*
          *      Temperature
          * 
@@ -80,9 +82,8 @@ public class SystemOverview {
         if (!temperatureData.isEmpty()) {
             // parse temperature data and return a JSON representation of it
             // with data for each day averaged out
-//            temperatureOverview = parseContext(temperatureData);
-            temperatureOverview.put("Temperature", "Is Not Empty");
-            
+            temperatureOverview = parseContext(temperatureData, "Temperature");
+
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_overview.json";
 
@@ -98,15 +99,15 @@ public class SystemOverview {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }
-        else {
-            temperatureOverview.put("Temperature", "Is Empty");
-            
+        } else {
+//            temperatureOverview.put("Temperature", "Is Empty");
+
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_overview.json";
 
             String fWriterPathTemperature = path;
-            fWriterPathTemperature += "js/json/logs/";
+//            fWriterPathTemperature += "js/json/logs/";
+            fWriterPathTemperature += "http://localhost:8080/AmI_System__Web_/js/json/logs/";
             fWriterPathTemperature += temperature_overview_file;
 
             try {
@@ -148,41 +149,37 @@ public class SystemOverview {
      * @param d
      * @return
      */
-    public JSONObject parseContext(ArrayList<DataBase> data) {
+    public JSONObject parseContext(ArrayList<DataBase> data, String context) {
         final int WORKDAY_HOURS = 8;
-        
+
         final String MONDAY = "monday";
         final String TUESDAY = "tuesday";
         final String WEDNESDAY = "wednesday";
         final String THURSDAY = "thursday";
         final String FRIDAY = "friday";
-        
+
         final int MONDAY_ID = 2;
         final int TUESDAY_ID = 3;
         final int WEDNESDAY_ID = 4;
-        final int THURSDAY_ID = 5;        
+        final int THURSDAY_ID = 5;
         final int FRIDAY_ID = 6;
         
-        
-        JSONObject agentResult = new JSONObject();
-        
-
         // Stacks - Agent 1
-        Stack<Integer> agent_one_context_monday = new Stack<Integer>();
-        Stack<Integer> agent_one_context_tuesday = new Stack<Integer>();
-        Stack<Integer> agent_one_context_wednesday = new Stack<Integer>();
-        Stack<Integer> agent_one_context_thursday = new Stack<Integer>();
-        Stack<Integer> agent_one_context_friday = new Stack<Integer>();
-        
-        
+        Stack<Integer> agent_one_context_value_monday = new Stack<Integer>();
+        Stack<Integer> agent_one_context_value_tuesday = new Stack<Integer>();
+        Stack<Integer> agent_one_context_value_wednesday = new Stack<Integer>();
+        Stack<Integer> agent_one_context_value_thursday = new Stack<Integer>();
+        Stack<Integer> agent_one_context_value_friday = new Stack<Integer>();
+
+
         // Stacks - Agent 2
-        Stack<Integer> agent_two_context_monday = new Stack<Integer>();
-        Stack<Integer> agent_two_context_tuesday = new Stack<Integer>();
-        Stack<Integer> agent_two_context_wednesday = new Stack<Integer>();
-        Stack<Integer> agent_two_context_thursday = new Stack<Integer>();
-        Stack<Integer> agent_two_context_friday = new Stack<Integer>();
-        
-        
+        Stack<Integer> agent_two_context_value_monday = new Stack<Integer>();
+        Stack<Integer> agent_two_context_value_tuesday = new Stack<Integer>();
+        Stack<Integer> agent_two_context_value_wednesday = new Stack<Integer>();
+        Stack<Integer> agent_two_context_value_thursday = new Stack<Integer>();
+        Stack<Integer> agent_two_context_value_friday = new Stack<Integer>();
+
+
         //
         //      JSON Data Structure
         //
@@ -193,31 +190,17 @@ public class SystemOverview {
         //
         //      
         //      {
-        //          "Agents": {
-        //              "Agent-One": {
-        //                  "Monday": "27",
-        //                  "Tuesday": "28",
-        //                  "Wednesday": "27",
-        //                  "Thursday": "28",
-        //                  "Friday": "28"
-        //              },
-        //              "Agent-Two": {
-        //                  "Monday": "30",
-        //                  "Tuesday": "28",
-        //                  "Wednesday": "28",
-        //                  "Thursday": "31",
-        //                  "Friday": "30"
-        //              }
+        //          "Agent-One": {
+        //              "Monday": {
+        //                  "27"
+        //              ],
+        //          "Agent-Two": "Values",
+        //              "Monday": [
+        //                  "27"
+        //              ],
         //      }
         //
         
-        
-        /**
-         *     Sort each contextual type.
-         * 
-         *     Ensure each set of (potentially) retrieved data is not empty, otherwise 
-         *     they will output null files.
-         */
         for (DataBase d : temperatureData) {
 
             // if agent one
@@ -226,201 +209,244 @@ public class SystemOverview {
                 // look up what day in the week the corresponding date returns
                 int dayOfTheWeek = findDayInWeek(d.getYear(), d.getMonth(), d.getDay());
 
+                System.out.println("Agent 1 - TODAY IS: " + dayOfTheWeek);
+
                 // Codes - Calendar.DAY_OF_WEEK:
                 // https://community.oracle.com/thread/2094650?tstart=90840
                 switch (dayOfTheWeek) {
                     // Monday
                     case MONDAY_ID:
-                        if (agent_one_context_monday.isEmpty()) {
-                            agent_one_context_monday.push(d.getValue());
+                        if (agent_one_context_value_monday.isEmpty()) {
+                            agent_one_context_value_monday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_one_context_monday.push(d.getValue() + agent_one_context_monday.pop());
+                            agent_one_context_value_monday.push((d.getValue() + agent_two_context_value_monday.peek()));
                         }
                         break;
                     // Tuesday
                     case TUESDAY_ID:
-                        if (agent_one_context_tuesday.isEmpty()) {
-                            agent_one_context_tuesday.push(d.getValue());
+                        if (agent_one_context_value_tuesday.isEmpty()) {
+                            agent_one_context_value_tuesday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_one_context_tuesday.push(d.getValue() + agent_one_context_tuesday.pop());
+                            agent_one_context_value_tuesday.push((d.getValue() + agent_one_context_value_tuesday.peek()));
                         }
                         break;
                     // Wednesday
                     case WEDNESDAY_ID:
-                        if (agent_one_context_wednesday.isEmpty()) {
-                            agent_one_context_wednesday.push(d.getValue());
+                        if (agent_one_context_value_wednesday.isEmpty()) {
+                            agent_one_context_value_wednesday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_one_context_wednesday.push(d.getValue() + agent_one_context_wednesday.pop());
+                            agent_one_context_value_wednesday.push((d.getValue() + agent_one_context_value_wednesday.peek()));
                         }
                         break;
                     // Thursday
                     case THURSDAY_ID:
-                        if (agent_one_context_thursday.isEmpty()) {
-                            agent_one_context_thursday.push(d.getValue());
+                        if (agent_one_context_value_thursday.isEmpty()) {
+                            agent_one_context_value_thursday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_one_context_thursday.push(d.getValue() + agent_one_context_thursday.pop());
+                            agent_one_context_value_thursday.push((d.getValue() + agent_one_context_value_thursday.peek()));
                         }
                         break;
                     // Friday
                     case FRIDAY_ID:
-                        if (agent_one_context_friday.isEmpty()) {
-                            agent_one_context_friday.push(d.getValue());
+                        if (agent_one_context_value_friday.isEmpty()) {
+                            agent_one_context_value_friday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_one_context_friday.push(d.getValue() + agent_one_context_friday.pop());
+                            agent_one_context_value_friday.push((d.getValue() + agent_one_context_value_friday.peek()));
                         }
                         break;
                     default:
-                        d.getValue();
                         break;
                 }
-
-                // average each stack (Monday to Friday)
-                agent_one_context_monday.push(agent_one_context_monday.pop() / WORKDAY_HOURS);
-                agent_one_context_tuesday.push(agent_one_context_tuesday.pop() / WORKDAY_HOURS);
-                agent_one_context_wednesday.push(agent_one_context_wednesday.pop() / WORKDAY_HOURS);
-                agent_one_context_thursday.push(agent_one_context_thursday.pop() / WORKDAY_HOURS);
-                agent_one_context_friday.push(agent_one_context_friday.pop() / WORKDAY_HOURS);
-
-            } // else if it is agent two
-            else if (d.getHostname().equals(pi_two)) {
-
+            } else if (d.getHostname().equals(pi_two)) {
                 // look up what day in the week the corresponding date returns
                 int dayOfTheWeek = findDayInWeek(d.getYear(), d.getMonth(), d.getDay());
 
-                // weekday codes: https://community.oracle.com/thread/2094650?tstart=90840
+                System.out.println("Agent 2 - TODAY IS: " + dayOfTheWeek);
+
+                // Codes - Calendar.DAY_OF_WEEK:
+                // https://community.oracle.com/thread/2094650?tstart=90840
                 switch (dayOfTheWeek) {
                     // Monday
                     case MONDAY_ID:
-                        if (agent_two_context_monday.isEmpty()) {
-                            agent_two_context_monday.push(d.getValue());
+                        if (agent_two_context_value_monday.isEmpty()) {
+                            agent_two_context_value_monday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_two_context_monday.push(d.getValue() + agent_two_context_monday.pop());
+                            agent_two_context_value_monday.push((d.getValue() + agent_two_context_value_monday.peek()));
                         }
                         break;
                     // Tuesday
                     case TUESDAY_ID:
-                        if (agent_two_context_tuesday.isEmpty()) {
-                            agent_two_context_tuesday.push(d.getValue());
+                        if (agent_two_context_value_tuesday.isEmpty()) {
+                            agent_two_context_value_tuesday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_two_context_tuesday.push(d.getValue() + agent_two_context_tuesday.pop());
+                            agent_two_context_value_tuesday.push((d.getValue() + agent_two_context_value_tuesday.peek()));
                         }
                         break;
-                    // Wednesday
+                    // Wednesday 
                     case WEDNESDAY_ID:
-                        if (agent_two_context_wednesday.isEmpty()) {
-                            agent_two_context_wednesday.push(d.getValue());
+                        if (agent_two_context_value_wednesday.isEmpty()) {
+                            agent_two_context_value_wednesday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_two_context_wednesday.push(d.getValue() + agent_two_context_wednesday.pop());
+                            agent_two_context_value_wednesday.push((d.getValue() + agent_two_context_value_wednesday.peek()));
                         }
                         break;
                     // Thursday
                     case THURSDAY_ID:
-                        if (agent_two_context_thursday.isEmpty()) {
-                            agent_two_context_thursday.push(d.getValue());
+                        if (agent_two_context_value_thursday.isEmpty()) {
+                            agent_two_context_value_thursday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_two_context_thursday.push(d.getValue() + agent_two_context_thursday.pop());
+                            agent_two_context_value_thursday.push((d.getValue() + agent_two_context_value_thursday.peek()));
                         }
                         break;
                     // Friday
                     case FRIDAY_ID:
-                        if (agent_two_context_friday.isEmpty()) {
-                            agent_two_context_friday.push(d.getValue());
+                        if (agent_two_context_value_friday.isEmpty()) {
+                            agent_two_context_value_friday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_two_context_friday.push(d.getValue() + agent_two_context_friday.pop());
+                            agent_two_context_value_friday.push((d.getValue() + agent_two_context_value_friday.peek()));
                         }
                         break;
                     default:
-                        d.getValue();
                         break;
                 }
-
-                // average each stack (Monday to Friday)
-                agent_two_context_monday.push(agent_two_context_monday.pop() / WORKDAY_HOURS);
-                agent_two_context_tuesday.push(agent_two_context_tuesday.pop() / WORKDAY_HOURS);
-                agent_two_context_wednesday.push(agent_two_context_wednesday.pop() / WORKDAY_HOURS);
-                agent_two_context_thursday.push(agent_two_context_thursday.pop() / WORKDAY_HOURS);
-                agent_two_context_friday.push(agent_two_context_friday.pop() / WORKDAY_HOURS);
-
-
-                /*
-                 *      Bind our data together
-                 */        
-                JSONArray agents_arr = new JSONArray();
-                JSONArray agent_one_arr = new JSONArray();
-                JSONArray agent_two_arr = new JSONArray();
-                
-                // agent one
-                JSONObject agent_one_monday = null,
-                           agent_one_tuesday = null,
-                           agent_one_wednesday = null,
-                           agent_one_thursday = null,
-                           agent_one_friday = new JSONObject();
-                
-                // agent two
-                JSONObject agent_two_monday = null,
-                           agent_two_tuesday = null,
-                           agent_two_wednesday = null,
-                           agent_two_thursday = null,
-                           agent_two_friday = new JSONObject();
-                
-                
-                // initialise agent one (with computed data)
-                agent_one_monday.put(MONDAY, agent_one_context_monday.pop() );
-                agent_one_tuesday.put(TUESDAY, agent_one_context_tuesday.pop() );
-                agent_one_wednesday.put(WEDNESDAY, agent_one_context_wednesday.pop() );
-                agent_one_thursday.put(THURSDAY, agent_one_context_thursday.pop() );
-                agent_one_friday.put(FRIDAY, agent_one_context_friday.pop() );
-                
-                
-                // initialise agent two (with computed data)
-                agent_two_monday.put(MONDAY, agent_two_context_monday.pop() );
-                agent_two_tuesday.put(TUESDAY, agent_two_context_tuesday.pop() );
-                agent_two_wednesday.put(WEDNESDAY, agent_two_context_wednesday.pop() );
-                agent_two_thursday.put(THURSDAY, agent_two_context_thursday.pop() );
-                agent_two_friday.put(FRIDAY, agent_two_context_friday.pop() );
-                
-                
-                /*
-                 *  Bind each individual weekday to each agent with the data
-                */
-                
-                
-                // AM I USING THE RIGHT TYPE (JSONArray instead of JSONObject)???
-                //
-                // agent 1 ("Agent-One")
-                agent_one_arr.add(agent_one_monday);
-                agent_one_arr.add(agent_one_tuesday);
-                agent_one_arr.add(agent_one_wednesday);
-                agent_one_arr.add(agent_one_thursday);
-                agent_one_arr.add(agent_one_friday);
-                
-                // agent 2 ("Agent-Two")
-                agent_two_arr.add(agent_two_monday);
-                agent_two_arr.add(agent_two_tuesday);
-                agent_two_arr.add(agent_two_wednesday);
-                agent_two_arr.add(agent_two_thursday);
-                agent_two_arr.add(agent_two_friday);
-                
-                // bind agent 1 + 2 together
-                agents_arr.add(agent_one_arr);
-                agents_arr.add(agent_two_arr);
-                
-                // bind agent (1 + 2) to the root node ("Agents")                                
-                agentResult.put(hostname_heading, agents_arr);
             }
         }
 
-        return agentResult;
+
+        /*
+         *      Bind our data together
+         */
+        JSONObject root = new JSONObject();
+        JSONObject agent_one = new JSONObject();
+        JSONObject agent_two = new JSONObject();
+
+        JSONArray agent_one_mon_arr = new JSONArray();
+        JSONArray agent_one_tues_arr = new JSONArray();
+        JSONArray agent_one_wed_arr = new JSONArray();
+        JSONArray agent_one_thur_arr = new JSONArray();
+        JSONArray agent_one_fri_arr = new JSONArray();
+
+        JSONArray agent_two_mon_arr = new JSONArray();
+        JSONArray agent_two_tues_arr = new JSONArray();
+        JSONArray agent_two_wed_arr = new JSONArray();
+        JSONArray agent_two_thurs_arr = new JSONArray();
+        JSONArray agent_two_fri_arr = new JSONArray();
+
+
+        /*
+         *  bind our data
+         */
+
+        // agent one
+        // monday (entry point)
+        // average each stack (Monday to Tuesday)...
+        if (!agent_one_context_value_monday.isEmpty()) {
+            agent_one.put(MONDAY, agent_one_mon_arr);  // "Monday", arr
+            agent_one_mon_arr.add(agent_one_context_value_monday.pop());
+        } else {
+            agent_one.put(MONDAY, agent_one_mon_arr);
+            agent_one_mon_arr.add(0);
+        }
+
+        // tuesday
+        if (!agent_one_context_value_tuesday.isEmpty()) {
+            agent_one.put(TUESDAY, agent_one_tues_arr);
+            agent_one_tues_arr.add(agent_one_context_value_tuesday.pop());
+        } else {
+            agent_one.put(TUESDAY, agent_one_tues_arr);
+            agent_one_tues_arr.add(0);
+        }
+
+        // wednesday
+        if (!agent_one_context_value_wednesday.isEmpty()) {
+            agent_one.put(WEDNESDAY, agent_one_wed_arr);
+            agent_one_wed_arr.add(agent_one_context_value_wednesday.pop());
+        } else {
+            agent_one.put(WEDNESDAY, agent_one_wed_arr);
+            agent_one_wed_arr.add(0);
+        }
+
+        // thursday
+        if (!agent_one_context_value_thursday.isEmpty()) {
+            agent_one.put(THURSDAY, agent_one_thur_arr);
+            agent_one_thur_arr.add(agent_one_context_value_thursday.pop());
+        } else {
+            agent_one.put(THURSDAY, agent_one_thur_arr);
+            agent_one_thur_arr.add(0);
+        }
+
+        // friday
+        if (!agent_one_context_value_friday.isEmpty()) {
+            agent_one.put(FRIDAY, agent_one_fri_arr);
+            agent_one_fri_arr.add(agent_one_context_value_friday.pop());
+        } else {
+            agent_one.put(FRIDAY, agent_one_fri_arr);
+            agent_one_fri_arr.add(0);
+        }
+
+
+        // REPEAT...        
+        // agent two
+        // monday (entry point)
+        if (!agent_two_context_value_monday.isEmpty()) {
+            agent_two.put(MONDAY, agent_two_mon_arr);  // "Monday", arr
+            agent_two_mon_arr.add((agent_two_context_value_monday.pop() / agent_two_context_value_monday.size()));
+        } else {
+            agent_two.put(MONDAY, agent_two_mon_arr);  // "Monday", arr
+            agent_two_mon_arr.add(0);
+        }
+
+        // tuesday
+        if (!agent_two_context_value_tuesday.isEmpty()) {
+            agent_two.put(TUESDAY, agent_two_mon_arr);  // "Monday", arr
+            agent_two_tues_arr.add((agent_two_context_value_tuesday.pop() / agent_two_context_value_tuesday.size()));
+        } else {
+            agent_two.put(TUESDAY, agent_two_tues_arr);  // "Monday", arr
+            agent_two_tues_arr.add(0);
+        }
+
+        // wednesday
+        if (!agent_two_context_value_wednesday.isEmpty()) {
+            agent_two.put(WEDNESDAY, agent_two_wed_arr);
+            agent_two_wed_arr.add(agent_two_context_value_wednesday.pop());
+        } else {
+            agent_two.put(WEDNESDAY, agent_two_wed_arr);
+            agent_two_wed_arr.add(0);
+        }
+
+        // thursday
+        if (!agent_two_context_value_thursday.isEmpty()) {
+            agent_two.put(THURSDAY, agent_two_thurs_arr);
+            agent_two_thurs_arr.add(agent_two_context_value_thursday.pop());
+        } else {
+            agent_two.put(THURSDAY, agent_two_thurs_arr);
+            agent_two_thurs_arr.add(0);
+        }
+
+        // friday
+        if (!agent_two_context_value_friday.isEmpty()) {
+            agent_two.put(FRIDAY, agent_two_fri_arr);
+            agent_two_fri_arr.add(agent_two_context_value_friday.pop());
+        } else {
+            agent_two.put(FRIDAY, agent_two_fri_arr);
+            agent_two_fri_arr.add(0);
+        }
+
+        // bind our arrays together        
+        root.put(hostname_one, agent_one);      // Hostname-1
+        root.put(hostname_two, agent_two);      // Hostname-2
+        
+        return root;
     }
 
     /**
@@ -428,15 +454,32 @@ public class SystemOverview {
      */
     private int findDayInWeek(int year, String month, String day) {
         int dayInWeek = 0;
+        Date d = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String strDay = null;
 
-        // look up what day in the week (Monday, etc) this corresponds to in the calendar
-        Calendar cal = Calendar.getInstance();
+        try {
+            d = df.parse(day + "/" + month + "/" + year);
+            df.applyPattern("EEEE");
+            strDay = df.format(d);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
 
-        // year, month, day
-        cal.set(year, Integer.parseInt(month), Integer.parseInt(day));
+        String sdjf = "dsfd";
 
-        // parse the result
-        dayInWeek = cal.get(Calendar.DAY_OF_WEEK);
+        // find the day of the week 
+        if (strDay.equals("Monday")) {
+            dayInWeek = Calendar.MONDAY;
+        } else if (strDay.equals("Tuesday")) {
+            dayInWeek = Calendar.TUESDAY;
+        } else if (strDay.equals("Wednesday")) {
+            dayInWeek = Calendar.WEDNESDAY;
+        } else if (strDay.equals("Thursday")) {
+            dayInWeek = Calendar.THURSDAY;
+        } else if (strDay.equals("Friday")) {
+            dayInWeek = Calendar.FRIDAY;
+        }
 
         return dayInWeek;
     }

@@ -17,5 +17,5 @@ requirejs.config({
 
 // application logic is loaded here
 // NB: keep the path it is currently set at
-//requirejs(['../js/app/main']);
-requirejs(['../jp373/js/app/main']);
+requirejs(['../AmI_System__Web_/js/app/main']);
+//requirejs(['../jp373/js/app/main']);

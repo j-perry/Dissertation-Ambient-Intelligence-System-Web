@@ -10,11 +10,18 @@
 
 // when the view has loaded
 jQuery(document).ready(function() {
-    
+        
     /*      Paths (views)
     *******************************/ 
     var index = "http://tomcat.inf.susx.ac.uk:8080/jp373/";
     var overview = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview";
+    var temperature = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature";
+    var atmosphere = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere";
+    var motion = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion";
+    var light = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=light";
+    
+    var index = "http://localhost:8080/AmI_System__Web_/";
+    var overview = "http://localhost:8080/AmI_System__Web_/View?type=overview";
     var temperature = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature";
     var atmosphere = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere";
     var motion = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion";
@@ -56,7 +63,8 @@ jQuery(document).ready(function() {
  * @returns {undefined}
  */
 function init_index() {
-    require(['../jp373/js/app/views/Index'], function(index) {
+//    require(['../jp373/js/app/views/Index'], function(index) {
+    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Index'], function(index) {
         index.setupAll();
     });
 }
@@ -66,7 +74,8 @@ function init_index() {
  * @returns {undefined}
  */
 function init_overview() {
-    require(['../jp373/js/app/views/Overview'], function(overview) {
+//    require(['../jp373/js/app/views/Overview'], function(overview) {
+    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Overview.js'], function(overview) {
         overview.tabify();
         overview.display();
     });
@@ -118,7 +127,8 @@ function init_light() {
  * 
  */
 function displayLinecharts() {
-    var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/overview_temperature.json";
+//    var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/overview_temperature.json";
+    var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/overview_temperature.json";
     var values = "";
     var date = "";
     var time = "";

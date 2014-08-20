@@ -3,7 +3,8 @@
  * Jonathan Perry
  * Candidate No. 102235
  */
-var path = "../jp373/js/app/views/overview/SystemHistory";
+//var path = "../jp373/js/app/views/overview/SystemHistory";
+var path = "http://localhost:8080/AmI_System__Web_/js/app/views/overview/SystemHistory.js";
 
 define(path, function(systemHistory) {
     function SystemHistory() {
@@ -12,7 +13,8 @@ define(path, function(systemHistory) {
          * Displays the system history
          */
         this.display = function() {            
-            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/overview.json";
+//            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/overview.json";
+            var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/overview.json";
             
             // get JSON values
             $.getJSON(path, function(data) {

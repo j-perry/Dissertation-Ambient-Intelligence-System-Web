@@ -3,7 +3,8 @@
  * Jonathan Perry
  * Candidate No. 102235
  */
-var path = '../jp373/js/app/views/Overview';
+//var path = '../jp373/js/app/views/Overview';
+var path = 'http://localhost:8080/AmI_System__Web_/js/app/views/Overview.js';
 
 define(path, function(overview) {
     function Overview() {
@@ -21,12 +22,14 @@ define(path, function(overview) {
         this.display = function() {
             
             // system history
-            require(['../jp373/js/app/views/overview/SystemHistory'], function(systemHistory) {
+//            require(['../jp373/js/app/views/overview/SystemHistory'], function(systemHistory) {
+            require(['http://localhost:8080/AmI_System__Web_/js/app/views/overview/SystemHistory.js'], function(systemHistory) {
                 systemHistory.display();
             });
             
             // environment
-            require(['../jp373/js/app/views/overview/Environment'], function(environment) {
+//            require(['../jp373/js/app/views/overview/Environment'], function(environment) {
+            require(['http://localhost:8080/AmI_System__Web_/js/app/views/overview/Environment.js'], function(environment) {
                 // display the temperature (overview)
                 environment.displayTemperatureOverview();
                 

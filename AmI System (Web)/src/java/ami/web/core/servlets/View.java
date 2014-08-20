@@ -30,6 +30,8 @@ import org.json.simple.*;
 @WebServlet(name = "Navigation", urlPatterns = {"/Navigation"})
 public class View extends HttpServlet {
 
+    private String path;
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -74,34 +76,35 @@ public class View extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
+
         String type = request.getParameter("type");
         String viewUrl = type + ".jsp";
         String msg = null;
         JSONObject jsonObj = new JSONObject();
         FileWriter fWriter = null;
-        
-                
+
+
         /**
          * Get the required content from the database
          */
-        if (type.equals("overview")) {
-            String path = getServletContext().getRealPath("/");
+//        if (type.equals("overview")) {
+            path = getServletContext().getRealPath("/");
             
             // get the system history and overview from the database and serialise it to JSON
             getSystemHistory(path);
             getSystemOverview(path);
-            
-//            code below may not be required...
-            getData();
-            
-        } else if (type.equals("temperature")) {
-            String path = getServletContext().getRealPath("/");
+//            
+////            code below may not be required...
+//            getData();
+//            
+//        } else 
+        if (type.equals("temperature")) {
+            path = getServletContext().getRealPath("/");
         }
 
         // set the first letter to uppercase
         type = type.substring(0, 1).toUpperCase() + type.substring(1);
-        
+
         // populate and send a HTTP request object with header info
         request.setAttribute("type", type);
         RequestDispatcher view = request.getRequestDispatcher(viewUrl);
@@ -135,6 +138,7 @@ public class View extends HttpServlet {
 
     /**
      * Generates an overview of the system's history
+     *
      * @param path Servlet path
      */
     private void getSystemHistory(String path) {
@@ -142,9 +146,11 @@ public class View extends HttpServlet {
         history.getData();
         history.serializeDataToJson(path);
     }
-    
+
     /**
-     * Generates an overview of the system's contextual data (e.g., room temperature)
+     * Generates an overview of the system's contextual data (e.g., room
+     * temperature)
+     *
      * @param path Servlet path
      */
     private void getSystemOverview(String path) {
@@ -152,7 +158,7 @@ public class View extends HttpServlet {
         overview.getTemperatureData();
         overview.serializeDataToJson(path);
     }
-    
+
     private void getData() {
 //        /*
 //            TemperatureTable dbTemp = new TemperatureTable();

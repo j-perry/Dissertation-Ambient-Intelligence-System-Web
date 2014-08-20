@@ -3,7 +3,8 @@
  * Jonathan Perry
  * Candidate No. 102235
  */
-var path = '../jp373/js/app/views/Index';
+//var path = '../jp373/js/app/views/Index';
+var path = '../js/app/views/Index';
 
 define(path, function(index) {
     function Index() {
@@ -15,7 +16,8 @@ define(path, function(index) {
         this.setupAll = function() {
             
             // welcome
-            require(['../jp373/js/app/views/index/Welcome'], function(welcome) {
+//            require(['../jp373/js/app/views/index/Welcome'], function(welcome) {
+            require(['../js/app/views/index/Welcome'], function(welcome) {
                 welcome.checkServiceStatus();
             });
                         

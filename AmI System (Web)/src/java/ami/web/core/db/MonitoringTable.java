@@ -54,6 +54,7 @@ public class MonitoringTable implements IDatabase {
         try {
             // https://mysql.student.sussex.ac.uk/phpmyadmin/
             conn = DriverManager.getConnection(dbUrl, username, password);
+            System.out.println("MySQL CONNECTON FOUND");
         }
         catch(SQLException ex) {
             ex.printStackTrace();
