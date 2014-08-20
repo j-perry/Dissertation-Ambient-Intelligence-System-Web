@@ -52,6 +52,20 @@
                 </ul>
 
             </div>
+            
+            <!-- environment tab -->
+            <div id="overview">
+                
+                
+                
+            </div>
+            
+            <!-- environment tab -->
+            <div id="weekdays">
+                
+                
+                
+            </div>
 
 
         </div>
