@@ -16,7 +16,8 @@
 
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/overview.css" />
-        
+        <link rel="stylesheet" href="css/temperature.css" />
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="js/chart-js/Chart.js"></script>
         <script src="js/jquery/tabify/jquery.tabify.js"></script>
@@ -48,27 +49,31 @@
                     <li>
                         <a href="#weekdays" id="cat-3">Monday - Friday</a>
                     </li>
-                                        
+
                 </ul>
 
             </div>
-            
+
             <!-- environment tab -->
             <div id="overview">
-                
-                
-                
+
+
+
             </div>
-            
+
             <!-- environment tab -->
             <div id="weekdays">
-                
-                
-                
+
+
+
             </div>
 
 
         </div>
+
+        <t:footer>
+            <jsp:attribute name="footer" />
+        </t:footer>   
 
     </body>
 </html>

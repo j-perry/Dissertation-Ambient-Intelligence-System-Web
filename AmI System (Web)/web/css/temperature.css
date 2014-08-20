@@ -1,0 +1,20 @@
+/* 
+    Document   : temperature
+    Created on : 20-Aug-2014, 20:08:20
+    Author     : Jonathan Perry
+    Description:
+        Purpose of the stylesheet follows.
+*/
+#overview,
+#weekdays {
+    float: left;
+    width: 100%;
+    min-height: 400px;
+    text-decoration: none;
+}
+#overview {    
+    background-color: #333;
+}
+#weekdays {    
+    background-color: #666;
+}
