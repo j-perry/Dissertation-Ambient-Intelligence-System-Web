@@ -41,6 +41,7 @@
             <div id="tabs-menu">
 
                 <ul id="tabs">
+                    
                     <li class="active">
                         <!-- contains context data -->
                         <a href="#overview" id="cat-2">Overview</a>
@@ -57,14 +58,14 @@
             <!-- environment tab -->
             <div id="overview">
                 <div class="section">
-                    <canvas id="temperatureOverview" width="1100" height="400"></canvas>
+                    <canvas class="temperature-overview" id="temperatureOverview" width="1100" height="400"></canvas>
                 </div>
             </div>
 
             <!-- environment tab -->
             <div id="weekdays">
 
-
+                
 
             </div>
 

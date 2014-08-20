@@ -13,7 +13,6 @@ define(path, function(temperature) {
          * Initialise tabs in view
          */
         this.tabify = function() {
-            console.log("Hello world");
             $('#tabs').tabify();
         };
         
