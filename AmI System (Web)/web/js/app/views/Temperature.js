@@ -26,6 +26,17 @@ define(path, function(temperature) {
             });
         };
         
+        this.displayWeekdays = function() {
+//            require(['../jp373/js/app/views/overview/temperature/Weekdays.js'], function(weekdays) {
+            require(['http://localhost:8080/AmI_System__Web_/js/app/views/overview/temperature/Weekdays.js'], function(weekdays) {
+                weekdays.displayMonday();
+                weekdays.displayTuesday();
+                weekdays.displayWednesday();
+                weekdays.displayThursday();
+                weekdays.displayFriday();
+            });
+        };
+        
     }
     
     // returning an instanceof this object is essential, otherwise it'll
