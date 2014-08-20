@@ -59,7 +59,7 @@
 
                     <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature">Room Temperature</a></h2>
 
-                    <canvas id="myChart" width="1100" height="400"></canvas>
+                    <canvas id="temperatureOverview" width="1100" height="400"></canvas>
 
                 </div>
 

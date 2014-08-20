@@ -127,8 +127,8 @@ function init_light() {
  * 
  */
 function displayLinecharts() {
-//    var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/overview_temperature.json";
-    var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/overview_temperature.json";
+//    var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/temperature_overview.json";
+    var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/temperature_overview.json";
     var values = "";
     var date = "";
     var time = "";
@@ -194,12 +194,12 @@ function displayLinecharts() {
     
     //////          TO REMOVE
     // chart
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var myLineChart = new Chart(ctx).Line(data, {
-        bezierCurve: false,
-        scaleShowGridLines: false,
-        scaleGridLineColor: "rgba(0,0,0, 1)"
-    });
+//    var ctx = document.getElementById("myChart").getContext("2d");
+//    var myLineChart = new Chart(ctx).Line(data, {
+//        bezierCurve: false,
+//        scaleShowGridLines: false,
+//        scaleGridLineColor: "rgba(0,0,0, 1)"
+//    });
 
     var ctx = document.getElementById("myChart2").getContext("2d");
     var myLineChart = new Chart(ctx).Line(data, {

@@ -8,64 +8,34 @@ var path = "http://localhost:8080/AmI_System__Web_/js/app/views/overview/tempera
 
 define(path, function(temperatureOverview) {
     function TemperatureOverview() {
-        
+
         /**
          * Display an overview of temperature data collected from both agents
          */
         this.display = function() {
+            // temporary
 //            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/temperature_overview.json";
             var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/temperature_overview.json";
 
             // get JSON values
             $.getJSON(path, function(data) {
                 
-                /*
+                var hostname_one = "Agent 1";
+                var hostname_two = "Agent 2"; 
                 
-                // for our data to go into
-                var agent_one = new Array();
-                var agent_two = new Array();
-
-
                 ///////////////////////////////////////////////////////////////
                 //
                 //          HOST NAME 1
                 //
                 //////////////////////////////////////////////////////////////
-
-                // hostname 1
-                var hostname_one = data.hostname_one;
-
-                // monday -> friday
-                var hostname_one_monday = new Array();
-                var hostname_one_tuesday = new Array();
-                var hostname_one_wednesday = new Array();
-                var hostname_one_thursday = new Array();
-                var hostname_one_friday = new Array();
-
-                // monday
-                for (var i in data.hostname_one.monday.value) {
-                    hostname_one_monday.push(data.hostname_one.monday.value[i] + ", ");
-                }
-
-                // tuesday
-                for (var i in data.hostname_one.tuesday.value) {
-                    hostname_one_tuesday.push(data.hostname_one.tuesday.value[i] + ", ");
-                }
-
-                // wednesday
-                for (var i in data.hostname_one.wednesday.value) {
-                    hostname_one_wednesday.push(data.hostname_one.wednesday.value[i] + ", ");
-                }
-
-                // thursday
-                for (var i in data.hostname_one.thursday.value) {
-                    hostname_one_thursday.push(data.hostname_one.thursday.value[i] + ", ");
-                }
-
-                // friday
-                for (var i in data.hostname_one.friday.value) {
-                    hostname_one_friday.push(data.hostname_one.friday.value[i] + ", ");
-                }
+                
+                
+                // monday - friday
+                var hostname_one_monday = data.agent_one["monday"][0];
+                var hostname_one_tuesday = data.agent_one["tuesday"][0];
+                var hostname_one_wednesday = data.agent_one["wednesday"][0];
+                var hostname_one_thursday = data.agent_one["thursday"][0];
+                var hostname_one_friday = data.agent_one["friday"][0];
 
 
                 ///////////////////////////////////////////////////////////////
@@ -73,46 +43,15 @@ define(path, function(temperatureOverview) {
                 //          HOST NAME 2
                 //
                 //////////////////////////////////////////////////////////////
-
-                // hostname 2
-                var hostname_two = data.hostname_two;
-
-                // monday -> friday
-                var hostname_two_monday = new Array();
-                var hostname_two_tuesday = new Array();
-                var hostname_two_wednesday = new Array();
-                var hostname_two_thursday = new Array();
-                var hostname_two_friday = new Array();
                 
                 
-                // Compute our averages here
-
-                // monday
-                for (var i in data.hostname_two.monday.value) {
-                    hostname_two_monday.push(data.hostname_two.monday.value[i] + ", ");
-                }
-
-                // tuesday
-                for (var i in data.hostname_two.tuesday.value) {
-                    hostname_two_tuesday.push(data.hostname_two.tuesday.value[i] + ", ");
-                }
-
-                // wednesday
-                for (var i in data.hostname_two.wednesday.value) {
-                    hostname_two_wednesday.push(data.hostname_two.wednesday.value[i] + ", ");
-                }
-
-                // thursday
-                for (var i in data.hostname_two.thursday.value) {
-                    hostname_two_thursday.push(data.hostname_two.thursday.value[i] + ", ");
-                }
-
-                // friday
-                for (var i in data.hostname_two.friday.value) {
-                    hostname_two_friday.push(data.hostname_two.friday.value[i] + ", ");
-                }
-
-
+                // monday - friday
+                var hostname_two_monday = data.agent_two["monday"][0];
+                var hostname_two_tuesday = data.agent_two["tuesday"][0];
+                var hostname_two_wednesday = data.agent_two["wednesday"][0];
+                var hostname_two_thursday = data.agent_two["thursday"][0];
+                var hostname_two_friday = data.agent_two["friday"][0];
+                
 
                 ///////////////////////////////////////////////////////////////
                 //
@@ -126,7 +65,7 @@ define(path, function(temperatureOverview) {
                 hours.push("Wednesday");
                 hours.push("Thursday");
                 hours.push("Friday");
-                
+
                 var data = {
                     labels: [hours[0], hours[1], hours[2], hours[3], hours[4]],
                     datasets: [
@@ -138,7 +77,11 @@ define(path, function(temperatureOverview) {
                             pointStrokeColor: "#fff",
                             pointHighlightFill: "#fff",
                             pointHighlightStroke: "rgba(220,220,220,1)",
-                            data: [9, 10, 11, 12, 1, 2, 3, 4, 5] // 9, 10, 11am; 12, 1, 2, 3, 4, 5pm
+                            data: [hostname_one_monday, 
+                                   hostname_one_tuesday, 
+                                   hostname_one_wednesday, 
+                                   hostname_one_thursday,
+                                   hostname_one_friday] // 9, 10, 11am; 12, 1, 2, 3, 4, 5pm
                         },
                         {
                             label: hostname_two,
@@ -148,11 +91,15 @@ define(path, function(temperatureOverview) {
                             pointStrokeColor: "#fff",
                             pointHighlightFill: "#fff",
                             pointHighlightStroke: "rgba(151,187,205,1)",
-                            data: [9, 10, 11, 12, 1, 2, 3, 4, 5] // 9, 10, 11am; 12, 1, 2, 3, 4, 5pm
+                            data: [hostname_two_monday, 
+                                   hostname_two_tuesday, 
+                                   hostname_two_wednesday, 
+                                   hostname_two_thursday,
+                                   hostname_two_friday] // 9, 10, 11am; 12, 1, 2, 3, 4, 5pm
                         }
                     ]
                 };
-                
+
                 // render chart
                 var ctx = document.getElementById("temperatureOverview").getContext("2d");
                 var myLineChart = new Chart(ctx).Line(data, {
@@ -160,10 +107,9 @@ define(path, function(temperatureOverview) {
                     scaleShowGridLines: false,
                     scaleGridLineColor: "rgba(0,0,0, 1)"
                 });
-                */
-               
+
             });
-                        
+
 
         };
 

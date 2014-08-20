@@ -39,12 +39,12 @@ public class SystemOverview {
     private JSONObject overviewDistance;
     // For JSON binding
     private String hostname_heading = "Agents";
-    private String hostname_one = "Agent-One";
-    private String hostname_two = "Agent-Two";
+    private String hostname_one = "agent_one";
+    private String hostname_two = "agent_two";
     private String pi_one = "raspberry-pi-1";
     private String pi_two = "raspberry-pi-2";
     String value;
-
+    
     public SystemOverview() {
         monitoringTable = new MonitoringTable();
         temperatureData = new ArrayList<DataBase>();
