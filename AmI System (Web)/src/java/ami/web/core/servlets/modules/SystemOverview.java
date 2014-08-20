@@ -63,7 +63,6 @@ public class SystemOverview {
         monitoringTable.open();
         temperatureData = monitoringTable.retrieveOverviewByContext(temp_field);
         monitoringTable.close();
-
     }
 
     /**
@@ -100,12 +99,11 @@ public class SystemOverview {
                 ex.printStackTrace();
             }
         } else {
-//            temperatureOverview.put("Temperature", "Is Empty");
-
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_overview.json";
 
             String fWriterPathTemperature = path;
+            // temporary
 //            fWriterPathTemperature += "js/json/logs/";
             fWriterPathTemperature += "http://localhost:8080/AmI_System__Web_/js/json/logs/";
             fWriterPathTemperature += temperature_overview_file;
