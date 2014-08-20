@@ -82,12 +82,11 @@ public class View extends HttpServlet {
         String msg = null;
         JSONObject jsonObj = new JSONObject();
         FileWriter fWriter = null;
-
-
+        
         /**
          * Get the required content from the database
          */
-//        if (type.equals("overview")) {
+        if (type.equals("overview")) {
             path = getServletContext().getRealPath("/");
             
             // get the system history and overview from the database and serialise it to JSON
@@ -97,8 +96,8 @@ public class View extends HttpServlet {
 ////            code below may not be required...
 //            getData();
 //            
-//        } else 
-        if (type.equals("temperature")) {
+        }
+        else if (type.equals("temperature")) {
             path = getServletContext().getRealPath("/");
         }
 
