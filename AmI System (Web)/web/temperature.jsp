@@ -56,9 +56,9 @@
 
             <!-- environment tab -->
             <div id="overview">
-
-
-
+                <div class="section">
+                    <canvas id="temperatureOverview" width="1100" height="400"></canvas>
+                </div>
             </div>
 
             <!-- environment tab -->

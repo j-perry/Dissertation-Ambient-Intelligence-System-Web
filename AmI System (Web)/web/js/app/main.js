@@ -20,6 +20,7 @@ jQuery(document).ready(function() {
     var motion = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion";
     var light = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=light";
     
+    // for local development
     var index = "http://localhost:8080/AmI_System__Web_/";
     var overview = "http://localhost:8080/AmI_System__Web_/View?type=overview";
     var temperature = "http://localhost:8080/AmI_System__Web_/View?type=temperature";
@@ -90,6 +91,7 @@ function init_temperature() {
 //    require(['../jp373/js/app/views/Temperature.js'], function(temperature) {
     require(['http://localhost:8080/AmI_System__Web_/js/app/views/Temperature.js'], function(temperature) {
         temperature.tabify();
+        temperature.displayOverview();
     });
 }
 

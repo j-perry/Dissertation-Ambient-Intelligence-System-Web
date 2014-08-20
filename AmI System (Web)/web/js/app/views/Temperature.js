@@ -13,7 +13,18 @@ define(path, function(temperature) {
          * Initialise tabs in view
          */
         this.tabify = function() {
+            console.log("Hello world");
             $('#tabs').tabify();
+        };
+        
+        /**
+         * Displays an overview of the room temperature (re-used from Overview.js)
+         */
+        this.displayOverview = function() {
+//            require(['../jp373/js/app/views/overview/SystemHistory.js'], function(systemHistory) {
+            require(['http://localhost:8080/AmI_System__Web_/js/app/views/overview/temperature/TemperatureOverview.js'], function(temperatureOverview) {
+                temperatureOverview.display();
+            });
         };
         
     }
