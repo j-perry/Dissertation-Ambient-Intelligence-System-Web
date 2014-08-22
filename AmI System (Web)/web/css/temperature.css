@@ -58,3 +58,9 @@
     padding-top: 50px;
     padding-bottom: 50px;
 }
+#weekdays div:nth-child(odd) {
+    background-color: #FFF;
+}
+#weekdays div:nth-child(even) {
+    background-color: #EEE;
+}
