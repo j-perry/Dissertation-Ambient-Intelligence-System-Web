@@ -92,10 +92,9 @@ public class View extends HttpServlet {
             // get the system history and overview from the database and serialise it to JSON
             getSystemHistory(path);
             getSystemOverview(path);
-//            
+            
 ////            code below may not be required...
 //            getData();
-//            
         }
         else if (type.equals("temperature")) {
             path = getServletContext().getRealPath("/");
@@ -155,6 +154,8 @@ public class View extends HttpServlet {
     private void getSystemOverview(String path) {
         SystemOverview overview = new SystemOverview();
         overview.getTemperatureData();
+//        overview.getMovementData();
+//        overview.getMicrophoneData();
         overview.serializeDataToJson(path);
     }
 

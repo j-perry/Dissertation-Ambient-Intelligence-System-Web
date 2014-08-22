@@ -2,9 +2,8 @@
     Document   : overview
     Created on : 13-Jul-2014, 21:07:46
     Author     : Jonathan Perry
-    Description: 
+    Description: overview.css
 */
-
 #tabs-menu {
     padding-left: 8%;
     padding-right: 8%;
@@ -31,7 +30,6 @@
 #tabs li a:hover {
     text-decoration: underline;
 }
-
 #tabs li.active a[id="cat-1"] { 
     background: #FFF; /* #F4D03F */
     color: #111;
@@ -44,7 +42,6 @@
     background: #CCC; /* #4B77BE */
     color: #111;
 }
-
 #history,
 #environment {
     float: left;

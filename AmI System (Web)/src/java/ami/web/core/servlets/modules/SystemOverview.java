@@ -10,18 +10,12 @@ import ami.web.core.db.*;
 import ami.web.core.models.client.DataBase;
 
 // Java APIs
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Stack;
+import java.io.*;
+import java.text.*;
+import java.util.*;
 
-// third party libraries
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+// third party libraries (json)
+import org.json.simple.*;
 
 /**
  *
@@ -34,6 +28,7 @@ public class SystemOverview {
     // To store data from database
     private ArrayList<DataBase> temperatureData;
     private ArrayList<DataBase> ultrasonicData;
+    private ArrayList<DataBase> microphoneData;
     // JSON
     private JSONObject overviewTemp;
     private JSONObject overviewDistance;
@@ -47,8 +42,10 @@ public class SystemOverview {
     
     public SystemOverview() {
         monitoringTable = new MonitoringTable();
-        temperatureData = new ArrayList<DataBase>();
         fWriter = null;
+        temperatureData = new ArrayList<DataBase>();
+        ultrasonicData = new ArrayList<DataBase>();
+        microphoneData = new ArrayList<DataBase>();
     }
 
     /**
@@ -63,6 +60,32 @@ public class SystemOverview {
         temperatureData = monitoringTable.retrieveOverviewByContext(temp_field);
         monitoringTable.close();
     }
+    
+    /**
+     * Retrieves ultra sonic transceiver data from INITIAL MONITORING TABLE
+     *
+     * We'll need to change this to the general table later!!!
+     */
+    public void getMovementData() {
+        String movement_field = "movement";
+        
+        monitoringTable.open();
+        temperatureData = monitoringTable.retrieveOverviewByContext(movement_field);
+        monitoringTable.close();
+    }
+    
+    /**
+     * Retrieves microphone data from INITIAL MONITORING TABLE
+     *
+     * We'll need to change this to the general table later!!!
+     */
+    public void getMicrophoneData() {
+        String microphone_field = "microphone";
+        
+        monitoringTable.open();
+        temperatureData = monitoringTable.retrieveOverviewByContext(microphone_field);
+        monitoringTable.close();
+    }
 
     /**
      * Serialize all our data into a JSON structure
@@ -71,16 +94,19 @@ public class SystemOverview {
      */
     public void serializeDataToJson(String path) {
         JSONObject temperatureOverview = new JSONObject();
+        JSONObject ultrasonicOverview = new JSONObject();
+        JSONObject microphoneOverview = new JSONObject();
 
 
         /*
          *      Temperature
-         * 
          */
         if (!temperatureData.isEmpty()) {
+            String context = "Temperature";
+            
             // parse temperature data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureOverview = parseContext(temperatureData, "Temperature");
+            temperatureOverview = parseContext(temperatureData, context);
 
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_overview.json";
@@ -97,37 +123,17 @@ public class SystemOverview {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        } else {
-            // write temperature overview data to a JSON file            
-            String temperature_overview_file = "temperature_overview.json";
-
-            String fWriterPathTemperature = path;
-            // temporary
-//            fWriterPathTemperature += "js/json/logs/";
-            fWriterPathTemperature += "http://localhost:8080/AmI_System__Web_/js/json/logs/";
-            fWriterPathTemperature += temperature_overview_file;
-
-            try {
-                fWriter = new FileWriter(fWriterPathTemperature);
-                fWriter.write(temperatureOverview.toJSONString());
-                fWriter.flush();
-                fWriter.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
-//        // ultrasonic
-//        else if(ultrasonicData.isEmpty() ) {
-//            overviewDistance = parseContext(temperatureData);
-//            
+//        else {
 //            // write temperature overview data to a JSON file            
-//            String temperature_overview_file = "ultrasonic_overview.json";
+//            String temperature_overview_file = "temperature_overview.json";
 //
 //            String fWriterPathTemperature = path;
-//            fWriterPathTemperature += "js/json/logs/";
+//            // temporary
+////            fWriterPathTemperature += "js/json/logs/";
+//            fWriterPathTemperature += "http://localhost:8080/AmI_System__Web_/js/json/logs/";
 //            fWriterPathTemperature += temperature_overview_file;
-//            
-//            // write temperature overview data to file
+//
 //            try {
 //                fWriter = new FileWriter(fWriterPathTemperature);
 //                fWriter.write(temperatureOverview.toJSONString());
@@ -137,6 +143,58 @@ public class SystemOverview {
 //                ex.printStackTrace();
 //            }
 //        }
+        
+        
+        /*
+         *      Ultrasonic
+         */
+        if(ultrasonicData.isEmpty() ) {
+            String context = "Movement";
+            ultrasonicOverview = parseContext(ultrasonicData, context);
+            
+            // write temperature overview data to a JSON file            
+            String temperature_overview_file = "ultrasonic_overview.json";
+
+            String fWriterPathTemperature = path;
+            fWriterPathTemperature += "js/json/logs/";
+            fWriterPathTemperature += temperature_overview_file;
+            
+            // write temperature overview data to file
+            try {
+                fWriter = new FileWriter(fWriterPathTemperature);
+                fWriter.write(temperatureOverview.toJSONString());
+                fWriter.flush();
+                fWriter.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        
+        /*
+         *      Microphone
+         */
+        if(microphoneData.isEmpty() ) {
+            String context = "Microphone";
+            microphoneOverview = parseContext(microphoneData, context);
+            
+            // write temperature overview data to a JSON file            
+            String temperature_overview_file = "microphone_overview.json";
+
+            String fWriterPathTemperature = path;
+            fWriterPathTemperature += "js/json/logs/";
+            fWriterPathTemperature += temperature_overview_file;
+            
+            // write temperature overview data to file
+            try {
+                fWriter = new FileWriter(fWriterPathTemperature);
+                fWriter.write(temperatureOverview.toJSONString());
+                fWriter.flush();
+                fWriter.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
 
     }
 
@@ -212,7 +270,7 @@ public class SystemOverview {
                 // https://community.oracle.com/thread/2094650?tstart=90840
                 switch (dayOfTheWeek) {
                     // Monday
-                    case MONDAY_ID:
+                    case Calendar.MONDAY:
                         if (agent_one_context_value_monday.isEmpty()) {
                             agent_one_context_value_monday.push(d.getValue());
                         } else {
@@ -221,7 +279,7 @@ public class SystemOverview {
                         }
                         break;
                     // Tuesday
-                    case TUESDAY_ID:
+                    case Calendar.TUESDAY:
                         if (agent_one_context_value_tuesday.isEmpty()) {
                             agent_one_context_value_tuesday.push(d.getValue());
                         } else {
@@ -230,7 +288,7 @@ public class SystemOverview {
                         }
                         break;
                     // Wednesday
-                    case WEDNESDAY_ID:
+                    case Calendar.WEDNESDAY:
                         if (agent_one_context_value_wednesday.isEmpty()) {
                             agent_one_context_value_wednesday.push(d.getValue());
                         } else {
@@ -239,7 +297,7 @@ public class SystemOverview {
                         }
                         break;
                     // Thursday
-                    case THURSDAY_ID:
+                    case Calendar.THURSDAY:
                         if (agent_one_context_value_thursday.isEmpty()) {
                             agent_one_context_value_thursday.push(d.getValue());
                         } else {
@@ -248,7 +306,7 @@ public class SystemOverview {
                         }
                         break;
                     // Friday
-                    case FRIDAY_ID:
+                    case Calendar.FRIDAY:
                         if (agent_one_context_value_friday.isEmpty()) {
                             agent_one_context_value_friday.push(d.getValue());
                         } else {
@@ -269,7 +327,7 @@ public class SystemOverview {
                 // https://community.oracle.com/thread/2094650?tstart=90840
                 switch (dayOfTheWeek) {
                     // Monday
-                    case MONDAY_ID:
+                    case Calendar.MONDAY:
                         if (agent_two_context_value_monday.isEmpty()) {
                             agent_two_context_value_monday.push(d.getValue());
                         } else {
@@ -278,7 +336,7 @@ public class SystemOverview {
                         }
                         break;
                     // Tuesday
-                    case TUESDAY_ID:
+                    case Calendar.TUESDAY:
                         if (agent_two_context_value_tuesday.isEmpty()) {
                             agent_two_context_value_tuesday.push(d.getValue());
                         } else {
@@ -287,7 +345,7 @@ public class SystemOverview {
                         }
                         break;
                     // Wednesday 
-                    case WEDNESDAY_ID:
+                    case Calendar.WEDNESDAY:
                         if (agent_two_context_value_wednesday.isEmpty()) {
                             agent_two_context_value_wednesday.push(d.getValue());
                         } else {
@@ -296,7 +354,7 @@ public class SystemOverview {
                         }
                         break;
                     // Thursday
-                    case THURSDAY_ID:
+                    case Calendar.THURSDAY:
                         if (agent_two_context_value_thursday.isEmpty()) {
                             agent_two_context_value_thursday.push(d.getValue());
                         } else {
@@ -305,7 +363,7 @@ public class SystemOverview {
                         }
                         break;
                     // Friday
-                    case FRIDAY_ID:
+                    case Calendar.FRIDAY:
                         if (agent_two_context_value_friday.isEmpty()) {
                             agent_two_context_value_friday.push(d.getValue());
                         } else {
