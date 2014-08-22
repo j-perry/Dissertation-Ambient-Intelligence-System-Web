@@ -1,0 +1,26 @@
+/* 
+    Document   : temperature
+    Created on : 20-Aug-2014, 20:08:20
+    Author     : Jonathan Perry
+    Description: temperature.jsp
+*/
+#overview,
+#weekdays {
+    float: left;
+    width: 100%;
+    text-decoration: none;
+}
+#overview {
+    min-height: 350px;
+    background-color: #FFF;
+}
+#weekdays {    
+    min-height: 350px;
+    background-color: #CCC;
+}
+/*  temperature overview
+******************************************/
+.temperature-overview {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}

@@ -13,20 +13,18 @@ jQuery(document).ready(function() {
         
     /*      Paths (views)
     *******************************/ 
-    var index = "http://tomcat.inf.susx.ac.uk:8080/jp373/";
-    var overview = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview";
-    var temperature = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature";
-    var atmosphere = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere";
-    var motion = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion";
-    var light = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=light";
+//    var index = "http://tomcat.inf.susx.ac.uk:8080/jp373/";
+//    var overview = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview";
+//    var temperature = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature";
+//    var atmosphere = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere";
+//    var movement = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion";
     
     // for local development
     var index = "http://localhost:8080/AmI_System__Web_/";
     var overview = "http://localhost:8080/AmI_System__Web_/View?type=overview";
     var temperature = "http://localhost:8080/AmI_System__Web_/View?type=temperature";
-    var atmosphere = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere";
-    var motion = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion";
-    var light = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=light";
+    var atmosphere = "http://localhost:8080/AmI_System__Web_/View?type=atmosphere";
+    var movement = "http://localhost:8080/AmI_System__Web_/View?type=motion";
     
     // get the current URL
     var url = document.URL;
@@ -45,14 +43,11 @@ jQuery(document).ready(function() {
         case temperature:
             init_temperature();
             break;
+        case movement:
+            init_movement();
+            break;
         case atmosphere:
             init_atmosphere();
-            break;
-        case motion:
-            init_motion();
-            break;
-        case light:
-            init_light();
             break;
         default:
             break;
@@ -96,31 +91,20 @@ function init_temperature() {
 }
 
 /**
+ * Initialises JavaScript content for the movement view
+ */
+function init_movement() {
+//    require(['../jp373/js/app/views/Movement.js'], function(movement) {
+    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Movement.js'], function(movement) {
+        //
+    });
+}
+
+/**
  * Initialises JavaScript content for the atmosphere view
- * @returns {undefined}
  */
 function init_atmosphere() {
     require(['../jp373/js/app/views/Atmosphere'], function(atmosphere) {
-        // TODO
-    });
-}
-
-/**
- * Initialises JavaScript content for the motion view
- * @returns {undefined}
- */
-function init_motion() {
-    require(['../jp373/js/app/views/Motion'], function(motion) {
-        // TODO
-    });
-}
-
-/**
- * Initialises JavaScript content for the light view
- * @returns {undefined}
- */
-function init_light() {
-    require(['../jp373/js/app/views/Motion'], function(motion) {
         // TODO
     });
 }

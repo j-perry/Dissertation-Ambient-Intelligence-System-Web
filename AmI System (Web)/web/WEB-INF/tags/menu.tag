@@ -26,11 +26,17 @@
                     type="submit"
                     class="nav-btn">Overview</button>
                     
-            <!-- Skills -->
+            <!-- Temperature -->
             <button name="type"
                     value="temperature"
                     type="submit"
                     class="nav-btn">Temperature</button>
+            
+            <!-- Movement -->
+            <button name="type"
+                    value="movement"
+                    type="submit"
+                    class="nav-btn">Movement</button>
 
         </form>
     </div>

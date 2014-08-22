@@ -62,20 +62,20 @@
                     <canvas id="temperatureOverview" width="1100" height="400"></canvas>
 
                 </div>
+                
+                <div class="section motion">
 
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=movement">Workstation Movement</a></h2>
+
+                    <canvas id="myChart3" width="1100" height="400"></canvas>
+
+                </div>
+                
                 <div class="section atmosphere">
 
                     <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere">Room Volume</a></h2>
 
                     <canvas id="myChart2" width="1100" height="400"></canvas>
-
-                </div>
-
-                <div class="section motion">
-
-                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion">Workstation Movement</a></h2>
-
-                    <canvas id="myChart3" width="1100" height="400"></canvas>
 
                 </div>
 
