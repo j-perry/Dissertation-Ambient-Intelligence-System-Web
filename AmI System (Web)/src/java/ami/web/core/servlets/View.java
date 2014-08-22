@@ -8,8 +8,7 @@ package ami.web.core.servlets;
 // local libraries
 import ami.web.core.servlets.modules.SystemHistory;
 import ami.web.core.servlets.modules.SystemOverview;
-
-// Java APIs
+import ami.web.core.servlets.modules.TemperatureView;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -98,6 +97,13 @@ public class View extends HttpServlet {
         }
         else if (type.equals("temperature")) {
             path = getServletContext().getRealPath("/");
+            TemperatureView tempView = new TemperatureView();
+            tempView.getMonday();
+            tempView.getTuesday();
+            tempView.getWednesday();
+            tempView.getThursday();
+            tempView.getFriday();
+            tempView.serializeDataToJSON(path);
         }
 
         // set the first letter to uppercase
