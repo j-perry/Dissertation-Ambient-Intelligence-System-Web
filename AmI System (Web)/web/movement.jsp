@@ -65,7 +65,45 @@
             <!-- environment tab -->
             <div id="weekdays">
 
+                <div class="section monday">
+                    
+                    <h2>Monday</h2>
+
+                    <canvas id="temperatureOverview" width="1100" height="400"></canvas>
+
+                </div>
                 
+                <div class="section tuesday">
+
+                    <h2>Tuesday</h2>
+
+                    <canvas id="myChart3" width="1100" height="400"></canvas>
+
+                </div>
+                
+                <div class="section wednesday">
+
+                    <h2>Wednesday</h2>
+
+                    <canvas id="myChart2" width="1100" height="400"></canvas>
+
+                </div>
+                
+                <div class="section thursday">
+
+                    <h2>Thursday</h2>
+
+                    <canvas id="myChart3" width="1100" height="400"></canvas>
+
+                </div>
+                
+                <div class="section friday">
+
+                    <h2>Friday</h2>
+
+                    <canvas id="myChart2" width="1100" height="400"></canvas>
+
+                </div>
 
             </div>
 

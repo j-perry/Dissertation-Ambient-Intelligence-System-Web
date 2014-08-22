@@ -20,7 +20,9 @@ define(path, function(movement) {
          * Displays an overview of the room movement (re-used from Overview.js)
          */
         this.displayOverview = function() {
-            
+            require(['http://localhost:8080/AmI_System__Web_/js/app/views/overview/movement/MovementOverview.js'], function(movementOverview) {
+                movementOverview.display();
+            });
         };
         
     }
