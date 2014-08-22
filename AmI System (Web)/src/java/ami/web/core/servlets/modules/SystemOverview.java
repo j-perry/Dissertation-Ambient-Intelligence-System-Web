@@ -25,20 +25,22 @@ public class SystemOverview {
 
     private MonitoringTable monitoringTable;
     private FileWriter fWriter;
+    
     // To store data from database
     private ArrayList<DataBase> temperatureData;
     private ArrayList<DataBase> ultrasonicData;
     private ArrayList<DataBase> microphoneData;
+    
     // JSON
     private JSONObject overviewTemp;
     private JSONObject overviewDistance;
+    
     // For JSON binding
-    private String hostname_heading = "Agents";
-    private String hostname_one = "agent_one";
-    private String hostname_two = "agent_two";
-    private String pi_one = "raspberry-pi-1";
-    private String pi_two = "raspberry-pi-2";
-    String value;
+    private final String hostname_heading = "Agents";
+    private final String hostname_one = "agent_one";
+    private final String hostname_two = "agent_two";
+    private final String pi_one = "raspberry-pi-1";
+    private final String pi_two = "raspberry-pi-2";
     
     public SystemOverview() {
         monitoringTable = new MonitoringTable();

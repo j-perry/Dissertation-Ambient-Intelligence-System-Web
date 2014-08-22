@@ -19,7 +19,7 @@ public class TemperatureView {
      * 
      */
     public void getMonday() {
-
+        
     }
 
     /**
