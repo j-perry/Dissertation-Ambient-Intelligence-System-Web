@@ -23,8 +23,8 @@ jQuery(document).ready(function() {
     var index = "http://localhost:8080/AmI_System__Web_/";
     var overview = "http://localhost:8080/AmI_System__Web_/View?type=overview";
     var temperature = "http://localhost:8080/AmI_System__Web_/View?type=temperature";
+    var movement = "http://localhost:8080/AmI_System__Web_/View?type=movement";
     var atmosphere = "http://localhost:8080/AmI_System__Web_/View?type=atmosphere";
-    var movement = "http://localhost:8080/AmI_System__Web_/View?type=motion";
     
     // get the current URL
     var url = document.URL;
@@ -96,7 +96,7 @@ function init_temperature() {
 function init_movement() {
 //    require(['../jp373/js/app/views/Movement.js'], function(movement) {
     require(['http://localhost:8080/AmI_System__Web_/js/app/views/Movement.js'], function(movement) {
-        //
+        movement.tabify();
     });
 }
 
