@@ -65,7 +65,47 @@ define(path, function(movementOverview) {
                 hours.push("Thursday");
                 hours.push("Friday");
                 
-                
+                var data = {
+                    labels: [hours[0], hours[1], hours[2], hours[3], hours[4]],
+                    datasets: [
+                        {
+                            label: hostname_one,
+                            fillColor: "rgba(52, 152, 219,1)",
+                            strokeColor: "rgba(52, 152, 219,1)",
+                            pointColor: "rgba(52, 152, 219,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(220,220,220,1)",
+                            data: [hostname_one_monday, 
+                                   hostname_one_tuesday, 
+                                   hostname_one_wednesday, 
+                                   hostname_one_thursday,
+                                   hostname_one_friday] // 9, 10, 11am; 12, 1, 2, 3, 4, 5pm
+                        },
+                        {
+                            label: hostname_two,
+                            fillColor: "rgba(242,38,19, 0.9)",
+                            strokeColor: "rgba(242,38,19, 0.9)",
+                            pointColor: "rgba(242,38,19,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(151,187,205,1)",
+                            data: [hostname_two_monday, 
+                                   hostname_two_tuesday, 
+                                   hostname_two_wednesday, 
+                                   hostname_two_thursday,
+                                   hostname_two_friday] // 9, 10, 11am; 12, 1, 2, 3, 4, 5pm
+                        }
+                    ]
+                };
+
+                // render chart
+                var ctx = document.getElementById("movementOverview").getContext("2d");
+                var myLineChart = new Chart(ctx).Line(data, {
+                    bezierCurve: false,
+                    scaleShowGridLines: false,
+                    scaleGridLineColor: "rgba(0,0,0, 1)"
+                });
                 
             });
             
