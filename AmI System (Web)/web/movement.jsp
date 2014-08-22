@@ -44,11 +44,11 @@
                     
                     <li class="active">
                         <!-- contains context data -->
-                        <a href="#overview" id="cat-2">Overview</a>
+                        <a href="#overview" id="cat-overview">Overview</a>
                     </li>
 
                     <li>
-                        <a href="#weekdays" id="cat-3">Monday - Friday</a>
+                        <a href="#weekdays" id="cat-weekdays">Monday - Friday</a>
                     </li>
 
                 </ul>
