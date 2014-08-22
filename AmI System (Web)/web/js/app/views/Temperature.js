@@ -20,8 +20,8 @@ define(path, function(temperature) {
          * Displays an overview of the room temperature (re-used from Overview.js)
          */
         this.displayOverview = function() {
-//            require(['../jp373/js/app/views/overview/SystemHistory.js'], function(systemHistory) {
-            require(['http://localhost:8080/AmI_System__Web_/js/app/views/overview/temperature/TemperatureOverview.js'], function(temperatureOverview) {
+//            require(['../jp373/js/app/views/temperature/TemperatureOverview.js'], function(temperatureOverview) {
+            require(['http://localhost:8080/AmI_System__Web_/js/app/views/temperature/TemperatureOverview.js'], function(temperatureOverview) {
                 temperatureOverview.display();
             });
         };

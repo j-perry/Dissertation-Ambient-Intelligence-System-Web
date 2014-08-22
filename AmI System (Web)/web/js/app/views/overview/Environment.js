@@ -14,8 +14,8 @@ define(path, function(environment) {
          */
         this.displayTemperatureOverview = function() {
 //            // system history
-            require(['http://localhost:8080/AmI_System__Web_/js/app/views/overview/temperature/TemperatureOverview.js'], function(temperatureOverview) {
-////            require(['../jp373/js/app/views/overview/temperature/TemperatureOverview'], function(temperatureOverview) {
+            require(['http://localhost:8080/AmI_System__Web_/js/app/views/temperature/TemperatureOverview.js'], function(temperatureOverview) {
+////            require(['../jp373/js/app/views/temperature/TemperatureOverview'], function(temperatureOverview) {
                 temperatureOverview.display();
             });
         };
