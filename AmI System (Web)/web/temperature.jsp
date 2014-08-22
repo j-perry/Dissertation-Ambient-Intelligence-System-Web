@@ -15,7 +15,6 @@
         <title>Temperature</title>
 
         <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/overview.css" />
         <link rel="stylesheet" href="css/temperature.css" />
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -44,11 +43,11 @@
                     
                     <li class="active">
                         <!-- contains context data -->
-                        <a href="#overview" id="cat-2">Overview</a>
+                        <a href="#overview" id="cat-overview">Overview</a>
                     </li>
 
                     <li>
-                        <a href="#weekdays" id="cat-3">Monday - Friday</a>
+                        <a href="#weekdays" id="cat-weekdays">Monday - Friday</a>
                     </li>
 
                 </ul>

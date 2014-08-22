@@ -2,8 +2,42 @@
     Document   : temperature
     Created on : 20-Aug-2014, 20:08:20
     Author     : Jonathan Perry
-    Description: temperature.jsp
+    Description: temperature.css
 */
+#tabs-menu {
+    padding-left: 8%;
+    padding-right: 8%;
+    background-color: #EEE;
+}
+#tabs { 
+    padding: 0;
+    background-color: #FFF;
+}
+#tabs li { 
+    display: inline; 
+}
+#tabs li a {
+    width: 30%;
+    background: #111; 
+    padding: 10px; 
+    float: left;
+    border-right: 1px solid #EEE; 
+    border-bottom: none; 
+    text-decoration: none;
+    font-size: 24px;
+    color: #FFF;
+}
+#tabs li a:hover {
+    text-decoration: underline;
+}
+#tabs li.active a[id="cat-overview"] { 
+    background: #FFF;
+    color: #111;
+}
+#tabs li.active a[id="cat-weekdays"] { 
+    background: #FFF; /* #4B77BE */
+    color: #111;
+}
 #overview,
 #weekdays {
     float: left;
