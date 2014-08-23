@@ -25,7 +25,10 @@ public class SystemOverview {
 
     private MonitoringContextTable monitoringTable;
     private FileWriter fWriter;
-    
+
+    // overall context
+    private ArrayList<DataBase> overallContext;
+
     // To store data from database
     private ArrayList<DataBase> temperatureData;
     private ArrayList<DataBase> ultrasonicData;
@@ -34,20 +37,29 @@ public class SystemOverview {
     // JSON
     private JSONObject overviewTemp;
     private JSONObject overviewDistance;
-    
+
     // For JSON binding
     private final String hostname_heading = "Agents";
     private final String hostname_one = "agent_one";
     private final String hostname_two = "agent_two";
     private final String pi_one = "raspberry-pi-1";
     private final String pi_two = "raspberry-pi-2";
-    
+
     public SystemOverview() {
         monitoringTable = new MonitoringContextTable();
         fWriter = null;
         temperatureData = new ArrayList<DataBase>();
         ultrasonicData = new ArrayList<DataBase>();
         microphoneData = new ArrayList<DataBase>();
+    }
+
+    public SystemOverview(ArrayList<DataBase> overallContext) {
+        monitoringTable = new MonitoringContextTable();
+        fWriter = null;
+        temperatureData = new ArrayList<DataBase>();
+        ultrasonicData = new ArrayList<DataBase>();
+        microphoneData = new ArrayList<DataBase>();
+        this.overallContext = overallContext;
     }
 
     /**
@@ -58,11 +70,24 @@ public class SystemOverview {
     public void getTemperatureData() {
         String temp_field = "temperature";
 
-        monitoringTable.open();
-        temperatureData = monitoringTable.retrieveOverviewByContext(temp_field);
-        monitoringTable.close();
+        // get data from initial context table
+        if (overallContext.isEmpty()) {
+            monitoringTable.open();
+            temperatureData = monitoringTable.retrieveOverviewByContext(temp_field);
+            monitoringTable.close();
+        } else {
+            // get temperature values from all the values in overallContext 
+            for (DataBase entry : overallContext) {
+                // if entry type is "temperature"
+                if (entry.getType().equals(temp_field)) {
+                    // store it
+                    temperatureData.add(entry);
+                }
+            }
+        }
+
     }
-    
+
     /**
      * Retrieves ultra sonic transceiver data from INITIAL MONITORING TABLE
      *
@@ -70,12 +95,25 @@ public class SystemOverview {
      */
     public void getMovementData() {
         String movement_field = "movement";
-        
-        monitoringTable.open();
-        temperatureData = monitoringTable.retrieveOverviewByContext(movement_field);
-        monitoringTable.close();
+
+        // get data from initial context table
+        if (overallContext.isEmpty()) {
+            monitoringTable.open();
+            temperatureData = monitoringTable.retrieveOverviewByContext(movement_field);
+            monitoringTable.close();
+        } else {
+            // get ultrasonic values from all the values in overallContext 
+            for (DataBase entry : overallContext) {
+                // if entry type is "movement"
+                if (entry.getType().equals(movement_field)) {
+                    // store it
+                    ultrasonicData.add(entry);
+                }
+            }
+        }
+
     }
-    
+
     /**
      * Retrieves microphone data from INITIAL MONITORING TABLE
      *
@@ -83,10 +121,23 @@ public class SystemOverview {
      */
     public void getMicrophoneData() {
         String microphone_field = "microphone";
-        
-        monitoringTable.open();
-        temperatureData = monitoringTable.retrieveOverviewByContext(microphone_field);
-        monitoringTable.close();
+
+        // get data from initial context table
+        if (overallContext.isEmpty()) {
+            monitoringTable.open();
+            temperatureData = monitoringTable.retrieveOverviewByContext(microphone_field);
+            monitoringTable.close();
+        } else {
+            // get microhpone values from all the values in overallContext 
+            for (DataBase entry : overallContext) {
+                // if entry type is "microphone"
+                if(entry.getType().equals(microphone_field)) {
+                    // store it
+                    microphoneData.add(entry);
+                }
+            }
+        }
+
     }
 
     /**
@@ -105,7 +156,7 @@ public class SystemOverview {
          */
         if (!temperatureData.isEmpty()) {
             String context = "Temperature";
-            
+
             // parse temperature data and return a JSON representation of it
             // with data for each day averaged out
             temperatureOverview = parseContext(temperatureData, context);
@@ -145,22 +196,21 @@ public class SystemOverview {
 //                ex.printStackTrace();
 //            }
 //        }
-        
-        
+
         /*
          *      Ultrasonic
          */
-        if(ultrasonicData.isEmpty() ) {
+        if (ultrasonicData.isEmpty()) {
             String context = "Movement";
             ultrasonicOverview = parseContext(ultrasonicData, context);
-            
+
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "ultrasonic_overview.json";
 
             String fWriterPathTemperature = path;
             fWriterPathTemperature += "js/json/logs/";
             fWriterPathTemperature += temperature_overview_file;
-            
+
             // write temperature overview data to file
             try {
                 fWriter = new FileWriter(fWriterPathTemperature);
@@ -171,22 +221,21 @@ public class SystemOverview {
                 ex.printStackTrace();
             }
         }
-        
-        
+
         /*
          *      Microphone
          */
-        if(microphoneData.isEmpty() ) {
+        if (microphoneData.isEmpty()) {
             String context = "Microphone";
             microphoneOverview = parseContext(microphoneData, context);
-            
+
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "microphone_overview.json";
 
             String fWriterPathTemperature = path;
             fWriterPathTemperature += "js/json/logs/";
             fWriterPathTemperature += temperature_overview_file;
-            
+
             // write temperature overview data to file
             try {
                 fWriter = new FileWriter(fWriterPathTemperature);
@@ -220,7 +269,7 @@ public class SystemOverview {
         final int WEDNESDAY_ID = 4;
         final int THURSDAY_ID = 5;
         final int FRIDAY_ID = 6;
-        
+
         // Stacks - Agent 1
         Stack<Integer> agent_one_context_value_monday = new Stack<Integer>();
         Stack<Integer> agent_one_context_value_tuesday = new Stack<Integer>();
@@ -228,14 +277,12 @@ public class SystemOverview {
         Stack<Integer> agent_one_context_value_thursday = new Stack<Integer>();
         Stack<Integer> agent_one_context_value_friday = new Stack<Integer>();
 
-
         // Stacks - Agent 2
         Stack<Integer> agent_two_context_value_monday = new Stack<Integer>();
         Stack<Integer> agent_two_context_value_tuesday = new Stack<Integer>();
         Stack<Integer> agent_two_context_value_wednesday = new Stack<Integer>();
         Stack<Integer> agent_two_context_value_thursday = new Stack<Integer>();
         Stack<Integer> agent_two_context_value_friday = new Stack<Integer>();
-
 
         //
         //      JSON Data Structure
@@ -257,7 +304,6 @@ public class SystemOverview {
         //              ],
         //      }
         //
-        
         for (DataBase d : temperatureData) {
 
             // if agent one
@@ -403,7 +449,6 @@ public class SystemOverview {
         /*
          *  bind our data
          */
-
         // agent one
         // monday (entry point)
         // average each stack (Monday to Tuesday)...
@@ -450,7 +495,6 @@ public class SystemOverview {
             agent_one.put(FRIDAY, agent_one_fri_arr);
             agent_one_fri_arr.add(0);
         }
-
 
         // REPEAT...        
         // agent two
@@ -502,7 +546,7 @@ public class SystemOverview {
         // bind our arrays together        
         root.put(hostname_one, agent_one);      // Hostname-1
         root.put(hostname_two, agent_two);      // Hostname-2
-        
+
         return root;
     }
 
