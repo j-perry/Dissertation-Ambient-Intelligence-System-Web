@@ -29,7 +29,7 @@ import org.json.simple.*;
  */
 @WebServlet(name = "Navigation", urlPatterns = {"/Navigation"})
 public class View extends HttpServlet {
-    
+
     private InitialContextTable initialContextTable;
     private MonitoringContextTable monitoringContextTable;
     private OverallContextTable overallContextTable;
@@ -81,6 +81,10 @@ public class View extends HttpServlet {
         initialContextTable = new InitialContextTable();
         monitoringContextTable = new MonitoringContextTable();
 
+        // open our database connections
+        initialContextTable.open();
+        monitoringContextTable.open();
+
         String type = request.getParameter("type");
         String viewUrl = type + ".jsp";
         String msg = null;
@@ -101,10 +105,6 @@ public class View extends HttpServlet {
 
                 ExperienceBank exBank = new ExperienceBank();
 
-                // open our database connections
-                initialContextTable.open();
-                monitoringContextTable.open();
-
                 // retrieve all entries from both table InitialContext and MonitoringContext
                 initialContext = initialContextTable.getAllEntries();
                 monitoringContext = monitoringContextTable.getAllEntries();
@@ -112,21 +112,21 @@ public class View extends HttpServlet {
                 // Creates a balanced context, created by entry results stored in tables 
                 // InitialContextTable and MonitoringContextTable
                 overallContext = exBank.merge(initialContext, monitoringContext);
-
+                
                 overallContextTable.update(overallContext);
-
-                // close our database connections
-                initialContextTable.close();
-                monitoringContextTable.close();
             } else {
                 // generate a system overview based on the InitialContext table
                 // get the system history and overview from the database and serialise it to JSON
                 getSystemHistory(path);
                 getSystemOverview(path);
             }
+
+            // close our database connections
+            initialContextTable.close();
+            monitoringContextTable.close();
         } else if (type.equals("temperature")) {
             path = getServletContext().getRealPath("/");
-            
+
             ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
             ArrayList<DataBase> monitoringContext = new ArrayList<DataBase>();
             ArrayList<DataBase> overallContext = new ArrayList<DataBase>();
@@ -141,7 +141,7 @@ public class View extends HttpServlet {
             initialContext = initialContextTable.getAllEntries();
             monitoringContext = monitoringContextTable.getAllEntries();
 
-                // Creates a balanced context, created by entry results stored in tables 
+            // Creates a balanced context, created by entry results stored in tables 
             // InitialContextTable and MonitoringContextTable
             overallContext = exBank.merge(initialContext, monitoringContext);
 
