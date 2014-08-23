@@ -30,10 +30,7 @@ public class SystemOverview {
     private ArrayList<DataBase> temperatureData;
     private ArrayList<DataBase> ultrasonicData;
     private ArrayList<DataBase> microphoneData;
-<<<<<<< HEAD
-=======
-    
->>>>>>> sprint_two
+
     // JSON
     private JSONObject overviewTemp;
     private JSONObject overviewDistance;
