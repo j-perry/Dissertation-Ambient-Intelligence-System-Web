@@ -37,8 +37,8 @@ define(path, function(movement) {
                 var hostname_one_fifteen = data.agent_one["15.00"][0];
                 var hostname_one_sixteen = data.agent_one["16.00"][0];
                 var hostname_one_seventeen = data.agent_one["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //          HOST NAME 2
@@ -54,8 +54,8 @@ define(path, function(movement) {
                 var hostname_two_fifteen = data.agent_two["15.00"][0];
                 var hostname_two_sixteen = data.agent_two["16.00"][0];
                 var hostname_two_seventeen = data.agent_two["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //      Populate our data
@@ -115,14 +115,17 @@ define(path, function(movement) {
                         }
                     ]
                 };
+                
                 // render chart
-                var ctx = document.getElementById("temperatureMonday").getContext("2d");
+                var ctx = document.getElementById("movementMonday").getContext("2d");
                 var myLineChart = new Chart(ctx).Line(data, {
                     bezierCurve: false,
                     scaleShowGridLines: false,
                     scaleGridLineColor: "rgba(0,0,0, 1)"
                 });
+                
             });
+            
         };
 
         /**
@@ -150,8 +153,8 @@ define(path, function(movement) {
                 var hostname_one_fifteen = data.agent_one["15.00"][0];
                 var hostname_one_sixteen = data.agent_one["16.00"][0];
                 var hostname_one_seventeen = data.agent_one["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //          HOST NAME 2
@@ -167,8 +170,8 @@ define(path, function(movement) {
                 var hostname_two_fifteen = data.agent_two["15.00"][0];
                 var hostname_two_sixteen = data.agent_two["16.00"][0];
                 var hostname_two_seventeen = data.agent_two["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //      Populate our data
@@ -228,14 +231,17 @@ define(path, function(movement) {
                         }
                     ]
                 };
+                
                 // render chart
-                var ctx = document.getElementById("temperatureMonday").getContext("2d");
+                var ctx = document.getElementById("movementTuesday").getContext("2d");
                 var myLineChart = new Chart(ctx).Line(data, {
                     bezierCurve: false,
                     scaleShowGridLines: false,
                     scaleGridLineColor: "rgba(0,0,0, 1)"
                 });
+                
             });
+            
         };
 
         /**
@@ -263,8 +269,8 @@ define(path, function(movement) {
                 var hostname_one_fifteen = data.agent_one["15.00"][0];
                 var hostname_one_sixteen = data.agent_one["16.00"][0];
                 var hostname_one_seventeen = data.agent_one["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //          HOST NAME 2
@@ -280,8 +286,8 @@ define(path, function(movement) {
                 var hostname_two_fifteen = data.agent_two["15.00"][0];
                 var hostname_two_sixteen = data.agent_two["16.00"][0];
                 var hostname_two_seventeen = data.agent_two["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //      Populate our data
@@ -341,14 +347,17 @@ define(path, function(movement) {
                         }
                     ]
                 };
+                
                 // render chart
-                var ctx = document.getElementById("temperatureMonday").getContext("2d");
+                var ctx = document.getElementById("movementWednesday").getContext("2d");
                 var myLineChart = new Chart(ctx).Line(data, {
                     bezierCurve: false,
                     scaleShowGridLines: false,
                     scaleGridLineColor: "rgba(0,0,0, 1)"
                 });
+                
             });
+            
         };
 
         /**
@@ -357,7 +366,7 @@ define(path, function(movement) {
         this.displayThursday = function() {
 //            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/movement_thursday.json";
             var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/movement_thursday.json";
-            
+
             $.getJSON(path, function(data) {
 
 
@@ -376,8 +385,8 @@ define(path, function(movement) {
                 var hostname_one_fifteen = data.agent_one["15.00"][0];
                 var hostname_one_sixteen = data.agent_one["16.00"][0];
                 var hostname_one_seventeen = data.agent_one["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //          HOST NAME 2
@@ -393,8 +402,8 @@ define(path, function(movement) {
                 var hostname_two_fifteen = data.agent_two["15.00"][0];
                 var hostname_two_sixteen = data.agent_two["16.00"][0];
                 var hostname_two_seventeen = data.agent_two["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //      Populate our data
@@ -454,14 +463,17 @@ define(path, function(movement) {
                         }
                     ]
                 };
+                
                 // render chart
-                var ctx = document.getElementById("temperatureMonday").getContext("2d");
+                var ctx = document.getElementById("movementThursday").getContext("2d");
                 var myLineChart = new Chart(ctx).Line(data, {
                     bezierCurve: false,
                     scaleShowGridLines: false,
                     scaleGridLineColor: "rgba(0,0,0, 1)"
                 });
+                
             });
+            
         };
 
         /**
@@ -470,7 +482,7 @@ define(path, function(movement) {
         this.displayFriday = function() {
 //            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/movement_friday.json";
             var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/movement_friday.json";
-            
+
             $.getJSON(path, function(data) {
 
 
@@ -489,8 +501,8 @@ define(path, function(movement) {
                 var hostname_one_fifteen = data.agent_one["15.00"][0];
                 var hostname_one_sixteen = data.agent_one["16.00"][0];
                 var hostname_one_seventeen = data.agent_one["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //          HOST NAME 2
@@ -506,8 +518,8 @@ define(path, function(movement) {
                 var hostname_two_fifteen = data.agent_two["15.00"][0];
                 var hostname_two_sixteen = data.agent_two["16.00"][0];
                 var hostname_two_seventeen = data.agent_two["17.00"][0];
-                
-                
+
+
                 ///////////////////////////////////////////////////////////////
                 //
                 //      Populate our data
@@ -567,14 +579,16 @@ define(path, function(movement) {
                         }
                     ]
                 };
+                
                 // render chart
-                var ctx = document.getElementById("temperatureMonday").getContext("2d");
+                var ctx = document.getElementById("movementFriday").getContext("2d");
                 var myLineChart = new Chart(ctx).Line(data, {
                     bezierCurve: false,
                     scaleShowGridLines: false,
                     scaleGridLineColor: "rgba(0,0,0, 1)"
                 });
             });
+            
         };
 
     }
