@@ -150,7 +150,7 @@ public class View extends HttpServlet {
         history.getData();
         history.serializeDataToJson(path);
     }
-
+    
     /**
      * Generates an overview of the system's contextual data (e.g., room
      * temperature)

@@ -57,6 +57,11 @@
             <!-- environment tab -->
             <div id="overview">
                 <div class="section">
+                                        
+                    <div class="agents">
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
+                    </div>
+                    
                     <canvas class="temperature-overview" id="temperatureOverview" width="1100" height="400"></canvas>
                 </div>
             </div>
@@ -65,8 +70,12 @@
             <div id="weekdays">
 
                 <div class="section monday">
-
+                                        
                     <h2>Monday</h2>
+                    
+                    <div class="agents">
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
+                    </div>
 
                     <canvas id="temperatureMonday" width="1100" height="400"></canvas>
 
@@ -75,6 +84,10 @@
                 <div class="section tuesday">
 
                     <h2>Tuesday</h2>
+                    
+                    <div>
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span><span>.</span>
+                    </div>
 
                     <canvas id="temperatureTuesday" width="1100" height="400"></canvas>
 
@@ -83,6 +96,10 @@
                 <div class="section wednesday">
 
                     <h2>Wednesday</h2>
+                    
+                    <div>
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span><span>.</span>
+                    </div>
 
                     <canvas id="temperatureWednesday" width="1100" height="400"></canvas>
 
@@ -91,6 +108,10 @@
                 <div class="section thursday">
 
                     <h2>Thursday</h2>
+                    
+                    <div>
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span><span>.</span>
+                    </div>
 
                     <canvas id="temperatureThursday" width="1100" height="400"></canvas>
 
@@ -99,6 +120,10 @@
                 <div class="section friday">
 
                     <h2>Friday</h2>
+                    
+                    <div>
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span><span>.</span>
+                    </div>
 
                     <canvas id="temperatureFriday" width="1100" height="400"></canvas>
 
