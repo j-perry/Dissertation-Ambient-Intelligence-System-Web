@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * 
  * @author Jonathan Perry
  */
-public class MonitoringTable implements IDatabase {
+public class InitialContextTable implements IDatabase {
         
     private String query;
     
@@ -34,9 +34,7 @@ public class MonitoringTable implements IDatabase {
     private ResultSet resultSet;
     private Connection conn;
     
-    private final String tableName = "Monitoring";
-    
-    public MonitoringTable() {
+    public InitialContextTable() {
         // register the driver
         try {
             Class.forName(driver);
@@ -54,7 +52,6 @@ public class MonitoringTable implements IDatabase {
         try {
             // https://mysql.student.sussex.ac.uk/phpmyadmin/
             conn = DriverManager.getConnection(dbUrl, username, password);
-            System.out.println("MySQL CONNECTON FOUND");
         }
         catch(SQLException ex) {
             ex.printStackTrace();
@@ -73,6 +70,13 @@ public class MonitoringTable implements IDatabase {
             ex.printStackTrace();
         }
     }
+    
+    public ArrayList<DataBase> getAllEntries() {
+        ArrayList<DataBase> entries = new ArrayList<DataBase>();
+        
+        
+        return entries;
+    }
         
     /**
      * Retrieves raw data from the table
@@ -81,7 +85,7 @@ public class MonitoringTable implements IDatabase {
     public ArrayList<DataBase> retrieveOverview() {
        ArrayList<DataBase> entries = new ArrayList<DataBase>();       
        DataBase dataBase = new DataBase();
-       query = "SELECT * FROM " + tableName;
+       query = "SELECT * FROM Initial";
        
        try {
            conn = DriverManager.getConnection(dbUrl, username, password);            
@@ -89,19 +93,6 @@ public class MonitoringTable implements IDatabase {
            ResultSet rs = qryStatement.executeQuery(query);
            
            while(rs.next() ) {
-               // session id
-               dataBase.setSessionId(rs.getInt("SessionId"));
-               
-               // time
-               dataBase.setHour(rs.getInt("Hour"));
-               dataBase.setMinute(rs.getInt("Month"));
-               
-               // date
-               dataBase.setDay(String.valueOf(rs.getInt("Day") ));
-               dataBase.setMonth(String.valueOf(rs.getInt("Month") ));
-               dataBase.setYear(rs.getInt("Year"));
-               
-               // general data
                dataBase.setValue(rs.getInt("Value"));
                dataBase.setType(rs.getString("Type"));
                dataBase.setLinguisticType(rs.getString("LinguisticType"));
@@ -121,10 +112,10 @@ public class MonitoringTable implements IDatabase {
      * Retrieves raw data from the table by field
      * @return 
      */
-    public ArrayList<DataBase> retrieveOverviewByContext(String field) {
+    public ArrayList<DataBase> retrieveOverviewByName(String field) {
        ArrayList<DataBase> entries = new ArrayList<DataBase>();       
        DataBase dataBase = new DataBase();
-       query = "SELECT * FROM " + tableName + " WHERE Context= '" + field + "'";
+       query = "SELECT * FROM Initial WHERE Type = '" + field + "'";
        
        try {
            conn = DriverManager.getConnection(dbUrl, username, password);            
@@ -132,15 +123,8 @@ public class MonitoringTable implements IDatabase {
            ResultSet rs = qryStatement.executeQuery(query);
            
            while(rs.next() ) {
-               dataBase.setSessionId(rs.getInt("SessionId"));
-               dataBase.setHostname(rs.getString("Hostname"));
-               dataBase.setHour(rs.getInt("Hour"));
-               dataBase.setMinute(rs.getInt("Minute"));
-               dataBase.setDay(rs.getString("Day"));
-               dataBase.setMonth(rs.getString("Month"));
-               dataBase.setYear(rs.getInt("Year"));
                dataBase.setValue(rs.getInt("Value"));
-               dataBase.setType(rs.getString("Context"));
+               dataBase.setType(rs.getString("Type"));
                dataBase.setLinguisticType(rs.getString("LinguisticType"));
                
                entries.add(dataBase);

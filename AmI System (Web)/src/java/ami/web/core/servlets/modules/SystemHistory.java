@@ -5,7 +5,7 @@
  */
 package ami.web.core.servlets.modules;
 
-import ami.web.core.db.InitialTable;
+import ami.web.core.db.InitialContextTable;
 import ami.web.core.db.SystemInfoTable;
 import ami.web.core.models.client.ClientInfo;
 
@@ -20,14 +20,14 @@ import org.json.simple.*;
 public class SystemHistory {
 
     private ClientInfo clientInfo;
-    private InitialTable initialTable;
+    private InitialContextTable initialTable;
     private SystemInfoTable systemInfoTable;
     private JSONObject overview;
     private FileWriter fWriter;
 
     public SystemHistory() {
         clientInfo = new ClientInfo();
-        initialTable = new InitialTable();
+        initialTable = new InitialContextTable();
         systemInfoTable = new SystemInfoTable();
         fWriter = null;
     }

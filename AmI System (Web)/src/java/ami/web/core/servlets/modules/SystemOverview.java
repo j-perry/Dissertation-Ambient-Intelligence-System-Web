@@ -23,7 +23,7 @@ import org.json.simple.*;
  */
 public class SystemOverview {
 
-    private MonitoringTable monitoringTable;
+    private MonitoringContextTable monitoringTable;
     private FileWriter fWriter;
     
     // To store data from database
@@ -43,7 +43,7 @@ public class SystemOverview {
     private final String pi_two = "raspberry-pi-2";
     
     public SystemOverview() {
-        monitoringTable = new MonitoringTable();
+        monitoringTable = new MonitoringContextTable();
         fWriter = null;
         temperatureData = new ArrayList<DataBase>();
         ultrasonicData = new ArrayList<DataBase>();

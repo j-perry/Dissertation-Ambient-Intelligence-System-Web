@@ -19,12 +19,12 @@ public interface IDatabase {
     public final static String password = "ripe-faraway-tomato";
 
     /**
-     * 
+     * Opens a new database connection
      */
     public void open();
     
     /**
-     * 
+     * Closes the database connection
      */
     public void close();
     

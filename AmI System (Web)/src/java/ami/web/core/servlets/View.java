@@ -6,12 +6,13 @@
 package ami.web.core.servlets;
 
 // local libraries
-import ami.web.core.servlets.modules.SystemHistory;
-import ami.web.core.servlets.modules.SystemOverview;
-import ami.web.core.servlets.modules.TemperatureView;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import ami.web.core.db.*;
+import ami.web.core.models.client.DataBase;
+import ami.web.core.servlets.modules.*;
+
+// Java APIs
+import java.io.*;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,12 +30,14 @@ import org.json.simple.*;
 @WebServlet(name = "Navigation", urlPatterns = {"/Navigation"})
 public class View extends HttpServlet {
 
+    private InitialContextTable initialContextTable;
+    private MonitoringContextTable monitoringContextTable;
+    private OverallContextTable overallContextTable;
     private String path;
-    
+
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -63,8 +66,7 @@ public class View extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -76,26 +78,55 @@ public class View extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
 
+        initialContextTable = new InitialContextTable();
+        monitoringContextTable = new MonitoringContextTable();
+
         String type = request.getParameter("type");
         String viewUrl = type + ".jsp";
         String msg = null;
         JSONObject jsonObj = new JSONObject();
         FileWriter fWriter = null;
-        
+
         /**
          * Get the required content from the database
          */
         if (type.equals("overview")) {
             path = getServletContext().getRealPath("/");
-            
-            // get the system history and overview from the database and serialise it to JSON
-            getSystemHistory(path);
-            getSystemOverview(path);
-            
-////            code below may not be required...
-//            getData();
-        }
-        else if (type.equals("temperature")) {
+
+            // if there are entries in table MonitoringContext
+            if (!monitoringContextTable.isEmpty()) {
+                ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
+                ArrayList<DataBase> monitoringContext = new ArrayList<DataBase>();
+                ArrayList<DataBase> overallContext = new ArrayList<DataBase>();
+
+                ExperienceBank exBank = new ExperienceBank();
+                
+                // open our database connections
+                initialContextTable.open();
+                monitoringContextTable.open();
+
+                // retrieve all entries from both table InitialContext and MonitoringContext
+                initialContext = initialContextTable.getAllEntries();
+                monitoringContext = monitoringContextTable.getAllEntries();
+
+                // Creates a balanced context, created by entry results stored in tables 
+                // InitialContextTable and MonitoringContextTable
+                overallContext = exBank.merge(initialContext, monitoringContext);
+
+                overallContextTable.update(overallContext);
+
+                // close our database connections
+                initialContextTable.close();
+                monitoringContextTable.close();
+            } else {
+                // generate a system overview based on the InitialContext table
+                // get the system history and overview from the database and serialise it to JSON
+                getSystemHistory(path);
+                getSystemOverview(path);
+            }
+
+            // otherwise, display the 
+        } else if (type.equals("temperature")) {
             path = getServletContext().getRealPath("/");
             TemperatureView tempView = new TemperatureView();
             tempView.getMonday();
@@ -116,8 +147,7 @@ public class View extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -150,7 +180,7 @@ public class View extends HttpServlet {
         history.getData();
         history.serializeDataToJson(path);
     }
-    
+
     /**
      * Generates an overview of the system's contextual data (e.g., room
      * temperature)
