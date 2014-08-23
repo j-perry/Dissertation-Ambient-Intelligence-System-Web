@@ -71,6 +71,10 @@ public class InitialContextTable implements IDatabase {
         }
     }
     
+    /**
+     * Returns all entries in the table
+     * @return 
+     */
     public ArrayList<DataBase> getAllEntries() {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
         

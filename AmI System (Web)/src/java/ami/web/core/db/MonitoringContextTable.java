@@ -105,7 +105,7 @@ public class MonitoringContextTable implements IDatabase {
     }
 
     /**
-     *
+     * Returns all entries in the table
      * @return
      */
     public ArrayList<DataBase> getAllEntries() {
