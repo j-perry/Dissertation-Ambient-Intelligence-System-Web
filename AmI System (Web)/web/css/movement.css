@@ -57,7 +57,20 @@
     padding-top: 50px;
     padding-bottom: 50px;
 }
-
+/*  Hostname 1 + 2 colour coding
+*****************************************/
+div.agents {
+    color: #111;
+    font-size: 24px;
+}
+span.agent-1 {
+    color: #3498DB;
+    font-size: 24px;
+}
+span.agent-2 {
+    color: #F22613;
+    font-size: 24px;
+}
 #weekdays div:nth-child(odd) {
     background-color: #FFF;
 }
