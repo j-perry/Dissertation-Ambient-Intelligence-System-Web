@@ -463,6 +463,14 @@ define(path, function(weekdays) {
                         }
                     ]
                 };
+                
+                // render chart
+                var ctx = document.getElementById("temperatureThursday").getContext("2d");
+                var myLineChart = new Chart(ctx).Line(data, {
+                    bezierCurve: false,
+                    scaleShowGridLines: false,
+                    scaleGridLineColor: "rgba(0,0,0, 1)"
+                });
 
             });
 
