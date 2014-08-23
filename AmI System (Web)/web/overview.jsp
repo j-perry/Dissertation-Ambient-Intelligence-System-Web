@@ -59,15 +59,11 @@
 
                     <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature">Room Temperature</a></h2>
 
+                    <div class="agents">
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
+                    </div>
+                    
                     <canvas id="temperatureOverview" width="1100" height="400"></canvas>
-
-                </div>
-
-                <div class="section atmosphere">
-
-                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere">Room Volume</a></h2>
-
-                    <canvas id="myChart2" width="1100" height="400"></canvas>
 
                 </div>
 
@@ -75,10 +71,26 @@
 
                     <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion">Workstation Movement</a></h2>
 
+                    <div class="agents">
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
+                    </div>
+                    
                     <canvas id="myChart3" width="1100" height="400"></canvas>
 
                 </div>
+                
+                <div class="section atmosphere">
 
+                    <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere">Room Volume</a></h2>
+
+                    <div class="agents">
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
+                    </div>
+                    
+                    <canvas id="myChart2" width="1100" height="400"></canvas>
+
+                </div>
+                
             </div>
 
             <!-- history tab -->

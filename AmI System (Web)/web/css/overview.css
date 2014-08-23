@@ -42,6 +42,29 @@
     background: #CCC; /* #4B77BE */
     color: #111;
 }
+
+/*  Hostname 1 + 2 colour coding
+*****************************************/
+div.agents {
+    color: #111;
+    font-size: 24px;
+}
+span.agent-1 {
+    color: #3498DB;
+    font-size: 24px;
+}
+span.agent-2 {
+    color: #F22613;
+    font-size: 24px;
+}
+
+#temperatureOverview /*,*/
+/* movementOverview, */
+/* atmosphereOverview, */
+{
+    margin-top: 50px;
+}
+
 #history,
 #environment {
     float: left;
@@ -84,7 +107,6 @@
     background-color: #89C4F4; /* #663399; */
     color: #111;
 }
-
 #environment div:nth-child(odd) {
     background-color: #FFF;
 }
