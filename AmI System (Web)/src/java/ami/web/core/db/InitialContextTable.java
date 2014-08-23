@@ -34,6 +34,8 @@ public class InitialContextTable implements IDatabase {
     private ResultSet resultSet;
     private Connection conn;
     
+    private final String tableName = "InitialContext";
+    
     public InitialContextTable() {
         // register the driver
         try {
@@ -77,7 +79,7 @@ public class InitialContextTable implements IDatabase {
      */
     public ArrayList<DataBase> getAllEntries() {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
-        
+        query = "SELECT * FROM " + tableName;
         
         return entries;
     }
