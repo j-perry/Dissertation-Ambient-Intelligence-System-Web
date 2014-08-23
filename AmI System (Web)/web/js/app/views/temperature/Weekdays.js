@@ -349,7 +349,7 @@ define(path, function(weekdays) {
                 };
                 
                 // render chart
-                var ctx = document.getElementById("temperatureTuesday").getContext("2d");
+                var ctx = document.getElementById("temperatureWednesday").getContext("2d");
                 var myLineChart = new Chart(ctx).Line(data, {
                     bezierCurve: false,
                     scaleShowGridLines: false,
