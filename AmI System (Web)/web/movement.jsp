@@ -69,7 +69,7 @@
                     
                     <h2>Monday</h2>
 
-                    <canvas id="temperatureOverview" width="1100" height="400"></canvas>
+                    <canvas id="movementMonday" width="1100" height="400"></canvas>
 
                 </div>
                 
@@ -77,7 +77,7 @@
 
                     <h2>Tuesday</h2>
 
-                    <canvas id="myChart3" width="1100" height="400"></canvas>
+                    <canvas id="movementTuesday" width="1100" height="400"></canvas>
 
                 </div>
                 
@@ -85,7 +85,7 @@
 
                     <h2>Wednesday</h2>
 
-                    <canvas id="myChart2" width="1100" height="400"></canvas>
+                    <canvas id="movementWednesday" width="1100" height="400"></canvas>
 
                 </div>
                 
@@ -93,7 +93,7 @@
 
                     <h2>Thursday</h2>
 
-                    <canvas id="myChart3" width="1100" height="400"></canvas>
+                    <canvas id="movementThursday" width="1100" height="400"></canvas>
 
                 </div>
                 
@@ -101,7 +101,7 @@
 
                     <h2>Friday</h2>
 
-                    <canvas id="myChart2" width="1100" height="400"></canvas>
+                    <canvas id="movementFriday" width="1100" height="400"></canvas>
 
                 </div>
 
