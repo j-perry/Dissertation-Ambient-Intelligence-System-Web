@@ -68,7 +68,7 @@
 
                     <h2>Monday</h2>
 
-                    <canvas id="temperatureOverview" width="1100" height="400"></canvas>
+                    <canvas id="temperatureMonday" width="1100" height="400"></canvas>
 
                 </div>
 
@@ -76,7 +76,7 @@
 
                     <h2>Tuesday</h2>
 
-                    <canvas id="myChart3" width="1100" height="400"></canvas>
+                    <canvas id="temperatureTuesday" width="1100" height="400"></canvas>
 
                 </div>
 
@@ -84,7 +84,7 @@
 
                     <h2>Wednesday</h2>
 
-                    <canvas id="myChart2" width="1100" height="400"></canvas>
+                    <canvas id="temperatureWednesday" width="1100" height="400"></canvas>
 
                 </div>
 
@@ -92,7 +92,7 @@
 
                     <h2>Thursday</h2>
 
-                    <canvas id="myChart3" width="1100" height="400"></canvas>
+                    <canvas id="temperatureThursday" width="1100" height="400"></canvas>
 
                 </div>
 
@@ -100,7 +100,7 @@
 
                     <h2>Friday</h2>
 
-                    <canvas id="myChart2" width="1100" height="400"></canvas>
+                    <canvas id="temperatureFriday" width="1100" height="400"></canvas>
 
                 </div>
 
