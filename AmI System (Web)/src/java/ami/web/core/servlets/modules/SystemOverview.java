@@ -5,7 +5,7 @@
  */
 package ami.web.core.servlets.modules;
 
-// libraries
+// local libraries
 import ami.web.core.db.*;
 import ami.web.core.models.client.DataBase;
 
@@ -39,7 +39,6 @@ public class SystemOverview {
     private JSONObject overviewDistance;
 
     // For JSON binding
-    private final String hostname_heading = "Agents";
     private final String hostname_one = "agent_one";
     private final String hostname_two = "agent_two";
     private final String pi_one = "raspberry-pi-1";
@@ -160,7 +159,7 @@ public class SystemOverview {
             // parse temperature data and return a JSON representation of it
             // with data for each day averaged out
             temperatureOverview = parseContext(temperatureData, context);
-
+            
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_overview.json";
 
@@ -252,7 +251,8 @@ public class SystemOverview {
     /**
      * Returns a JSONObject with all sorted data bound
      *
-     * @param d
+     * @param data 
+     * @param context
      * @return
      */
     public JSONObject parseContext(ArrayList<DataBase> data, String context) {
@@ -304,7 +304,7 @@ public class SystemOverview {
         //              ],
         //      }
         //
-        for (DataBase d : temperatureData) {
+        for (DataBase d : data) {
 
             // if agent one
             if (d.getHostname().equals(pi_one)) {
@@ -323,7 +323,7 @@ public class SystemOverview {
                             agent_one_context_value_monday.push(d.getValue());
                         } else {
                             // 24 + 25
-                            agent_one_context_value_monday.push((d.getValue() + agent_two_context_value_monday.peek()));
+                            agent_one_context_value_monday.push((d.getValue() + agent_one_context_value_monday.peek()));
                         }
                         break;
                     // Tuesday

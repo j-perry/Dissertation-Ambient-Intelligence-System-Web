@@ -3,7 +3,7 @@
  * Jonathan Perry
  * Candidate No. 102235
  */
-package ami.web.core.servlets.modules;
+package ami.web.core.intelligence;
 
 /**
  *

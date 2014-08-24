@@ -42,9 +42,7 @@ public class ClientInfo {
      * @return 
      */
     public Stack<String> getHostnames() {
-//    public String getHostname() {
         return hostnames;
-//        return hostname;
     }
     
     /**
@@ -72,7 +70,7 @@ public class ClientInfo {
         
         if(this.minutes < 59) {
             this.minutes += minutes;
-        } else{
+        } else {
             this.hours++;
             this.minutes = (MAX_MINS - minutes);
         }

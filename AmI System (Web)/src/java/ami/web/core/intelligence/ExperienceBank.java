@@ -3,9 +3,9 @@
  * Jonathan Perry
  * Candidate No. 102235
  */
-package ami.web.core.servlets.modules;
+package ami.web.core.intelligence;
 
-// libraries
+// local libraries
 import ami.web.core.models.client.DataBase;
 
 // Java APIs
@@ -22,10 +22,13 @@ public class ExperienceBank {
     public ExperienceBank() {
         ruleBank = new RuleBase();
     }
-        
+    
     /**
      * Merges and creates a balanced contexts, created by entry results stored in
      * tables InitialContextTable and MonitoringContextTable
+     * @param initialContext
+     * @param monitoringContext
+     * @return 
      */
     public ArrayList<DataBase> merge(ArrayList<DataBase> initialContext, ArrayList<DataBase> monitoringContext) {
         ArrayList<DataBase> overallContext = new ArrayList<DataBase>();

@@ -6,6 +6,7 @@
 package ami.web.core.servlets;
 
 // local libraries
+import ami.web.core.intelligence.ExperienceBank;
 import ami.web.core.db.*;
 import ami.web.core.models.client.DataBase;
 import ami.web.core.servlets.modules.*;
