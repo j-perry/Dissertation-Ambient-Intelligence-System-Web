@@ -100,60 +100,42 @@ public class OverallContextTable implements IDatabase {
     }
 
     /**
+     * Updates the OverallContextTable model
      *
      * @param overallContext
      * @return
      */
     public int update(ArrayList<DataBase> overallContext) {
         int result = 0;
-        int i = 0;
 
         // loop through each of the entries in overallContext
         // and write them to the table
-        while (i != overallContext.size()) {
-            for (DataBase entry : overallContext) {
-
-                // do we need an UPDATE statement or an INSERT INTO statement?!
-                query = "INSERT INTO " + tableName
-                        + "( "
-                            + "SessionId, "
-                            + "Hostname, "
-                            + "Hour, "
-                            + "Minute, "
-                            + "Day, "
-                            + "Month, "
-                            + "Year, "
-                            + "Value, "
-                            + "Context, "
-                            + "LinguisticType"
-                        + ") "
-                        + "VALUES "
-                        + "( "
-                            + entry.getSessionId() + ", "
-                            + entry.getHostname() + ", "
-                            + entry.getHour() + ", "
-                            + entry.getMinute() + ", "
-                            + entry.getDay() + ", "
-                            + entry.getMonth() + ", "
-                            + entry.getYear() + ", "
-                            + entry.getValue() + ", "
-                            + entry.getType() + ", "
-                            + entry.getLinguisticType()
-                        + ");";
-
-                try {
-                    qryStatement = conn.createStatement();
-                    result = qryStatement.executeUpdate(query);
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-
-                i++;
+        for (DataBase entry : overallContext) {
+            
+            // do we need an UPDATE statement or an INSERT INTO statement?!
+            query = "UPDATE " + tableName
+                    + "SET "
+                        + "SessionId= " + entry.getSessionId() + ", "
+                        + "Hostname= "  + entry.getHostname()  + ", "
+                        + "Hour= "      + entry.getHour()      + ", "
+                        + "Minute= "    + entry.getMinute()    + ", "
+                        + "Day= "       + entry.getDay()       + ", "
+                        + "Month= "     + entry.getMonth()     + ", "
+                        + "Year= "      + entry.getYear()      + ", "
+                        + "Value= "     + entry.getValue()     + ", "
+                        + "Context= "   + entry.getType()      + ", "
+                        + "LinguisticType= " + entry.getLinguisticType()
+                    + "WHERE SessionId= " + entry.getSessionId()
+                    + "; ";
+            
+            try {
+                qryStatement = conn.createStatement();
+                result = qryStatement.executeUpdate(query);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-
         }
 
         return result;
     }
-
 }
