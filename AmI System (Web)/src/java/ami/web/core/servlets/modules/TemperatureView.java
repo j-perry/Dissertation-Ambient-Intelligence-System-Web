@@ -209,7 +209,7 @@ public class TemperatureView extends ContextView {
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseContext(mondayData, context);
+            temperatureMonday = super.parseWeekdayContext(mondayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_monday.json";
@@ -237,7 +237,7 @@ public class TemperatureView extends ContextView {
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseContext(tuesdayData, context);
+            temperatureMonday = super.parseWeekdayContext(tuesdayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_tuesday.json";
@@ -265,7 +265,7 @@ public class TemperatureView extends ContextView {
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseContext(wednesdayData, context);
+            temperatureMonday = super.parseWeekdayContext(wednesdayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_wednesday.json";
@@ -293,7 +293,7 @@ public class TemperatureView extends ContextView {
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseContext(thursdayData, context);
+            temperatureMonday = super.parseWeekdayContext(thursdayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_thursday.json";
@@ -321,7 +321,7 @@ public class TemperatureView extends ContextView {
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseContext(fridayData, context);
+            temperatureMonday = super.parseWeekdayContext(fridayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_friday.json";
