@@ -44,7 +44,6 @@ public abstract class ContextView {
      * @return
      */
     public JSONObject parseOverallContext(ArrayList<DataBase> data, String context) {
-        final int WORKDAY_HOURS = 8;
 
         final String MONDAY = "monday";
         final String TUESDAY = "tuesday";

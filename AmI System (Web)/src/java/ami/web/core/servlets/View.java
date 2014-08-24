@@ -126,7 +126,7 @@ public class View extends HttpServlet {
                 // serialize our data to JSON file/s
                 systemOverview.serializeDataToJson(path);
 
-                // write an updated contextual model based on weekday values (based on values
+                // write an updated contextual model based on weekday values (values
                 // similar to those found in table MonitoringContext)
                 overallContextTable.update(overallContext);
             } // else if there aren't any entries in table MonitoringContext
@@ -174,6 +174,8 @@ public class View extends HttpServlet {
             // serialize our data to JSON file/s
             temperatureView.serializeDataToJSON(path);
 
+            // write an updated contextual model based on weekday values (values
+            // similar to those found in table MonitoringContext)
             overallContextTable.update(overallContext);
 
             // close our database connections
