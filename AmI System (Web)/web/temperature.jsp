@@ -47,7 +47,7 @@
                     </li>
 
                     <li>
-                        <a href="#weekdays" id="cat-weekdays">Monday - Friday</a>
+                        <a href="#weekdays" id="cat-weekdays">Weekdays</a>
                     </li>
 
                 </ul>
@@ -68,6 +68,30 @@
 
             <!-- environment tab -->
             <div id="weekdays">
+                
+                <div class="section saturday">
+                                        
+                    <h2>Saturday</h2>
+                    
+                    <div class="agents">
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
+                    </div>
+
+                    <canvas id="temperatureSaturday" width="1100" height="400"></canvas>
+
+                </div>
+                
+                <div class="section sunday">
+                                        
+                    <h2>Sunday</h2>
+                    
+                    <div class="agents">
+                        <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
+                    </div>
+
+                    <canvas id="temperatureSunday" width="1100" height="400"></canvas>
+
+                </div>
 
                 <div class="section monday">
                                         
