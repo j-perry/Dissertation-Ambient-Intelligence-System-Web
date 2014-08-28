@@ -44,20 +44,26 @@ public abstract class ContextView {
      * @return
      */
     public JSONObject parseOverallContext(ArrayList<DataBase> data, String context) {
-
+        
+        final String SATURDAY = "saturday";
+        final String SUNDAY = "sunday";
         final String MONDAY = "monday";
         final String TUESDAY = "tuesday";
         final String WEDNESDAY = "wednesday";
         final String THURSDAY = "thursday";
         final String FRIDAY = "friday";
 
-        final int MONDAY_ID = 2;
-        final int TUESDAY_ID = 3;
-        final int WEDNESDAY_ID = 4;
-        final int THURSDAY_ID = 5;
-        final int FRIDAY_ID = 6;
+        final int SATURDAY_ID = Calendar.SATURDAY;
+        final int SUNDAY_ID = Calendar.SUNDAY;
+        final int MONDAY_ID = Calendar.MONDAY;
+        final int TUESDAY_ID = Calendar.TUESDAY;
+        final int WEDNESDAY_ID = Calendar.WEDNESDAY;
+        final int THURSDAY_ID = Calendar.THURSDAY;
+        final int FRIDAY_ID = Calendar.FRIDAY;
 
         // Stacks - Agent 1
+        Stack<Integer> agent_one_context_value_saturday = new Stack<Integer>();
+        Stack<Integer> agent_one_context_value_sunday = new Stack<Integer>();
         Stack<Integer> agent_one_context_value_monday = new Stack<Integer>();
         Stack<Integer> agent_one_context_value_tuesday = new Stack<Integer>();
         Stack<Integer> agent_one_context_value_wednesday = new Stack<Integer>();
@@ -65,6 +71,8 @@ public abstract class ContextView {
         Stack<Integer> agent_one_context_value_friday = new Stack<Integer>();
 
         // Stacks - Agent 2
+        Stack<Integer> agent_two_context_value_saturday = new Stack<Integer>();
+        Stack<Integer> agent_two_context_value_sunday = new Stack<Integer>();
         Stack<Integer> agent_two_context_value_monday = new Stack<Integer>();
         Stack<Integer> agent_two_context_value_tuesday = new Stack<Integer>();
         Stack<Integer> agent_two_context_value_wednesday = new Stack<Integer>();
@@ -104,6 +112,24 @@ public abstract class ContextView {
                 // Codes - Calendar.DAY_OF_WEEK:
                 // https://community.oracle.com/thread/2094650?tstart=90840
                 switch (dayOfTheWeek) {
+                    // Saturday
+                    case Calendar.SATURDAY:
+                        if (agent_one_context_value_saturday.isEmpty()) {
+                            agent_one_context_value_saturday.push(d.getValue());
+                        } else {
+                            // 24 + 25
+                            agent_one_context_value_saturday.push((d.getValue() + agent_one_context_value_saturday.peek()));
+                        }
+                        break;
+                    // Sunday
+                    case Calendar.SUNDAY:
+                        if (agent_one_context_value_sunday.isEmpty()) {
+                            agent_one_context_value_sunday.push(d.getValue());
+                        } else {
+                            // 24 + 25
+                            agent_one_context_value_sunday.push((d.getValue() + agent_one_context_value_sunday.peek()));
+                        }
+                        break;
                     // Monday
                     case Calendar.MONDAY:
                         if (agent_one_context_value_monday.isEmpty()) {
@@ -161,6 +187,24 @@ public abstract class ContextView {
                 // Codes - Calendar.DAY_OF_WEEK:
                 // https://community.oracle.com/thread/2094650?tstart=90840
                 switch (dayOfTheWeek) {
+                    // Saturday
+                    case Calendar.SATURDAY:
+                        if (agent_two_context_value_saturday.isEmpty()) {
+                            agent_two_context_value_saturday.push(d.getValue());
+                        } else {
+                            // 24 + 25
+                            agent_two_context_value_saturday.push((d.getValue() + agent_two_context_value_saturday.peek()));
+                        }
+                        break;
+                    // Sunday
+                    case Calendar.SUNDAY:
+                        if (agent_two_context_value_sunday.isEmpty()) {
+                            agent_two_context_value_sunday.push(d.getValue());
+                        } else {
+                            // 24 + 25
+                            agent_two_context_value_sunday.push((d.getValue() + agent_two_context_value_sunday.peek()));
+                        }
+                        break;
                     // Monday
                     case Calendar.MONDAY:
                         if (agent_two_context_value_monday.isEmpty()) {
@@ -220,12 +264,18 @@ public abstract class ContextView {
         JSONObject agent_one = new JSONObject();
         JSONObject agent_two = new JSONObject();
 
+        
+        JSONArray agent_one_sat_arr = new JSONArray();
+        JSONArray agent_one_sun_arr = new JSONArray();
         JSONArray agent_one_mon_arr = new JSONArray();
         JSONArray agent_one_tues_arr = new JSONArray();
         JSONArray agent_one_wed_arr = new JSONArray();
         JSONArray agent_one_thur_arr = new JSONArray();
         JSONArray agent_one_fri_arr = new JSONArray();
+        
 
+        JSONArray agent_two_sat_arr = new JSONArray();
+        JSONArray agent_two_sun_arr = new JSONArray();
         JSONArray agent_two_mon_arr = new JSONArray();
         JSONArray agent_two_tues_arr = new JSONArray();
         JSONArray agent_two_wed_arr = new JSONArray();
@@ -237,7 +287,25 @@ public abstract class ContextView {
          *  bind our data
          */
         // agent one
-        // monday (entry point)
+        // saturday (entry point)
+        if (!agent_one_context_value_saturday.isEmpty()) {
+            agent_one.put(SATURDAY, agent_one_sat_arr);  // "Monday", arr
+            agent_one_sat_arr.add(agent_one_context_value_saturday.pop());
+        } else {
+            agent_one.put(SATURDAY, agent_one_sat_arr);
+            agent_one_sat_arr.add(0);
+        }
+        
+        // sunday
+        if (!agent_one_context_value_sunday.isEmpty()) {
+            agent_one.put(SUNDAY, agent_one_sun_arr);  // "Monday", arr
+            agent_one_sun_arr.add(agent_one_context_value_sunday.pop());
+        } else {
+            agent_one.put(SUNDAY, agent_one_sun_arr);
+            agent_one_sun_arr.add(0);
+        }
+                
+        // monday
         // average each stack (Monday to Tuesday)...
         if (!agent_one_context_value_monday.isEmpty()) {
             agent_one.put(MONDAY, agent_one_mon_arr);  // "Monday", arr
@@ -285,7 +353,25 @@ public abstract class ContextView {
 
         // REPEAT...        
         // agent two
-        // monday (entry point)
+        // saturday (entry point)
+        if (!agent_two_context_value_saturday.isEmpty()) {
+            agent_two.put(SATURDAY, agent_two_sat_arr);  // "Monday", arr
+            agent_two_sat_arr.add(agent_two_context_value_saturday.pop());
+        } else {
+            agent_two.put(SATURDAY, agent_two_sat_arr);
+            agent_two_sat_arr.add(0);
+        }
+        
+        // sunday
+        if (!agent_two_context_value_sunday.isEmpty()) {
+            agent_two.put(SUNDAY, agent_two_sun_arr);  // "Monday", arr
+            agent_two_sun_arr.add(agent_two_context_value_sunday.pop());
+        } else {
+            agent_two.put(SUNDAY, agent_two_sun_arr);
+            agent_two_sun_arr.add(0);
+        }
+        
+        // monday
         if (!agent_two_context_value_monday.isEmpty()) {
             agent_two.put(MONDAY, agent_two_mon_arr);  // "Monday", arr
             agent_two_mon_arr.add((agent_two_context_value_monday.pop() / agent_two_context_value_monday.size()));
@@ -806,7 +892,7 @@ public abstract class ContextView {
         Date d = new Date();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String strDay = null;
-
+        
         try {
             d = df.parse(day + "/" + month + "/" + year);
             df.applyPattern("EEEE");
@@ -814,9 +900,13 @@ public abstract class ContextView {
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
-
+        
         // find the day of the week 
-        if (strDay.equals("Monday")) {
+        if(strDay.equals("Saturday")) {
+            dayInWeek = Calendar.SATURDAY;
+        } else if (strDay.equals("Sunday")) {
+            dayInWeek = Calendar.SUNDAY;
+        } else if (strDay.equals("Monday")) {
             dayInWeek = Calendar.MONDAY;
         } else if (strDay.equals("Tuesday")) {
             dayInWeek = Calendar.TUESDAY;
@@ -827,7 +917,15 @@ public abstract class ContextView {
         } else if (strDay.equals("Friday")) {
             dayInWeek = Calendar.FRIDAY;
         }
-
+        
+        System.out.println();
+        System.out.println("---------------------------------");
+        System.out.println();
+        System.out.println("dayInWeek: " + dayInWeek);
+        System.out.println();        
+        System.out.println("---------------------------------");
+        System.out.println();
+        
         return dayInWeek;
     }   
 }

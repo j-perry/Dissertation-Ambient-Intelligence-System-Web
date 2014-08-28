@@ -164,6 +164,16 @@ public class InitialContextTable implements IDatabase {
             ResultSet rs = qryStatement.executeQuery(query);
 
             while (rs.next()) {
+                dataBase.setSessionId(rs.getInt("SessionId"));
+                dataBase.setHostname(rs.getString("Hostname"));
+                
+                dataBase.setHour(rs.getInt("Hour"));
+                dataBase.setMinute(rs.getInt("Minute"));
+                
+                dataBase.setDay(rs.getString("Day"));
+                dataBase.setMonth(rs.getString("Month"));
+                dataBase.setYear(rs.getInt("Year"));
+                
                 dataBase.setValue(rs.getInt("Value"));
                 dataBase.setType(rs.getString("Context"));
                 dataBase.setLinguisticType(rs.getString("LinguisticType"));

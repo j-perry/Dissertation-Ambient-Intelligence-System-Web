@@ -25,6 +25,8 @@ public class TemperatureView extends ContextView {
         
     private ArrayList<DataBase> overallContext;
     
+    private ArrayList<DataBase> saturdayData;
+    private ArrayList<DataBase> sundayData;
     private ArrayList<DataBase> mondayData;
     private ArrayList<DataBase> tuesdayData;
     private ArrayList<DataBase> wednesdayData;
@@ -37,6 +39,8 @@ public class TemperatureView extends ContextView {
     private OverallContextTable overallContextTable;
     
     public TemperatureView() {
+        saturdayData = new ArrayList<DataBase>();
+        sundayData = new ArrayList<DataBase>();
         mondayData = new ArrayList<DataBase>();
         tuesdayData = new ArrayList<DataBase>();
         wednesdayData = new ArrayList<DataBase>();
@@ -51,6 +55,8 @@ public class TemperatureView extends ContextView {
     }
     
     public TemperatureView(ArrayList<DataBase> overallContext) {
+        saturdayData = new ArrayList<DataBase>();
+        sundayData = new ArrayList<DataBase>();
         mondayData = new ArrayList<DataBase>();
         tuesdayData = new ArrayList<DataBase>();
         wednesdayData = new ArrayList<DataBase>();
@@ -62,6 +68,58 @@ public class TemperatureView extends ContextView {
         overallContextTable = new OverallContextTable();
         
         this.overallContext = overallContext;
+    }
+    
+    /**
+     * Get data for Saturday from either overallContext OR from table InitialMonitoring
+     */
+    public void getSaturday() {
+        
+        // if empty, get entries from InitialContext table
+        if(overallContext.isEmpty()) {
+            initialContextTable.open();
+            ArrayList<DataBase> results = initialContextTable.retrieveOverviewByName(field);
+            initialContextTable.close();
+            
+            for(DataBase entry : results) {
+                // if the result is Monday                
+                if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SATURDAY) {
+                    mondayData.add(entry);
+                }
+            }
+        } else {
+            for(DataBase entry : overallContext) {
+                if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SATURDAY) {
+                    mondayData.add(entry);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Get data for Sunday from either overallContext OR from table InitialMonitoring
+     */
+    public void getSunday() {
+        
+        // if empty, get entries from InitialContext table
+        if(overallContext.isEmpty()) {
+            initialContextTable.open();
+            ArrayList<DataBase> results = initialContextTable.retrieveOverviewByName(field);
+            initialContextTable.close();
+            
+            for(DataBase entry : results) {
+                // if the result is Monday                
+                if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SUNDAY) {
+                    mondayData.add(entry);
+                }
+            }
+        } else {
+            for(DataBase entry : overallContext) {
+                if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SUNDAY) {
+                    mondayData.add(entry);
+                }
+            }
+        }
     }
 
     /**
@@ -76,7 +134,7 @@ public class TemperatureView extends ContextView {
             initialContextTable.close();
             
             for(DataBase entry : results) {
-                // if the result is Monday
+                // if the result is Monday                
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.MONDAY) {
                     mondayData.add(entry);
                 }
@@ -200,11 +258,67 @@ public class TemperatureView extends ContextView {
      */
     public void serializeDataToJSON(String path) {
         // hours of data (potentially) to be serialized to JSON
+        JSONObject temperatureSaturday = new JSONObject();
+        JSONObject temperatureSunday = new JSONObject();
         JSONObject temperatureMonday = new JSONObject();
         JSONObject temperatureTuesday = new JSONObject();
         JSONObject temperatureWednesday = new JSONObject();
         JSONObject temperatureThursday = new JSONObject();
         JSONObject temperatureFriday = new JSONObject();
+        
+        /*
+        *   Saturday
+        */
+        if(!saturdayData.isEmpty() ) {
+            String context = "Temperature";
+            
+            // parse monday's data and return a JSON representation of it
+            // with data for each day averaged out
+            temperatureMonday = super.parseWeekdayContext(saturdayData, context);
+            
+            // write temperature overview data to a JSON file            
+            String temperature_overview_file = "temperature_saturday.json";
+
+            String fWriterPathTemperature = path;
+            fWriterPathTemperature += "js/json/logs/";
+            fWriterPathTemperature += temperature_overview_file;
+            
+            try {
+                fWriter = new FileWriter(fWriterPathTemperature);
+                fWriter.write(temperatureMonday.toJSONString());
+                fWriter.flush();
+                fWriter.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        /*
+        *   Sunday
+        */
+        if(!sundayData.isEmpty() ) {
+            String context = "Temperature";
+            
+            // parse monday's data and return a JSON representation of it
+            // with data for each day averaged out
+            temperatureMonday = super.parseWeekdayContext(sundayData, context);
+            
+            // write temperature overview data to a JSON file            
+            String temperature_overview_file = "temperature_sunday.json";
+
+            String fWriterPathTemperature = path;
+            fWriterPathTemperature += "js/json/logs/";
+            fWriterPathTemperature += temperature_overview_file;
+            
+            try {
+                fWriter = new FileWriter(fWriterPathTemperature);
+                fWriter.write(temperatureMonday.toJSONString());
+                fWriter.flush();
+                fWriter.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
         
         
         /*
