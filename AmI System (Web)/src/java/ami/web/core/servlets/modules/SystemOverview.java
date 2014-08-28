@@ -7,6 +7,7 @@ package ami.web.core.servlets.modules;
 
 // local libraries
 import ami.web.core.db.*;
+import ami.web.core.intelligence.ExperienceBank;
 import ami.web.core.models.client.DataBase;
 
 // Java APIs
@@ -22,6 +23,7 @@ import org.json.simple.*;
  */
 public class SystemOverview extends ContextView {
 
+    private InitialContextTable initialTable;
     private MonitoringContextTable monitoringTable;
     private FileWriter fWriter;
 
@@ -31,49 +33,91 @@ public class SystemOverview extends ContextView {
     // To store data from database
     private ArrayList<DataBase> temperatureData;
     private ArrayList<DataBase> ultrasonicData;
-    private ArrayList<DataBase> microphoneData;
 
     // JSON
     private JSONObject overviewTemp;
     private JSONObject overviewDistance;
-
-    // For JSON binding
-    private final String hostname_one = "agent_one";
-    private final String hostname_two = "agent_two";
-    private final String pi_one = "raspberry-pi-1";
-    private final String pi_two = "raspberry-pi-2";
+    
 
     public SystemOverview() {
+        initialTable = new InitialContextTable();
         monitoringTable = new MonitoringContextTable();
         fWriter = null;
         temperatureData = new ArrayList<DataBase>();
         ultrasonicData = new ArrayList<DataBase>();
-        microphoneData = new ArrayList<DataBase>();
+        
+        overallContext = new ArrayList<DataBase>();
     }
-
+    
     public SystemOverview(ArrayList<DataBase> overallContext) {
+        initialTable = new InitialContextTable();
         monitoringTable = new MonitoringContextTable();
         fWriter = null;
         temperatureData = new ArrayList<DataBase>();
         ultrasonicData = new ArrayList<DataBase>();
-        microphoneData = new ArrayList<DataBase>();
+        
         this.overallContext = overallContext;
     }
 
     /**
-     * Retrieves temperature data from INITIAL MONITORING TABLE
-     *
+     * Retrieves temperature data from InitialContext table
+     * 
+     * ------
+     * 
+     * Retrieves overview of temperature data from InitialContext if MonitoringContext 
+     * is empty. 
+     * 
+     * If MonitoringContext isn't empty, generate an updated model of both
+     * tables (as depicted in View.java) and retrieve values based on the "temperature"
+     * field type.
+     * 
+     * 
      * We'll need to change this to the general table later!!!
      */
     public void getTemperatureData() {
         String temp_field = "temperature";
-
+        
         // get data from initial context table
         if (overallContext.isEmpty()) {
-            monitoringTable.open();
-            temperatureData = monitoringTable.retrieveOverviewByContext(temp_field);
-            monitoringTable.close();
+            
+            
+            // check table MonitoringContext exists
+            //
+            // if it exists, get data from MonitoringContext
+            // AND from InitialContext to create an updated model based on
+            // our ExperienceBank
+            if(monitoringTable.isEmpty() == true) {
+                initialTable.open();
+                monitoringTable.open();
+                
+                ArrayList<DataBase> initialTemperatureData = initialTable.retrieveOverviewByName(temp_field);
+                ArrayList<DataBase> monitoringTemperatureData = monitoringTable.retrieveOverviewByName(temp_field);
+                
+                ExperienceBank exBank = new ExperienceBank();
+                
+                // create an updated model of data specifically for field "temperature"
+                temperatureData = exBank.merge(initialTemperatureData, monitoringTemperatureData);
+                
+                initialTable.close();
+                monitoringTable.close();
+            }
+            else {
+                // otherwise get data from InitialContext
+                initialTable.open();
+                temperatureData = initialTable.retrieveOverviewByName(temp_field);
+                initialTable.close();
+            }
+                        
+            
+//            monitoringTable.open();
+//            temperatureData = monitoringTable.retrieveOverviewByContext(temp_field);
+//            monitoringTable.close();
         } else {
+            
+            System.out.println();
+            System.out.println("getTemperatureData()");
+            System.out.println();
+            
             // get temperature values from all the values in overallContext 
             for (DataBase entry : overallContext) {
                 // if entry type is "temperature"
@@ -93,11 +137,11 @@ public class SystemOverview extends ContextView {
      */
     public void getMovementData() {
         String movement_field = "movement";
-
+        
         // get data from initial context table
         if (overallContext.isEmpty()) {
             monitoringTable.open();
-            temperatureData = monitoringTable.retrieveOverviewByContext(movement_field);
+            temperatureData = monitoringTable.retrieveOverviewByName(movement_field);
             monitoringTable.close();
         } else {
             // get ultrasonic values from all the values in overallContext 
@@ -106,32 +150,6 @@ public class SystemOverview extends ContextView {
                 if (entry.getType().equals(movement_field)) {
                     // store it
                     ultrasonicData.add(entry);
-                }
-            }
-        }
-
-    }
-
-    /**
-     * Retrieves microphone data from INITIAL MONITORING TABLE
-     *
-     * We'll need to change this to the general table later!!!
-     */
-    public void getMicrophoneData() {
-        String microphone_field = "microphone";
-
-        // get data from initial context table
-        if (overallContext.isEmpty()) {
-            monitoringTable.open();
-            temperatureData = monitoringTable.retrieveOverviewByContext(microphone_field);
-            monitoringTable.close();
-        } else {
-            // get microhpone values from all the values in overallContext 
-            for (DataBase entry : overallContext) {
-                // if entry type is "microphone"
-                if(entry.getType().equals(microphone_field)) {
-                    // store it
-                    microphoneData.add(entry);
                 }
             }
         }
@@ -175,26 +193,8 @@ public class SystemOverview extends ContextView {
                 ex.printStackTrace();
             }
         }
-//        else {
-//            // write temperature overview data to a JSON file            
-//            String temperature_overview_file = "temperature_overview.json";
-//
-//            String fWriterPathTemperature = path;
-//            // temporary
-////            fWriterPathTemperature += "js/json/logs/";
-//            fWriterPathTemperature += "http://localhost:8080/AmI_System__Web_/js/json/logs/";
-//            fWriterPathTemperature += temperature_overview_file;
-//
-//            try {
-//                fWriter = new FileWriter(fWriterPathTemperature);
-//                fWriter.write(temperatureOverview.toJSONString());
-//                fWriter.flush();
-//                fWriter.close();
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//        }
 
+        
         /*
          *      Ultrasonic
          */
@@ -220,30 +220,5 @@ public class SystemOverview extends ContextView {
             }
         }
         
-        /*
-         *      Microphone
-         */
-        if (microphoneData.isEmpty()) {
-            String context = "Microphone";
-            microphoneOverview = super.parseOverallContext(microphoneData, context);
-
-            // write temperature overview data to a JSON file            
-            String temperature_overview_file = "microphone_overview.json";
-
-            String fWriterPathTemperature = path;
-            fWriterPathTemperature += "js/json/logs/";
-            fWriterPathTemperature += temperature_overview_file;
-
-            // write temperature overview data to file
-            try {
-                fWriter = new FileWriter(fWriterPathTemperature);
-                fWriter.write(temperatureOverview.toJSONString());
-                fWriter.flush();
-                fWriter.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
     }
 }

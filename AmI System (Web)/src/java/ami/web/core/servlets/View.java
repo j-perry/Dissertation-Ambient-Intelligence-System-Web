@@ -104,24 +104,23 @@ public class View extends HttpServlet {
                 ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
                 ArrayList<DataBase> monitoringContext = new ArrayList<DataBase>();
                 ArrayList<DataBase> overallContext = new ArrayList<DataBase>();
-
+                
                 ExperienceBank exBank = new ExperienceBank();
-
+                
                 // retrieve all entries from both table InitialContext and MonitoringContext
-                initialContext = initialContextTable.getAllEntries();
-                monitoringContext = monitoringContextTable.getAllEntries();
-
+                initialContext = initialContextTable.retrieveAll();
+                monitoringContext = monitoringContextTable.retrieveAll();
+                
                 // create a balanced context, created by entry results stored in both tables
                 overallContext = exBank.merge(initialContext, monitoringContext);
-
+                
                 // create overview data based on our overall context
                 SystemOverview systemOverview = new SystemOverview(overallContext);
-
+                
                 // get the temperature values from our overallContext collection
                 // not from the database
                 systemOverview.getTemperatureData();
-                systemOverview.getMovementData();
-                systemOverview.getMicrophoneData();
+//                systemOverview.getMovementData();
 
                 // serialize our data to JSON file/s
                 systemOverview.serializeDataToJson(path);
@@ -133,11 +132,11 @@ public class View extends HttpServlet {
             else {
                 // generate a system overview based on the InitialContext table
                 getSystemHistory(path);
-
-                // get the system history and overview from the database and serialise it to JSON
+                
+                // get the system overview from the database and serialise it to JSON
                 getSystemOverview(path);
             }
-
+            
             // close our database connections
             initialContextTable.close();
             monitoringContextTable.close();
@@ -152,8 +151,8 @@ public class View extends HttpServlet {
             ExperienceBank exBank = new ExperienceBank();
 
             // retrieve all entries from both table InitialContext and MonitoringContext
-            initialContext = initialContextTable.getAllEntries();
-            monitoringContext = monitoringContextTable.getAllEntries();
+            initialContext = initialContextTable.retrieveAll();
+            monitoringContext = monitoringContextTable.retrieveAll();
 
             // create a balanced context, created by entry results stored in both tables
             overallContext = exBank.merge(initialContext, monitoringContext);
@@ -235,9 +234,10 @@ public class View extends HttpServlet {
      */
     private void getSystemOverview(String path) {
         SystemOverview overview = new SystemOverview();
+        
         overview.getTemperatureData();
 //        overview.getMovementData();
-//        overview.getMicrophoneData();
+        
         overview.serializeDataToJson(path);
     }
 
