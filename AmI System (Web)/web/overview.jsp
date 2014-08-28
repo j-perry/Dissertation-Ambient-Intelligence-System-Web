@@ -87,7 +87,6 @@
                 <div id="sub-heading" class="size">
                     <p><u><span id="hours-accumulated"></span></u> and <u><span id="minutes-accumulated"></span></u> have been accumulated in total.</p>                    
                     <p>There are currently <u><span id="number-agents"></span></u> and <u><span id="number-sensors"></span></u> setup.</p>
-                    <p>So far <u><span id="number-contexts"></span>x4 types of context</u> available for analysis.</p>
                 </div>
             
             </div>
