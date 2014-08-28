@@ -224,14 +224,14 @@ public class View extends HttpServlet {
         // movement.jsp view
         } else if (type.equals("movement")) {
             path = getServletContext().getRealPath("/");
-
+            
             // if the MonitoringContext table is not empty...
             if (monitoringContextTable.isEmpty() == false) {
-
+                
                 ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
                 ArrayList<DataBase> monitoringContext = new ArrayList<DataBase>();
                 ArrayList<DataBase> overallContext = new ArrayList<DataBase>();
-
+                
                 ExperienceBank exBank = new ExperienceBank();
                 
                 initialContextTable.open();
