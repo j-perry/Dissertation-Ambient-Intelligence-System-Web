@@ -77,7 +77,8 @@ public class MonitoringContextTable implements IDatabase {
      */
     public boolean isEmpty() {
         boolean isEmpty = false;
-        query = "SELECT COUNT(*) FROM " + tableName;
+        query = "SELECT COUNT(*) "
+                + "FROM " + tableName;
         ResultSet rs;
 
         try {
@@ -100,15 +101,30 @@ public class MonitoringContextTable implements IDatabase {
 
                 // check whether the table is empty or now
                 if (noRows > 0) {
+
+                    System.out.println();
+                    System.out.println("-------------------------------------------");
                     System.out.println("MonitoringContext is not empty");
+                    System.out.println("-------------------------------------------");
+                    System.out.println();
+
                     isEmpty = false;
                 } else {
+                    System.out.println();
+                    System.out.println("-------------------------------------------");
                     System.out.println("MonitoringContext is empty");
+                    System.out.println("-------------------------------------------");
+                    System.out.println();
                     isEmpty = true;
                 }
             } else {
                 // Table does not exist
-                System.out.println("MonitoringContext does not exist");
+                System.out.println();
+                System.out.println("-------------------------------------------");
+                System.out.println("MonitoringContext does not empty");
+                System.out.println("-------------------------------------------");
+                System.out.println();
+                
                 isEmpty = true;
             }
 
@@ -129,9 +145,9 @@ public class MonitoringContextTable implements IDatabase {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
         DataBase dataBase = new DataBase();
         query = "SELECT * "
-              + "FROM " + tableName + " "
-              + "WHERE Type = '" + field + "'";
-        
+                + "FROM " + tableName + " "
+                + "WHERE Context = '" + field + "'";
+
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
             qryStatement = conn.createStatement();
@@ -139,7 +155,7 @@ public class MonitoringContextTable implements IDatabase {
 
             while (rs.next()) {
                 dataBase.setValue(rs.getInt("Value"));
-                dataBase.setType(rs.getString("Type"));
+                dataBase.setType(rs.getString("Context"));
                 dataBase.setLinguisticType(rs.getString("LinguisticType"));
 
                 entries.add(dataBase);
@@ -149,10 +165,10 @@ public class MonitoringContextTable implements IDatabase {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return entries;
     }
-    
+
     /**
      * Retrieves raw data from the table
      *
@@ -161,7 +177,8 @@ public class MonitoringContextTable implements IDatabase {
     public ArrayList<DataBase> retrieveAll() {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
         DataBase dataBase = new DataBase();
-        query = "SELECT * FROM " + tableName;
+        query = "SELECT * "
+                + "FROM " + tableName;
 
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
@@ -183,7 +200,7 @@ public class MonitoringContextTable implements IDatabase {
 
                 // general data
                 dataBase.setValue(rs.getInt("Value"));
-                dataBase.setType(rs.getString("Type"));
+                dataBase.setType(rs.getString("Context"));
                 dataBase.setLinguisticType(rs.getString("LinguisticType"));
 
                 entries.add(dataBase);
@@ -196,7 +213,7 @@ public class MonitoringContextTable implements IDatabase {
 
         return entries;
     }
-    
+
     /**
      * Retrieves raw data from the table by field
      *
@@ -205,7 +222,9 @@ public class MonitoringContextTable implements IDatabase {
     public ArrayList<DataBase> retrieveOverviewByName(String field) {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
         DataBase dataBase = new DataBase();
-        query = "SELECT * FROM " + tableName + " WHERE Context= '" + field + "'";
+        query = "SELECT * "
+                + "FROM " + tableName + " "
+                + "WHERE Context= '" + field + "'";
 
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
@@ -215,17 +234,17 @@ public class MonitoringContextTable implements IDatabase {
 
             // check if "MonitoringContext" table is there
             ResultSet table = dbm.getTables(null, null, tableName, null);
-            
+
             // table exists
-            if (table.next() ) {
+            if (table.next()) {
                 qryStatement = conn.createStatement();
                 ResultSet rs = qryStatement.executeQuery(query);
-                
+
                 System.out.println();
                 System.out.println(tableName + "DOESN'T EXIST");
                 System.out.println();
-                
-                while (rs.next() ) {
+
+                while (rs.next()) {
                     dataBase.setSessionId(rs.getInt("SessionId"));
                     dataBase.setHostname(rs.getString("Hostname"));
                     dataBase.setHour(rs.getInt("Hour"));
@@ -238,11 +257,10 @@ public class MonitoringContextTable implements IDatabase {
                     dataBase.setLinguisticType(rs.getString("LinguisticType"));
 
                     entries.add(dataBase);
-                    
+
                     rs.close();
                 }
-            }
-            else {
+            } else {
                 entries = null;
             }
         } catch (SQLException ex) {

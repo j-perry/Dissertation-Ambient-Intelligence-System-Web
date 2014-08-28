@@ -81,6 +81,8 @@ public class View extends HttpServlet {
 
         initialContextTable = new InitialContextTable();
         monitoringContextTable = new MonitoringContextTable();
+        
+        overallContextTable = new OverallContextTable();
 
         // open our database connections
         initialContextTable.open();
@@ -91,18 +93,28 @@ public class View extends HttpServlet {
         String msg = null;
         JSONObject jsonObj = new JSONObject();
         FileWriter fWriter = null;
-
+        
         /**
          * Get the required content from the database
          */
         // overview.jsp view
         if (type.equals("overview")) {
             path = getServletContext().getRealPath("/");
-
+            
             // if the MonitoringContext table is not empty...
-            if (!monitoringContextTable.isEmpty()) {
+            if (monitoringContextTable.isEmpty() == false) {
+                
+                System.out.println();
+                System.out.println("--------------------------------");
+                System.out.println();
+                System.out.println("monitoringContextTable.isEmpty() == false");
+                System.out.println();
+                System.out.println("--------------------------------");
+                
+                
                 ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
                 ArrayList<DataBase> monitoringContext = new ArrayList<DataBase>();
+                
                 ArrayList<DataBase> overallContext = new ArrayList<DataBase>();
                 
                 ExperienceBank exBank = new ExperienceBank();
@@ -127,7 +139,9 @@ public class View extends HttpServlet {
 
                 // write an updated contextual model based on weekday values (values
                 // similar to those found in table MonitoringContext)
+                overallContextTable.open();
                 overallContextTable.update(overallContext);
+                overallContextTable.close();
             } // else if there aren't any entries in table MonitoringContext
             else {
                 // generate a system overview based on the InitialContext table

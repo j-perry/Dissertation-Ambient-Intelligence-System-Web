@@ -97,7 +97,7 @@ public class InitialContextTable implements IDatabase {
                 dataBase.setYear(rs.getInt("Year"));
 
                 dataBase.setValue(rs.getInt("Value"));
-                dataBase.setType(rs.getString("Type"));
+                dataBase.setType(rs.getString("Context"));
                 dataBase.setLinguisticType(rs.getString("LinguisticType"));
 
                 entries.add(dataBase);
@@ -122,7 +122,7 @@ public class InitialContextTable implements IDatabase {
         DataBase dataBase = new DataBase();
         query = "SELECT * "
               + "FROM " + tableName + " "
-              + "WHERE Type = '" + field + "'";
+              + "WHERE Context = '" + field + "'";
         
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
@@ -131,7 +131,7 @@ public class InitialContextTable implements IDatabase {
 
             while (rs.next()) {
                 dataBase.setValue(rs.getInt("Value"));
-                dataBase.setType(rs.getString("Type"));
+                dataBase.setType(rs.getString("Context"));
                 dataBase.setLinguisticType(rs.getString("LinguisticType"));
 
                 entries.add(dataBase);
@@ -156,7 +156,7 @@ public class InitialContextTable implements IDatabase {
         DataBase dataBase = new DataBase();
         query = "SELECT * "
               + "FROM " + tableName + " "
-              + "WHERE Type = '" + field + "'";
+              + "WHERE Context = '" + field + "'";
         
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
@@ -165,7 +165,7 @@ public class InitialContextTable implements IDatabase {
 
             while (rs.next()) {
                 dataBase.setValue(rs.getInt("Value"));
-                dataBase.setType(rs.getString("Type"));
+                dataBase.setType(rs.getString("Context"));
                 dataBase.setLinguisticType(rs.getString("LinguisticType"));
 
                 entries.add(dataBase);

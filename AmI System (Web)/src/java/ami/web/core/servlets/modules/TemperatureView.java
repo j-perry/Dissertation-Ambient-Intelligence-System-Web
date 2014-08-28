@@ -7,15 +7,12 @@ package ami.web.core.servlets.modules;
 
 // local libraries
 import ami.web.core.db.InitialContextTable;
+import ami.web.core.db.OverallContextTable;
 import ami.web.core.models.client.DataBase;
-
-// Java APIs
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-// third party libraries
 import org.json.simple.JSONObject;
 
 /**
@@ -37,6 +34,7 @@ public class TemperatureView extends ContextView {
     private FileWriter fWriter;
     
     private InitialContextTable initialContextTable;
+    private OverallContextTable overallContextTable;
     
     public TemperatureView() {
         mondayData = new ArrayList<DataBase>();
@@ -44,6 +42,11 @@ public class TemperatureView extends ContextView {
         wednesdayData = new ArrayList<DataBase>();
         thursdayData = new ArrayList<DataBase>();
         fridayData = new ArrayList<DataBase>();
+        
+        overallContext = new ArrayList<DataBase>();
+        
+        initialContextTable = new InitialContextTable();
+        overallContextTable = new OverallContextTable();
         fWriter = null;
     }
     
@@ -55,13 +58,16 @@ public class TemperatureView extends ContextView {
         fridayData = new ArrayList<DataBase>();
         fWriter = null;
         
+        initialContextTable = new InitialContextTable();
+        overallContextTable = new OverallContextTable();
+        
         this.overallContext = overallContext;
     }
 
     /**
      * Get data for Monday from either overallContext OR from table InitialMonitoring
      */
-    public void getMonday() {    
+    public void getMonday() {
         
         // if empty, get entries from InitialContext table
         if(overallContext.isEmpty()) {
@@ -88,7 +94,7 @@ public class TemperatureView extends ContextView {
      * Get data for Tuesday from either overallContext OR from table InitialMonitoring
      */
     public void getTuesday() {
-
+        
         // if empty, get entries from InitialContext table
         if(overallContext.isEmpty()) {
             initialContextTable.open();
