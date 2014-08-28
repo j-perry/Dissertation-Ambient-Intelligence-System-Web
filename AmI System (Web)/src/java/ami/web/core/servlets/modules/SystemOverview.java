@@ -107,11 +107,6 @@ public class SystemOverview extends ContextView {
                 temperatureData = initialTable.retrieveOverviewByName(temp_field);
                 initialTable.close();
             }
-                        
-            
-//            monitoringTable.open();
-//            temperatureData = monitoringTable.retrieveOverviewByContext(temp_field);
-//            monitoringTable.close();
         } else {
             
             System.out.println();

@@ -121,7 +121,7 @@ public class MonitoringContextTable implements IDatabase {
                 // Table does not exist
                 System.out.println();
                 System.out.println("-------------------------------------------");
-                System.out.println("MonitoringContext does not empty");
+                System.out.println("MonitoringContext is not empty");
                 System.out.println("-------------------------------------------");
                 System.out.println();
                 
@@ -141,7 +141,7 @@ public class MonitoringContextTable implements IDatabase {
      * @param field
      * @return
      */
-    public ArrayList<DataBase> getFieldsByType(String field) {
+    public ArrayList<DataBase> getFieldByType(String field) {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
         DataBase dataBase = new DataBase();
         query = "SELECT * "
@@ -188,6 +188,7 @@ public class MonitoringContextTable implements IDatabase {
             while (rs.next()) {
                 // session id
                 dataBase.setSessionId(rs.getInt("SessionId"));
+                dataBase.setHostname(rs.getString("Hostname"));
 
                 // time
                 dataBase.setHour(rs.getInt("Hour"));
@@ -247,11 +248,14 @@ public class MonitoringContextTable implements IDatabase {
                 while (rs.next()) {
                     dataBase.setSessionId(rs.getInt("SessionId"));
                     dataBase.setHostname(rs.getString("Hostname"));
+                    
                     dataBase.setHour(rs.getInt("Hour"));
                     dataBase.setMinute(rs.getInt("Minute"));
+                    
                     dataBase.setDay(rs.getString("Day"));
                     dataBase.setMonth(rs.getString("Month"));
                     dataBase.setYear(rs.getInt("Year"));
+                    
                     dataBase.setValue(rs.getInt("Value"));
                     dataBase.setType(rs.getString("Context"));
                     dataBase.setLinguisticType(rs.getString("LinguisticType"));
@@ -260,7 +264,7 @@ public class MonitoringContextTable implements IDatabase {
 
                     rs.close();
                 }
-            } else {
+            } else {                
                 entries = null;
             }
         } catch (SQLException ex) {

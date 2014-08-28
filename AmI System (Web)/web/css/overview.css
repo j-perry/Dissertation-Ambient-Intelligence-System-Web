@@ -113,3 +113,9 @@ span.agent-2 {
 #environment div:nth-child(even) {
     background-color: #EEE;
 }
+a {
+    color: #111;
+}
+a:visited {
+    color: #111;
+}

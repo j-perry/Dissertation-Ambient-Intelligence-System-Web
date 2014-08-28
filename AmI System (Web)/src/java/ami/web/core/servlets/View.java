@@ -78,10 +78,10 @@ public class View extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-
+        
         initialContextTable = new InitialContextTable();
         monitoringContextTable = new MonitoringContextTable();
-
+        
         overallContextTable = new OverallContextTable();
 
         // open our database connections
@@ -171,7 +171,7 @@ public class View extends HttpServlet {
                 
                 // retrieve all entries from both table InitialContext and MonitoringContext
                 initialContext = initialContextTable.getFieldByType("temperature");
-                monitoringContext = monitoringContextTable.getFieldsByType("temperature");
+                monitoringContext = monitoringContextTable.getFieldByType("temperature");
                 
                 // create a balanced context, created by entry results stored in both tables
                 overallContext = exBank.merge(initialContext, monitoringContext);
@@ -239,7 +239,7 @@ public class View extends HttpServlet {
                 
                 // retrieve all entries from both table InitialContext and MonitoringContext
                 initialContext = initialContextTable.getFieldByType("movement");
-                monitoringContext = monitoringContextTable.getFieldsByType("movement");
+                monitoringContext = monitoringContextTable.getFieldByType("movement");
                 
                 // create a balanced context, created by entry results stored in both tables
                 overallContext = exBank.merge(initialContext, monitoringContext);
@@ -345,7 +345,7 @@ public class View extends HttpServlet {
         SystemOverview overview = new SystemOverview();
 
         overview.getTemperatureData();
-        overview.getMovementData();
+//        overview.getMovementData();
 
         overview.serializeDataToJson(path);
     }
