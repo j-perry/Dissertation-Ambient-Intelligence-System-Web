@@ -221,6 +221,73 @@ public class View extends HttpServlet {
                 initialContextTable.close();
                 monitoringContextTable.close();                
             }
+        // movement.jsp view
+        } else if (type.equals("movement")) {
+            path = getServletContext().getRealPath("/");
+
+            // if the MonitoringContext table is not empty...
+            if (monitoringContextTable.isEmpty() == false) {
+
+                ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
+                ArrayList<DataBase> monitoringContext = new ArrayList<DataBase>();
+                ArrayList<DataBase> overallContext = new ArrayList<DataBase>();
+
+                ExperienceBank exBank = new ExperienceBank();
+                
+                initialContextTable.open();
+                monitoringContextTable.open();
+                
+                // retrieve all entries from both table InitialContext and MonitoringContext
+                initialContext = initialContextTable.getFieldByType("movement");
+                monitoringContext = monitoringContextTable.getFieldsByType("movement");
+                
+                // create a balanced context, created by entry results stored in both tables
+                overallContext = exBank.merge(initialContext, monitoringContext);
+
+                // create overview data based on our overall context
+                SystemOverview systemOverview = new SystemOverview(overallContext);
+                systemOverview.getTemperatureData();
+                systemOverview.serializeDataToJson(path);
+
+                // create "ultra sonic" data based on our overall context
+                TemperatureView temperatureView = new TemperatureView(overallContext);
+                temperatureView.getMonday();
+                temperatureView.getTuesday();
+                temperatureView.getWednesday();
+                temperatureView.getThursday();
+                temperatureView.getFriday();
+
+                // serialize our data to JSON file/s
+                temperatureView.serializeDataToJSON(path);
+
+                // write an updated contextual model based on weekday values (values
+                // similar to those found in table MonitoringContext)
+                overallContextTable.open();
+                overallContextTable.update(overallContext);
+                overallContextTable.close();
+
+                // close our database connections
+                initialContextTable.close();
+                monitoringContextTable.close();
+
+            } else {
+                ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
+                
+                // create "ultrasonic" data based on our initial context
+                TemperatureView temperatureView = new TemperatureView(initialContext);
+                temperatureView.getMonday();
+                temperatureView.getTuesday();
+                temperatureView.getWednesday();
+                temperatureView.getThursday();
+                temperatureView.getFriday();                
+                
+                // serialize our data to JSON file/s
+                temperatureView.serializeDataToJSON(path);
+
+                // close our database connections
+                initialContextTable.close();
+                monitoringContextTable.close();                
+            }
 
         }
 
@@ -278,7 +345,7 @@ public class View extends HttpServlet {
         SystemOverview overview = new SystemOverview();
 
         overview.getTemperatureData();
-//        overview.getMovementData();
+        overview.getMovementData();
 
         overview.serializeDataToJson(path);
     }
