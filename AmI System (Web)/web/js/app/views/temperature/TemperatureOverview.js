@@ -31,6 +31,8 @@ define(path, function(temperatureOverview) {
                 
                 
                 // monday - friday
+                var hostname_one_saturday = data.agent_one["saturday"][0];
+                var hostname_one_sunday = data.agent_one["sunday"][0];
                 var hostname_one_monday = data.agent_one["monday"][0];
                 var hostname_one_tuesday = data.agent_one["tuesday"][0];
                 var hostname_one_wednesday = data.agent_one["wednesday"][0];
@@ -46,6 +48,8 @@ define(path, function(temperatureOverview) {
                 
                 
                 // monday - friday
+                var hostname_two_saturday = data.agent_two["saturday"][0];
+                var hostname_two_sunday = data.agent_two["sunday"][0];
                 var hostname_two_monday = data.agent_two["monday"][0];
                 var hostname_two_tuesday = data.agent_two["tuesday"][0];
                 var hostname_two_wednesday = data.agent_two["wednesday"][0];
@@ -59,7 +63,9 @@ define(path, function(temperatureOverview) {
                 //
                 ///////////////////////////////////////////////////////////////
 
-                var hours = new Array();
+                var hours = new Array();                
+                hours.push("Saturday");
+                hours.push("Sunday");
                 hours.push("Monday");
                 hours.push("Tuesday");
                 hours.push("Wednesday");
@@ -67,7 +73,7 @@ define(path, function(temperatureOverview) {
                 hours.push("Friday");
 
                 var data = {
-                    labels: [hours[0], hours[1], hours[2], hours[3], hours[4]],
+                    labels: [hours[0], hours[1], hours[2], hours[3], hours[4], hours[5], hours[6]],
                     datasets: [
                         {
                             label: hostname_one,
@@ -77,7 +83,9 @@ define(path, function(temperatureOverview) {
                             pointStrokeColor: "#fff",
                             pointHighlightFill: "#fff",
                             pointHighlightStroke: "rgba(220,220,220,1)",
-                            data: [hostname_one_monday, 
+                            data: [hostname_one_saturday, 
+                                   hostname_one_sunday, 
+                                   hostname_one_monday, 
                                    hostname_one_tuesday, 
                                    hostname_one_wednesday, 
                                    hostname_one_thursday,
@@ -91,7 +99,9 @@ define(path, function(temperatureOverview) {
                             pointStrokeColor: "#fff",
                             pointHighlightFill: "#fff",
                             pointHighlightStroke: "rgba(151,187,205,1)",
-                            data: [hostname_two_monday, 
+                            data: [hostname_two_saturday, 
+                                   hostname_two_sunday, 
+                                   hostname_two_monday, 
                                    hostname_two_tuesday, 
                                    hostname_two_wednesday, 
                                    hostname_two_thursday,
