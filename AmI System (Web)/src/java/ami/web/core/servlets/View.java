@@ -6,13 +6,14 @@
 package ami.web.core.servlets;
 
 // local libraries
-import ami.web.core.intelligence.ExperienceBank;
 import ami.web.core.db.*;
+import ami.web.core.intelligence.ExperienceBank;
 import ami.web.core.models.client.DataBase;
 import ami.web.core.servlets.modules.*;
 
 // Java APIs
 import java.io.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,8 +22,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// third party APIs
-import org.json.simple.*;
 
 /**
  *
@@ -78,21 +77,15 @@ public class View extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
+
         initialContextTable = new InitialContextTable();
         monitoringContextTable = new MonitoringContextTable();
-        
-        overallContextTable = new OverallContextTable();
 
-        // open our database connections
-        initialContextTable.open();
-        monitoringContextTable.open();
+        overallContextTable = new OverallContextTable();
 
         String type = request.getParameter("type");
         String viewUrl = type + ".jsp";
-        String msg = null;
-        JSONObject jsonObj = new JSONObject();
-        FileWriter fWriter = null;
+        
 
         /**
          * Get the required content from the database
@@ -101,8 +94,24 @@ public class View extends HttpServlet {
         if (type.equals("overview")) {
             path = getServletContext().getRealPath("/");
 
+            // open our database connections
+            initialContextTable.open();
+            monitoringContextTable.open();
+
             // if the MonitoringContext table is not empty...
             if (monitoringContextTable.isEmpty() == false) {
+
+                overallContextTable.open();
+
+                // for performance purposes...
+                if (overallContextTable.maxLimit() == true) {
+                    overallContextTable.deleteTable();
+                    System.out.println("DELETED TABLE");
+                }
+                
+                overallContextTable.close();
+
+                ExperienceBank exBank = new ExperienceBank();
 
                 System.out.println();
                 System.out.println("--------------------------------");
@@ -111,184 +120,107 @@ public class View extends HttpServlet {
                 System.out.println();
                 System.out.println("--------------------------------");
 
-                ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
-                ArrayList<DataBase> monitoringContext = new ArrayList<DataBase>();
-
-                ArrayList<DataBase> overallContext = new ArrayList<DataBase>();
-
-                ExperienceBank exBank = new ExperienceBank();
-
                 // retrieve all entries from both table InitialContext and MonitoringContext
-                initialContext = initialContextTable.retrieveAll();
-                monitoringContext = monitoringContextTable.retrieveAll();
+                ArrayList<DataBase> initialContext = initialContextTable.retrieveSample();
+                ArrayList<DataBase> monitoringContext = monitoringContextTable.retrieveAll();
+
+                initialContextTable.close();
+                monitoringContextTable.close();
 
                 // create a balanced context, created by entry results stored in both tables
-                overallContext = exBank.merge(initialContext, monitoringContext);
+                ArrayList<DataBase> overallContext = exBank.create(initialContext, monitoringContext);
+                
+                System.out.println("overallContext size: " + overallContext.size());
+
+                // generate a system overview based on the InitialContext table
+                getSystemHistory(path);
 
                 // create overview data based on our overall context
                 SystemOverview systemOverview = new SystemOverview(overallContext);
 
-                // get the temperature values from our overallContext collection
-                // not from the database
+                // sort the temperature and ultrasonic (movement)values from our 
+                // overallContext collection not from the database
                 systemOverview.getTemperatureData();
-//                systemOverview.getMovementData();
+                systemOverview.getMovementData();
 
-                // serialize our data to JSON file/s
+                // serialize our data to JSON
                 systemOverview.serializeDataToJson(path);
 
                 // write an updated contextual model based on weekday values (values
                 // similar to those found in table MonitoringContext)
-                overallContextTable.open();
-                overallContextTable.update(overallContext);
-                overallContextTable.close();
+                //
+                // only perform this operation here
+                try {
+                    overallContextTable.open();
+                    overallContextTable.insert(overallContext);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                } finally {
+                    overallContextTable.close();
+                }
+
             } // else if there aren't any entries in table MonitoringContext
             else {
-                // generate a system overview based on the InitialContext table
-                getSystemHistory(path);
 
                 // get the system overview from the database and serialise it to JSON
                 getSystemOverview(path);
             }
-
-            // close our database connections
-            initialContextTable.close();
-            monitoringContextTable.close();
         } // temperature.jsp view
         else if (type.equals("temperature")) {
             path = getServletContext().getRealPath("/");
+            
+            monitoringContextTable.open();
+            ArrayList<DataBase> overallContext = monitoringContextTable.retrieveOverviewByName(type);
+            monitoringContextTable.close();
+            
+            // create overview data based on our overall context
+            SystemOverview systemOverview = new SystemOverview(overallContext);
+            systemOverview.getTemperatureData();
+            
+            // serialize our temperature overview data to JSON
+            systemOverview.serializeDataToJson(path);
+            
+            // create "temperature" data based on our overall context
+            TemperatureView temperatureView = new TemperatureView(overallContext);
+            temperatureView.getSaturday();
+            temperatureView.getSunday();
+            temperatureView.getMonday();
+            temperatureView.getTuesday();
+            temperatureView.getWednesday();
+            temperatureView.getThursday();
+            temperatureView.getFriday();
+            
+            // serialize our weekly data to JSON
+            temperatureView.serializeDataToJSON(path);
 
-            // if the MonitoringContext table is not empty...
-            if (monitoringContextTable.isEmpty() == false) {
-
-                ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
-                ArrayList<DataBase> monitoringContext = new ArrayList<DataBase>();
-                ArrayList<DataBase> overallContext = new ArrayList<DataBase>();
-
-                ExperienceBank exBank = new ExperienceBank();
-                
-                initialContextTable.open();
-                monitoringContextTable.open();
-                
-                // retrieve all entries from both table InitialContext and MonitoringContext
-                initialContext = initialContextTable.getFieldByType("temperature");
-                monitoringContext = monitoringContextTable.getFieldByType("temperature");
-                
-                // create a balanced context, created by entry results stored in both tables
-                overallContext = exBank.merge(initialContext, monitoringContext);
-
-                // create overview data based on our overall context
-                SystemOverview systemOverview = new SystemOverview(overallContext);
-                systemOverview.getTemperatureData();
-                systemOverview.serializeDataToJson(path);
-
-                // create "temperature" data based on our overall context
-                TemperatureView temperatureView = new TemperatureView(overallContext);
-                temperatureView.getMonday();
-                temperatureView.getTuesday();
-                temperatureView.getWednesday();
-                temperatureView.getThursday();
-                temperatureView.getFriday();
-
-                // serialize our data to JSON file/s
-                temperatureView.serializeDataToJSON(path);
-
-                // write an updated contextual model based on weekday values (values
-                // similar to those found in table MonitoringContext)
-                overallContextTable.open();
-                overallContextTable.update(overallContext);
-                overallContextTable.close();
-
-                // close our database connections
-                initialContextTable.close();
-                monitoringContextTable.close();
-
-            } else {
-
-                ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
-                
-                // create "temperature" data based on our initial context
-                TemperatureView temperatureView = new TemperatureView(initialContext);
-                temperatureView.getMonday();
-                temperatureView.getTuesday();
-                temperatureView.getWednesday();
-                temperatureView.getThursday();
-                temperatureView.getFriday();                
-                
-                // serialize our data to JSON file/s
-                temperatureView.serializeDataToJSON(path);
-
-                // close our database connections
-                initialContextTable.close();
-                monitoringContextTable.close();                
-            }
-        // movement.jsp view
+            // movement.jsp view
         } else if (type.equals("movement")) {
             path = getServletContext().getRealPath("/");
+
+            monitoringContextTable.open();
+            ArrayList<DataBase> overallContext = monitoringContextTable.retrieveOverviewByName(type);
+            monitoringContextTable.close();
             
-            // if the MonitoringContext table is not empty...
-            if (monitoringContextTable.isEmpty() == false) {
-                
-                ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
-                ArrayList<DataBase> monitoringContext = new ArrayList<DataBase>();
-                ArrayList<DataBase> overallContext = new ArrayList<DataBase>();
-                
-                ExperienceBank exBank = new ExperienceBank();
-                
-                initialContextTable.open();
-                monitoringContextTable.open();
-                
-                // retrieve all entries from both table InitialContext and MonitoringContext
-                initialContext = initialContextTable.getFieldByType("movement");
-                monitoringContext = monitoringContextTable.getFieldByType("movement");
-                
-                // create a balanced context, created by entry results stored in both tables
-                overallContext = exBank.merge(initialContext, monitoringContext);
-
-                // create overview data based on our overall context
-                SystemOverview systemOverview = new SystemOverview(overallContext);
-                systemOverview.getTemperatureData();
-                systemOverview.serializeDataToJson(path);
-
-                // create "ultra sonic" data based on our overall context
-                TemperatureView temperatureView = new TemperatureView(overallContext);
-                temperatureView.getMonday();
-                temperatureView.getTuesday();
-                temperatureView.getWednesday();
-                temperatureView.getThursday();
-                temperatureView.getFriday();
-
-                // serialize our data to JSON file/s
-                temperatureView.serializeDataToJSON(path);
-
-                // write an updated contextual model based on weekday values (values
-                // similar to those found in table MonitoringContext)
-                overallContextTable.open();
-                overallContextTable.update(overallContext);
-                overallContextTable.close();
-
-                // close our database connections
-                initialContextTable.close();
-                monitoringContextTable.close();
-
-            } else {
-                ArrayList<DataBase> initialContext = new ArrayList<DataBase>();
-                
-                // create "ultrasonic" data based on our initial context
-                TemperatureView temperatureView = new TemperatureView(initialContext);
-                temperatureView.getMonday();
-                temperatureView.getTuesday();
-                temperatureView.getWednesday();
-                temperatureView.getThursday();
-                temperatureView.getFriday();                
-                
-                // serialize our data to JSON file/s
-                temperatureView.serializeDataToJSON(path);
-
-                // close our database connections
-                initialContextTable.close();
-                monitoringContextTable.close();                
-            }
-
+            // create overview data based on our overall context
+            SystemOverview systemOverview = new SystemOverview(overallContext);
+            systemOverview.getMovementData();
+            
+            // serialize our temperature overview data to JSON
+            systemOverview.serializeDataToJson(path);
+            
+            // create "temperature" data based on our overall context
+            MovementView movementView = new MovementView(overallContext);
+            movementView.getSaturday();
+            movementView.getSunday();
+            movementView.getMonday();
+            movementView.getTuesday();
+            movementView.getWednesday();
+            movementView.getThursday();
+            movementView.getFriday();
+            
+            // serialize our weekly data to JSON
+            movementView.serializeDataToJSON(path);
+            
         }
 
         // set the first letter to uppercase
@@ -337,7 +269,7 @@ public class View extends HttpServlet {
 
     /**
      * Generates an overview of the system's contextual data (e.g., room
-     * temperature)
+     * temperature, movement, etc)
      *
      * @param path Servlet path
      */
@@ -345,58 +277,9 @@ public class View extends HttpServlet {
         SystemOverview overview = new SystemOverview();
 
         overview.getTemperatureData();
-//        overview.getMovementData();
+        overview.getMovementData();
 
         overview.serializeDataToJson(path);
     }
 
-    private void getData() {
-//        /*
-//            TemperatureTable dbTemp = new TemperatureTable();
-//            dbTemp.open();
-//            List<Temperature> results = dbTemp.getResults();
-//            JSONArray values = new JSONArray();
-//            JSONArray dates = new JSONArray();
-//            JSONArray times = new JSONArray();
-//            
-//            // value
-//            for (Temperature result : results) {
-//                values.add(result.getValue());
-//            }
-//
-//            jsonObj.put("value", values);
-//
-//            // date
-//            for (Temperature result : results) {
-//                dates.add(result.getDate());
-//            }
-//
-//            jsonObj.put("date", dates);
-//
-//            // time
-//            for (Temperature result : results) {
-//                times.add(result.getTime());
-//            }
-//
-//            jsonObj.put("time", times);
-//
-//            // create the path for which we need to save our JSON data structure to
-//            // for parsing using JavaScript
-//            String filename = "overview_temperature.json";
-//
-//            String fWriterPath = getServletContext().getRealPath("/");
-//            fWriterPath += "js/json/logs/";
-//            fWriterPath += filename;
-//            
-//            try {
-//                fWriter = new FileWriter(fWriterPath);
-//                fWriter.write(jsonObj.toJSONString());
-//                fWriter.flush();
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            } finally {
-//                fWriter.close();
-//            }
-//            */
-    }
 }

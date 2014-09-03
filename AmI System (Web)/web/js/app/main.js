@@ -13,18 +13,16 @@ jQuery(document).ready(function() {
         
     /*      Paths (views)
     *******************************/ 
-//    var index = "http://tomcat.inf.susx.ac.uk:8080/jp373/";
-//    var overview = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview";
-//    var temperature = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature";
-//    var atmosphere = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=atmosphere";
-//    var movement = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=motion";
+    var index = "http://tomcat.inf.susx.ac.uk:8080/jp373/";
+    var overview = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=overview";
+    var temperature = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature";
+    var movement = "http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=movement";
     
     // for local development
-    var index = "http://localhost:8080/AmI_System__Web_/";
-    var overview = "http://localhost:8080/AmI_System__Web_/View?type=overview";
-    var temperature = "http://localhost:8080/AmI_System__Web_/View?type=temperature";
-    var movement = "http://localhost:8080/AmI_System__Web_/View?type=movement";
-    var atmosphere = "http://localhost:8080/AmI_System__Web_/View?type=atmosphere";
+//    var index = "http://localhost:8080/AmI_System__Web_/";
+//    var overview = "http://localhost:8080/AmI_System__Web_/View?type=overview";
+//    var temperature = "http://localhost:8080/AmI_System__Web_/View?type=temperature";
+//    var movement = "http://localhost:8080/AmI_System__Web_/View?type=movement";
     
     // get the current URL
     var url = document.URL;
@@ -53,37 +51,37 @@ jQuery(document).ready(function() {
 
 /**
  * Initialises JavaScript content for the index view
- * @returns {undefined}
  */
 function init_index() {
-//    require(['../jp373/js/app/views/Index'], function(index) {
-    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Index'], function(index) {
+    require(['../jp373/js/app/views/Index'], function(index) {
+//    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Index.js'], function(index) {
         index.setupAll();
     });
 }
 
 /**
  * Initialises JavaScript content for the overview view
- * @returns {undefined}
  */
 function init_overview() {
-//    require(['../jp373/js/app/views/Overview'], function(overview) {
-    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Overview.js'], function(overview) {
-        overview.tabify();
+    require(['../jp373/js/app/views/Overview'], function(overview) {
+//    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Overview.js'], function(overview) {
         overview.display();
+        overview.tabify();
     });
-    
-    displayLinecharts();
 }
 
 /**
  * Initialises JavaScript content for the temperature view
  */
 function init_temperature() {
-//    require(['../jp373/js/app/views/Temperature.js'], function(temperature) {
-    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Temperature.js'], function(temperature) {
+    require(['../jp373/js/app/views/Temperature'], function(temperature) {
+//    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Temperature.js'], function(temperature) {
         temperature.tabify();
         temperature.displayOverview();
+//        temperature.displayWeekdays();
+//        temperature.displayWeekdaySaturday();
+        temperature.displayWeekdaySunday();
+        
     });
 }
 
@@ -91,94 +89,10 @@ function init_temperature() {
  * Initialises JavaScript content for the movement view
  */
 function init_movement() {
-//    require(['../jp373/js/app/views/Movement.js'], function(movement) {
-    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Movement.js'], function(movement) {
+    require(['../jp373/js/app/views/Movement'], function(movement) {
+//    require(['http://localhost:8080/AmI_System__Web_/js/app/views/Movement.js'], function(movement) {
         movement.tabify();
-    });
-}
-
-/**
- * Initialises JavaScript content for the atmosphere view
- */
-function init_atmosphere() {
-    require(['../jp373/js/app/views/Atmosphere'], function(atmosphere) {
-        // TODO
-    });
-}
-
-/**
- * 
- */
-function displayLinecharts() {
-//    var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/temperature_overview.json";
-    var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/temperature_overview.json";
-    var values = "";
-    var date = "";
-    var time = "";
-    var weekdays = new Array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
-    
-    // get JSON values
-    $.getJSON(path, function(data) {
-
-        // values
-        for (var i in data.value) {
-            values += data.value[i] + ", ";
-        }
-
-        // remove the comma on the end of the variable
-        values = values.substr(0, values.length - 2);
-
-        // date
-        for (var i in data.date) {
-            if (i === 20)
-                break;
-            else
-                date += data.date[i] + ", ";
-        }
-
-        date = date.substr(0, date.length - 2);
-
-        // time
-        for (var i in data.time) {
-            if (i === 5)
-                break;
-            else
-                time += "\"" + data.time[i] + "\"" + ", ";
-        }
-
-        time = time.substr(0, time.length - 2);
-    });
-
-    var data = {
-        labels: [weekdays[0], weekdays[1], weekdays[2], weekdays[3], weekdays[4]],
-        datasets: [
-            {
-                label: "My First dataset",
-                fillColor: "rgba(52, 152, 219,1)",
-                strokeColor: "rgba(52, 152, 219,1)",
-                pointColor: "rgba(52, 152, 219,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [29, 31, 29, 30, 31]
-            },
-            {
-                label: "My Second dataset",
-                fillColor: "rgba(242,38,19, 0.9)",
-                strokeColor: "rgba(242,38,19, 0.9)",
-                pointColor: "rgba(242,38,19,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [28, 27, 31, 29, 30]
-            }
-        ]
-    };
-    
-    var ctx = document.getElementById("myChart3").getContext("2d");
-    var myLineChart = new Chart(ctx).Line(data, {
-        bezierCurve: false,
-        scaleShowGridLines: false,
-        scaleGridLineColor: "rgba(0,0,0, 1)"
+        movement.displayOverview();
+        movement.displayWeekdays();
     });
 }

@@ -59,7 +59,7 @@
 
                     <h2><a href="http://tomcat.inf.susx.ac.uk:8080/jp373/View?type=temperature">Room Temperature</a></h2>
 
-                    <div class="agents">
+                    <div class="agents" style="background-color: #FFF">
                         <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
                     </div>
                     
@@ -75,7 +75,7 @@
                         <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
                     </div>
                     
-                    <canvas id="myChart3" width="1100" height="400"></canvas>
+                    <canvas id="movementOverview" width="1100" height="400"></canvas>
 
                 </div>
                                 

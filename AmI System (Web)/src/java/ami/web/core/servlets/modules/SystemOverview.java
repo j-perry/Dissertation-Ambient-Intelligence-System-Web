@@ -32,7 +32,7 @@ public class SystemOverview extends ContextView {
 
     // To store data from database
     private ArrayList<DataBase> temperatureData;
-    private ArrayList<DataBase> ultrasonicData;
+    private ArrayList<DataBase> movementData;
 
     // JSON
     private JSONObject overviewTemp;
@@ -44,7 +44,7 @@ public class SystemOverview extends ContextView {
         monitoringTable = new MonitoringContextTable();
         fWriter = null;
         temperatureData = new ArrayList<DataBase>();
-        ultrasonicData = new ArrayList<DataBase>();
+        movementData = new ArrayList<DataBase>();
         
         overallContext = new ArrayList<DataBase>();
     }
@@ -54,7 +54,7 @@ public class SystemOverview extends ContextView {
         monitoringTable = new MonitoringContextTable();
         fWriter = null;
         temperatureData = new ArrayList<DataBase>();
-        ultrasonicData = new ArrayList<DataBase>();
+        movementData = new ArrayList<DataBase>();
         
         this.overallContext = overallContext;
     }
@@ -75,18 +75,26 @@ public class SystemOverview extends ContextView {
      * We'll need to change this to the general table later!!!
      */
     public void getTemperatureData() {
-        String temp_field = "temperature";
+        final String temp_field = "temperature";
+        
+        if(!overallContext.isEmpty()) {
+            System.out.println("overallContext IS NOT EMPTY");
+            System.out.println("It's size is: " + overallContext.size() );
+        }
         
         // get data from initial context table
         if (overallContext.isEmpty()) {
             
+            System.out.println("getTemperatureData() - overallContext is empty");
             
             // check table MonitoringContext exists
             //
             // if it exists, get data from MonitoringContext
             // AND from InitialContext to create an updated model based on
             // our ExperienceBank
-            if(monitoringTable.isEmpty() == true) {
+            if(monitoringTable.isEmpty() == false) {
+                System.out.println("monitoringTable.isEmpty() == false");
+                
                 initialTable.open();
                 monitoringTable.open();
                 
@@ -96,12 +104,14 @@ public class SystemOverview extends ContextView {
                 ExperienceBank exBank = new ExperienceBank();
                 
                 // create an updated model of data specifically for field "temperature"
-                temperatureData = exBank.merge(initialTemperatureData, monitoringTemperatureData);
+                temperatureData = exBank.create(initialTemperatureData, monitoringTemperatureData);
                 
                 initialTable.close();
                 monitoringTable.close();
             }
             else {
+                System.out.println("monitoringTable.isEmpty() == true");
+                
                 // otherwise get data from InitialContext
                 initialTable.open();
                 temperatureData = initialTable.retrieveOverviewByName(temp_field);
@@ -109,22 +119,25 @@ public class SystemOverview extends ContextView {
             }
         } else {
             
-            System.out.println();
             System.out.println("getTemperatureData()");
-            System.out.println();
+            System.out.println("DETAILS...");
             
             // get temperature values from all the values in overallContext 
             for (DataBase entry : overallContext) {
                 // if entry type is "temperature"
                 if (entry.getType().equals(temp_field)) {
                     // store it
+//                    System.out.println("TYPE: " + entry.getType() );
+//                    System.out.println("HOSTNAME: " + entry.getHostname() );
                     temperatureData.add(entry);
                 }
             }
+            
+            System.out.println("size(): " + temperatureData.size());
         }
 
     }
-
+    
     /**
      * Retrieves ultra sonic transceiver data from INITIAL MONITORING TABLE
      *
@@ -135,19 +148,70 @@ public class SystemOverview extends ContextView {
         
         // get data from initial context table
         if (overallContext.isEmpty()) {
-            monitoringTable.open();
-            temperatureData = monitoringTable.retrieveOverviewByName(movement_field);
-            monitoringTable.close();
+                        
+            System.out.println("getMovementData() - overallContext is empty");
+            
+            // check table MonitoringContext exists
+            //
+            // if it exists, get data from MonitoringContext
+            // AND from InitialContext to create an updated model based on
+            // our ExperienceBank
+            if(monitoringTable.isEmpty() == true) {
+                initialTable.open();
+                monitoringTable.open();
+                
+                ArrayList<DataBase> initialMovementData = initialTable.retrieveOverviewByName(movement_field);
+                ArrayList<DataBase> monitoringMovementData = monitoringTable.retrieveOverviewByName(movement_field);
+                
+                ExperienceBank exBank = new ExperienceBank();
+                
+                // create an updated model of data specifically for field "movement"
+                movementData = exBank.create(initialMovementData, monitoringMovementData);
+                
+                initialTable.close();
+                monitoringTable.close();
+            }
+            else {
+                // otherwise get data from InitialContext
+                initialTable.open();
+                movementData = initialTable.retrieveOverviewByName(movement_field);
+                initialTable.close();
+            }
         } else {
-            // get ultrasonic values from all the values in overallContext 
+            
+            System.out.println();
+            System.out.println("getMovementData()");
+            System.out.println();
+            
+            // get temperature values from all the values in overallContext 
             for (DataBase entry : overallContext) {
                 // if entry type is "movement"
                 if (entry.getType().equals(movement_field)) {
-                    // store it
-                    ultrasonicData.add(entry);
+                    // distance limit (otherwise it won't show in the graph!)
+                    if(entry.getValue() < 3000) {
+                        // store it
+                        movementData.add(entry);
+                    } 
+                    
                 }
             }
         }
+        
+//        // get data from initial context table
+//        if (overallContext.isEmpty()) {
+//            monitoringTable.open();
+//            temperatureData = monitoringTable.retrieveOverviewByName(movement_field);
+//            monitoringTable.close();
+//        } else {
+//            // get ultrasonic values from all the values in overallContext 
+//            for (DataBase entry : overallContext) {
+//                // if entry type is "movement"
+//                if (entry.getType().equals(movement_field)) {
+//                    // store it
+//                    ultrasonicData.add(entry);
+//                }
+//            }
+//        }
 
     }
 
@@ -157,20 +221,20 @@ public class SystemOverview extends ContextView {
      * @param path
      */
     public void serializeDataToJson(String path) {
-        JSONObject temperatureOverview = new JSONObject();
-        JSONObject ultrasonicOverview = new JSONObject();
-        JSONObject microphoneOverview = new JSONObject();
-
-
+        
         /*
          *      Temperature
          */
         if (!temperatureData.isEmpty()) {
             String context = "Temperature";
+            
+//            for(DataBase e : temperatureData) {
+//                System.out.println("TemperatureVal: " + e.getValue() );
+//            }
 
             // parse temperature data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureOverview = super.parseOverallContext(temperatureData, context);
+            JSONObject temperatureOverview = super.parseOverallContext(temperatureData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_overview.json";
@@ -184,6 +248,15 @@ public class SystemOverview extends ContextView {
                 fWriter.write(temperatureOverview.toJSONString());
                 fWriter.flush();
                 fWriter.close();
+                
+                System.out.println();
+                System.out.println("------------------------------------");
+                System.out.println();
+                System.out.println("Temperature data JSON File written");
+                System.out.println();
+                System.out.println("------------------------------------");
+                System.out.println();
+                
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -193,12 +266,15 @@ public class SystemOverview extends ContextView {
         /*
          *      Ultrasonic
          */
-        if (ultrasonicData.isEmpty()) {
+        if (!movementData.isEmpty()) {
             String context = "Movement";
-            ultrasonicOverview = super.parseOverallContext(ultrasonicData, context);
-
-            // write temperature overview data to a JSON file            
-            String temperature_overview_file = "ultrasonic_overview.json";
+            
+            System.out.println("movementData size: " + movementData.size() );
+            
+            JSONObject movementOverview = super.parseOverallContext(movementData, context);
+            
+            // write temperature overview data to a JSON file
+            String temperature_overview_file = "movement_overview.json";
 
             String fWriterPathTemperature = path;
             fWriterPathTemperature += "js/json/logs/";
@@ -207,9 +283,19 @@ public class SystemOverview extends ContextView {
             // write temperature overview data to file
             try {
                 fWriter = new FileWriter(fWriterPathTemperature);
-                fWriter.write(temperatureOverview.toJSONString());
+                fWriter.write(movementOverview.toJSONString());
                 fWriter.flush();
                 fWriter.close();
+                
+                
+                System.out.println();
+                System.out.println("------------------------------------");
+                System.out.println();
+                System.out.println("Movement data JSON File written");
+                System.out.println();
+                System.out.println("------------------------------------");
+                System.out.println();
+                
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

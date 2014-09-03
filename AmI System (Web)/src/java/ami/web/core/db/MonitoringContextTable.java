@@ -11,6 +11,8 @@ import static ami.web.core.db.IDatabase.driver;
 import static ami.web.core.db.IDatabase.password;
 import static ami.web.core.db.IDatabase.username;
 import ami.web.core.models.client.DataBase;
+
+// Java APIs
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -77,62 +79,58 @@ public class MonitoringContextTable implements IDatabase {
      */
     public boolean isEmpty() {
         boolean isEmpty = false;
-        query = "SELECT COUNT(*) "
+        query = "SELECT * "
                 + "FROM " + tableName;
         ResultSet rs;
+        int i = 0;
 
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
 
-            // check the table exists
-            DatabaseMetaData dbm = conn.getMetaData();
+            qryStatement = conn.createStatement();
+            rs = qryStatement.executeQuery(query);
 
-            // check if "MonitoringContext" table is there
-            ResultSet table = dbm.getTables(null, null, tableName, null);
+            while (rs.next()) {
+                i++;
+            }
 
-            if (table.next()) {
-                // Table exists
-                qryStatement = conn.createStatement();
-                rs = qryStatement.executeQuery(query);
+//            // go to the last row entry
+//            rs.last();
+//            int noRows = rs.getRow();
+            // check whether the table is empty or now
+            if (i > 0) {
 
-                // go to the last row entry
-                rs.last();
-                int noRows = rs.getRow();
-
-                // check whether the table is empty or now
-                if (noRows > 0) {
-
-                    System.out.println();
-                    System.out.println("-------------------------------------------");
-                    System.out.println("MonitoringContext is not empty");
-                    System.out.println("-------------------------------------------");
-                    System.out.println();
-
-                    isEmpty = false;
-                } else {
-                    System.out.println();
-                    System.out.println("-------------------------------------------");
-                    System.out.println("MonitoringContext is empty");
-                    System.out.println("-------------------------------------------");
-                    System.out.println();
-                    isEmpty = true;
-                }
-            } else {
-                // Table does not exist
                 System.out.println();
                 System.out.println("-------------------------------------------");
                 System.out.println("MonitoringContext is not empty");
                 System.out.println("-------------------------------------------");
                 System.out.println();
-                
+
+                isEmpty = false;
+            } else {
+                System.out.println();
+                System.out.println("-------------------------------------------");
+                System.out.println("MonitoringContext is empty");
+                System.out.println("-------------------------------------------");
+                System.out.println();
                 isEmpty = true;
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
         return isEmpty;
+//        else {
+//                // Table does not exist
+//                System.out.println();
+//                System.out.println("-------------------------------------------");
+//                System.out.println("MonitoringContext is not empty");
+//                System.out.println("-------------------------------------------");
+//                System.out.println();
+//
+//                isEmpty = true;
+//            }
+
     }
 
     /**
@@ -143,10 +141,10 @@ public class MonitoringContextTable implements IDatabase {
      */
     public ArrayList<DataBase> getFieldByType(String field) {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
-        DataBase dataBase = new DataBase();
+        DataBase dataBase;
         query = "SELECT * "
                 + "FROM " + tableName + " "
-                + "WHERE Context = '" + field + "'";
+                + "WHERE Context='" + field + "'";
 
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
@@ -154,6 +152,7 @@ public class MonitoringContextTable implements IDatabase {
             ResultSet rs = qryStatement.executeQuery(query);
 
             while (rs.next()) {
+                dataBase = new DataBase();
                 dataBase.setValue(rs.getInt("Value"));
                 dataBase.setType(rs.getString("Context"));
                 dataBase.setLinguisticType(rs.getString("LinguisticType"));
@@ -176,7 +175,7 @@ public class MonitoringContextTable implements IDatabase {
      */
     public ArrayList<DataBase> retrieveAll() {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
-        DataBase dataBase = new DataBase();
+        DataBase dataBase;
         query = "SELECT * "
                 + "FROM " + tableName;
 
@@ -186,13 +185,15 @@ public class MonitoringContextTable implements IDatabase {
             ResultSet rs = qryStatement.executeQuery(query);
 
             while (rs.next()) {
+                dataBase = new DataBase();
+                
                 // session id
                 dataBase.setSessionId(rs.getInt("SessionId"));
                 dataBase.setHostname(rs.getString("Hostname"));
 
                 // time
                 dataBase.setHour(rs.getInt("Hour"));
-                dataBase.setMinute(rs.getInt("Month"));
+                dataBase.setMinute(rs.getInt("Minute"));
 
                 // date
                 dataBase.setDay(String.valueOf(rs.getInt("Day")));
@@ -218,55 +219,42 @@ public class MonitoringContextTable implements IDatabase {
     /**
      * Retrieves raw data from the table by field
      *
+     * @param field
      * @return
      */
     public ArrayList<DataBase> retrieveOverviewByName(String field) {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
-        DataBase dataBase = new DataBase();
+        DataBase dataBase;
         query = "SELECT * "
                 + "FROM " + tableName + " "
-                + "WHERE Context= '" + field + "'";
-
+                + "WHERE Context='" + field + "'";
+        
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
 
-            // check the table exists
-            DatabaseMetaData dbm = conn.getMetaData();
+            qryStatement = conn.createStatement();
+            ResultSet rs = qryStatement.executeQuery(query);
 
-            // check if "MonitoringContext" table is there
-            ResultSet table = dbm.getTables(null, null, tableName, null);
+            while (rs.next()) {
+                dataBase = new DataBase();
+                dataBase.setSessionId(rs.getInt("SessionId"));
+                dataBase.setHostname(rs.getString("Hostname"));
 
-            // table exists
-            if (table.next()) {
-                qryStatement = conn.createStatement();
-                ResultSet rs = qryStatement.executeQuery(query);
+                dataBase.setHour(rs.getInt("Hour"));
+                dataBase.setMinute(rs.getInt("Minute"));
 
-                System.out.println();
-                System.out.println(tableName + "DOESN'T EXIST");
-                System.out.println();
+                dataBase.setDay(rs.getString("Day"));
+                dataBase.setMonth(rs.getString("Month"));
+                dataBase.setYear(rs.getInt("Year"));
 
-                while (rs.next()) {
-                    dataBase.setSessionId(rs.getInt("SessionId"));
-                    dataBase.setHostname(rs.getString("Hostname"));
-                    
-                    dataBase.setHour(rs.getInt("Hour"));
-                    dataBase.setMinute(rs.getInt("Minute"));
-                    
-                    dataBase.setDay(rs.getString("Day"));
-                    dataBase.setMonth(rs.getString("Month"));
-                    dataBase.setYear(rs.getInt("Year"));
-                    
-                    dataBase.setValue(rs.getInt("Value"));
-                    dataBase.setType(rs.getString("Context"));
-                    dataBase.setLinguisticType(rs.getString("LinguisticType"));
+                dataBase.setValue(rs.getInt("Value"));
+                dataBase.setType(rs.getString("Context"));
+                dataBase.setLinguisticType(rs.getString("LinguisticType"));
 
-                    entries.add(dataBase);
-
-                    rs.close();
-                }
-            } else {                
-                entries = null;
+                entries.add(dataBase);
             }
+
+            rs.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

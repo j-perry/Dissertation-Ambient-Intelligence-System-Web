@@ -74,7 +74,7 @@
 
                     <h2>Saturday</h2>
                     
-                    <div class="agents">
+                    <div class="agents" style="background-color: #FFF">
                         <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
                     </div>
 
@@ -98,7 +98,7 @@
 
                     <h2>Monday</h2>
                     
-                    <div class="agents">
+                    <div class="agents" style="background-color: #FFF">
                         <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
                     </div>
 
@@ -122,7 +122,7 @@
 
                     <h2>Wednesday</h2>
                     
-                    <div class="agents">
+                    <div class="agents" style="background-color: #FFF">
                         <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
                     </div>
 
@@ -139,14 +139,14 @@
                     </div>
 
                     <canvas id="movementThursday" width="1100" height="400"></canvas>
-
+                    
                 </div>
 
                 <div class="section friday">
 
                     <h2>Friday</h2>
                     
-                    <div class="agents">
+                    <div class="agents" style="background-color: #FFF">
                         <span class="agent-1">Agent 1</span><span> and </span><span class="agent-2">Agent 2</span>
                     </div>
 

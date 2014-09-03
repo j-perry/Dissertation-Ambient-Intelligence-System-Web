@@ -4,6 +4,7 @@
  * Candidate No. 102235
  */
 var path = '../jp373/js/app/Time';
+//var path = 'http://localhost:8080/AmI_System__Web_/js/app/Time.js';
 
 define(path, function(time) {
     function Time() {

@@ -75,6 +75,8 @@ public class TemperatureView extends ContextView {
      */
     public void getSaturday() {
         
+        System.out.println("getSaturday()");
+        
         // if empty, get entries from InitialContext table
         if(overallContext.isEmpty()) {
             initialContextTable.open();
@@ -84,13 +86,13 @@ public class TemperatureView extends ContextView {
             for(DataBase entry : results) {
                 // if the result is Monday                
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SATURDAY) {
-                    mondayData.add(entry);
+                    saturdayData.add(entry);
                 }
             }
         } else {
             for(DataBase entry : overallContext) {
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SATURDAY) {
-                    mondayData.add(entry);
+                    saturdayData.add(entry);
                 }
             }
         }
@@ -110,13 +112,13 @@ public class TemperatureView extends ContextView {
             for(DataBase entry : results) {
                 // if the result is Monday                
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SUNDAY) {
-                    mondayData.add(entry);
+                    sundayData.add(entry);
                 }
             }
         } else {
             for(DataBase entry : overallContext) {
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SUNDAY) {
-                    mondayData.add(entry);
+                    sundayData.add(entry);
                 }
             }
         }
@@ -237,6 +239,8 @@ public class TemperatureView extends ContextView {
             ArrayList<DataBase> results = initialContextTable.retrieveOverviewByName(field);
             initialContextTable.close();
             
+            System.out.println("getFriday()");
+            
             for(DataBase entry : results) {
                 // if the result is Friday
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.FRIDAY) {
@@ -253,28 +257,22 @@ public class TemperatureView extends ContextView {
     }
 
     /**
-     * 
+     * Serialize our TemperatureView data to JSON
      * @param path 
      */
     public void serializeDataToJSON(String path) {
+        
         // hours of data (potentially) to be serialized to JSON
-        JSONObject temperatureSaturday = new JSONObject();
-        JSONObject temperatureSunday = new JSONObject();
-        JSONObject temperatureMonday = new JSONObject();
-        JSONObject temperatureTuesday = new JSONObject();
-        JSONObject temperatureWednesday = new JSONObject();
-        JSONObject temperatureThursday = new JSONObject();
-        JSONObject temperatureFriday = new JSONObject();
+        final String context = "Temperature";
         
         /*
         *   Saturday
         */
         if(!saturdayData.isEmpty() ) {
-            String context = "Temperature";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseWeekdayContext(saturdayData, context);
+            JSONObject temperatureSaturday = super.parseWeekdayContext(saturdayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_saturday.json";
@@ -285,9 +283,11 @@ public class TemperatureView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathTemperature);
-                fWriter.write(temperatureMonday.toJSONString());
+                fWriter.write(temperatureSaturday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
+                
+                System.out.println("Saturday's data has been written to a JSON file");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -297,11 +297,10 @@ public class TemperatureView extends ContextView {
         *   Sunday
         */
         if(!sundayData.isEmpty() ) {
-            String context = "Temperature";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseWeekdayContext(sundayData, context);
+            JSONObject temperatureSunday = super.parseWeekdayContext(sundayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_sunday.json";
@@ -312,9 +311,11 @@ public class TemperatureView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathTemperature);
-                fWriter.write(temperatureMonday.toJSONString());
+                fWriter.write(temperatureSunday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
+                
+                System.out.println("Sunday's data has been written");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -325,11 +326,10 @@ public class TemperatureView extends ContextView {
         *   Monday
         */
         if(!mondayData.isEmpty() ) {
-            String context = "Temperature";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseWeekdayContext(mondayData, context);
+            JSONObject temperatureMonday = super.parseWeekdayContext(mondayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_monday.json";
@@ -343,6 +343,8 @@ public class TemperatureView extends ContextView {
                 fWriter.write(temperatureMonday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
+                
+                System.out.println("Monday's data has been written");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -353,11 +355,10 @@ public class TemperatureView extends ContextView {
         *   Tuesday
         */
         if(!tuesdayData.isEmpty() ) {
-            String context = "Temperature";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseWeekdayContext(tuesdayData, context);
+            JSONObject temperatureTuesday = super.parseWeekdayContext(tuesdayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_tuesday.json";
@@ -368,9 +369,11 @@ public class TemperatureView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathTemperature);
-                fWriter.write(temperatureMonday.toJSONString());
+                fWriter.write(temperatureTuesday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
+                
+                System.out.println("Tuesday's data has been written");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -381,11 +384,10 @@ public class TemperatureView extends ContextView {
         *   Wednesday
         */
         if(!wednesdayData.isEmpty() ) {
-            String context = "Temperature";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseWeekdayContext(wednesdayData, context);
+            JSONObject temperatureWednesday = super.parseWeekdayContext(wednesdayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_wednesday.json";
@@ -396,9 +398,11 @@ public class TemperatureView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathTemperature);
-                fWriter.write(temperatureMonday.toJSONString());
+                fWriter.write(temperatureWednesday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
+                
+                System.out.println("Wednesday's data has been written");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -409,11 +413,10 @@ public class TemperatureView extends ContextView {
         *   Thursday
         */
         if(!thursdayData.isEmpty() ) {
-            String context = "Temperature";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseWeekdayContext(thursdayData, context);
+            JSONObject temperatureThursday = super.parseWeekdayContext(thursdayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_thursday.json";
@@ -424,9 +427,11 @@ public class TemperatureView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathTemperature);
-                fWriter.write(temperatureMonday.toJSONString());
+                fWriter.write(temperatureThursday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
+                
+                System.out.println("Thursday's data has been written");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -437,11 +442,10 @@ public class TemperatureView extends ContextView {
         *   Friday
         */
         if(!fridayData.isEmpty() ) {
-            String context = "Temperature";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            temperatureMonday = super.parseWeekdayContext(fridayData, context);
+            JSONObject temperatureFriday = super.parseWeekdayContext(fridayData, context);
             
             // write temperature overview data to a JSON file            
             String temperature_overview_file = "temperature_friday.json";
@@ -452,12 +456,16 @@ public class TemperatureView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathTemperature);
-                fWriter.write(temperatureMonday.toJSONString());
+                fWriter.write(temperatureFriday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
+                
+                System.out.println("Friday's data has been written");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            
+            System.out.println("fridayData JSON File written");
         }
         
     }

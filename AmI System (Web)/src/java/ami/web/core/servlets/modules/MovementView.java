@@ -9,10 +9,14 @@ package ami.web.core.servlets.modules;
 import ami.web.core.db.InitialContextTable;
 import ami.web.core.db.OverallContextTable;
 import ami.web.core.models.client.DataBase;
+
+// Java APIs
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+// third party libraries
 import org.json.simple.JSONObject;
 
 /**
@@ -84,13 +88,13 @@ public class MovementView extends ContextView {
             for(DataBase entry : results) {
                 // if the result is Monday                
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SATURDAY) {
-                    mondayData.add(entry);
+                    saturdayData.add(entry);
                 }
             }
         } else {
             for(DataBase entry : overallContext) {
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SATURDAY) {
-                    mondayData.add(entry);
+                    saturdayData.add(entry);
                 }
             }
         }
@@ -108,15 +112,15 @@ public class MovementView extends ContextView {
             initialContextTable.close();
             
             for(DataBase entry : results) {
-                // if the result is Monday                
+                // if the result is Sunday                
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SUNDAY) {
-                    mondayData.add(entry);
+                    sundayData.add(entry);
                 }
             }
         } else {
             for(DataBase entry : overallContext) {
                 if(super.findDayInWeek(entry.getYear(), entry.getMonth(), entry.getDay() ) == Calendar.SUNDAY) {
-                    mondayData.add(entry);
+                    sundayData.add(entry);
                 }
             }
         }
@@ -251,30 +255,24 @@ public class MovementView extends ContextView {
             }
         }
     }
-
+    
     /**
-     * 
+     * Serialize our MovementView data to JSON
      * @param path 
      */
     public void serializeDataToJSON(String path) {
-        // hours of data (potentially) to be serialized to JSON
-        JSONObject movementSaturday = new JSONObject();
-        JSONObject movementSunday = new JSONObject();
-        JSONObject movementMonday = new JSONObject();
-        JSONObject movementTuesday = new JSONObject();
-        JSONObject movementWednesday = new JSONObject();
-        JSONObject movementThursday = new JSONObject();
-        JSONObject movementFriday = new JSONObject();
+        
+        // hours of data (potentially) to be serialized to JSON                
+        final String context = "Movement";
         
         /*
         *   Saturday
         */
         if(!saturdayData.isEmpty() ) {
-            String context = "Movement";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            movementMonday = super.parseWeekdayContext(saturdayData, context);
+            JSONObject movementSaturday = super.parseWeekdayContext(saturdayData, context);
             
             // write movement overview data to a JSON file            
             String movement_overview_file = "movement_saturday.json";
@@ -285,7 +283,7 @@ public class MovementView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathMovement);
-                fWriter.write(movementMonday.toJSONString());
+                fWriter.write(movementSaturday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
             } catch (IOException ex) {
@@ -297,11 +295,10 @@ public class MovementView extends ContextView {
         *   Sunday
         */
         if(!sundayData.isEmpty() ) {
-            String context = "Movement";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            movementMonday = super.parseWeekdayContext(sundayData, context);
+            JSONObject movementSunday = super.parseWeekdayContext(sundayData, context);
             
             // write movement overview data to a JSON file            
             String movement_overview_file = "movement_sunday.json";
@@ -312,7 +309,7 @@ public class MovementView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathMovement);
-                fWriter.write(movementMonday.toJSONString());
+                fWriter.write(movementSunday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
             } catch (IOException ex) {
@@ -325,11 +322,10 @@ public class MovementView extends ContextView {
         *   Monday
         */
         if(!mondayData.isEmpty() ) {
-            String context = "Movement";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            movementMonday = super.parseWeekdayContext(mondayData, context);
+            JSONObject movementMonday = super.parseWeekdayContext(mondayData, context);
             
             // write movement overview data to a JSON file            
             String movement_overview_file = "movement_monday.json";
@@ -353,11 +349,10 @@ public class MovementView extends ContextView {
         *   Tuesday
         */
         if(!tuesdayData.isEmpty() ) {
-            String context = "Movement";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            movementMonday = super.parseWeekdayContext(tuesdayData, context);
+            JSONObject movementTuesday = super.parseWeekdayContext(tuesdayData, context);
             
             // write movement overview data to a JSON file            
             String movement_overview_file = "movement_tuesday.json";
@@ -368,7 +363,7 @@ public class MovementView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathMovement);
-                fWriter.write(movementMonday.toJSONString());
+                fWriter.write(movementTuesday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
             } catch (IOException ex) {
@@ -381,11 +376,10 @@ public class MovementView extends ContextView {
         *   Wednesday
         */
         if(!wednesdayData.isEmpty() ) {
-            String context = "Movement";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            movementMonday = super.parseWeekdayContext(wednesdayData, context);
+            JSONObject movementWednesday = super.parseWeekdayContext(wednesdayData, context);
             
             // write movement overview data to a JSON file            
             String movement_overview_file = "movement_wednesday.json";
@@ -396,7 +390,7 @@ public class MovementView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathMovement);
-                fWriter.write(movementMonday.toJSONString());
+                fWriter.write(movementWednesday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
             } catch (IOException ex) {
@@ -409,11 +403,10 @@ public class MovementView extends ContextView {
         *   Thursday
         */
         if(!thursdayData.isEmpty() ) {
-            String context = "Movement";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            movementMonday = super.parseWeekdayContext(thursdayData, context);
+            JSONObject movementThursday = super.parseWeekdayContext(thursdayData, context);
             
             // write movement overview data to a JSON file            
             String movement_overview_file = "movement_thursday.json";
@@ -424,7 +417,7 @@ public class MovementView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathMovement);
-                fWriter.write(movementMonday.toJSONString());
+                fWriter.write(movementThursday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
             } catch (IOException ex) {
@@ -437,11 +430,10 @@ public class MovementView extends ContextView {
         *   Friday
         */
         if(!fridayData.isEmpty() ) {
-            String context = "Movement";
             
             // parse monday's data and return a JSON representation of it
             // with data for each day averaged out
-            movementMonday = super.parseWeekdayContext(fridayData, context);
+            JSONObject  movementFriday = super.parseWeekdayContext(fridayData, context);
             
             // write movement overview data to a JSON file            
             String movement_overview_file = "movement_friday.json";
@@ -452,13 +444,12 @@ public class MovementView extends ContextView {
             
             try {
                 fWriter = new FileWriter(fWriterPathMovement);
-                fWriter.write(movementMonday.toJSONString());
+                fWriter.write(movementFriday.toJSONString());
                 fWriter.flush();
                 fWriter.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }
-        
+        }        
     }
 }

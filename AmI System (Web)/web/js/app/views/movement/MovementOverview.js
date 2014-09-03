@@ -3,25 +3,29 @@
  * Jonathan Perry
  * Candidate No. 102235
  */
-//var path = '../jp373/js/app/views/movement/MovementOverview.js';
-var path = 'http://localhost:8080/AmI_System__Web_/js/app/views/movement/MovementOverview.js';
+var path = '../jp373/js/app/views/movement/MovementOverview';
+//var path = 'http://localhost:8080/AmI_System__Web_/js/app/views/movement/MovementOverview.js';
 
 define(path, function(movementOverview) {
     function MovementOverview() {
+        
+        // Measured in cm. This is the max distance the ultra sonic transceiver can reach
+        var LIMIT = 150;
         
         /**
          * Display an overview of movement data collected from both agents
          */
         this.display = function() {
             // temporary
-//            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/movement_overview.json";
-            var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/movement_overview.json";
+            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/movement_overview.json";
+//            var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/movement_overview.json";
             
             // get JSON values
             $.getJSON(path, function(data) {
                 
                 var hostname_one = "Agent 1";
-                var hostname_two = "Agent 2"; 
+                var hostname_two = "Agent 2";
+                                
                 
                 ///////////////////////////////////////////////////////////////
                 //
@@ -29,17 +33,58 @@ define(path, function(movementOverview) {
                 //
                 //////////////////////////////////////////////////////////////
                 
+                var hostname_one_saturday;
+                var hostname_one_sunday;
+                var hostname_one_monday;
+                var hostname_one_tuesday;
+                var hostname_one_wednesday;
+                var hostname_one_thursday;
+                var hostname_one_friday;
                 
                 // saturday - friday
-                var hostname_one_saturday = data.agent_one["saturday"][0];
-                var hostname_one_sunday = data.agent_one["sunday"][0];
-                var hostname_one_monday = data.agent_one["monday"][0];
-                var hostname_one_tuesday = data.agent_one["tuesday"][0];
-                var hostname_one_wednesday = data.agent_one["wednesday"][0];
-                var hostname_one_thursday = data.agent_one["thursday"][0];
-                var hostname_one_friday = data.agent_one["friday"][0];
-
-
+                if(data.agent_one["saturday"][0] > LIMIT) {
+                    hostname_one_saturday = LIMIT;
+                } else {
+                    hostname_one_saturday = data.agent_one["saturday"][0];
+                }
+                
+                if(data.agent_one["sunday"][0] > LIMIT) {
+                    hostname_one_sunday = LIMIT;
+                } else {
+                    hostname_one_sunday = data.agent_one["sunday"][0];
+                }
+                
+                if(data.agent_one["monday"][0] > LIMIT) {
+                    hostname_one_monday = LIMIT;
+                } else {
+                    hostname_one_monday = data.agent_one["monday"][0];
+                }
+                
+                if(data.agent_one["tuesday"][0] > LIMIT) {
+                    hostname_one_tuesday = LIMIT;
+                } else {
+                    hostname_one_tuesday = data.agent_one["tuesday"][0];
+                }
+                
+                if(data.agent_one["wednesday"][0] > LIMIT) {
+                    hostname_one_wednesday = LIMIT;
+                } else {
+                    hostname_one_wednesday = data.agent_one["wednesday"][0];
+                }
+                
+                if(data.agent_one["thursday"][0] > LIMIT) {
+                    hostname_one_thursday = LIMIT;
+                } else {
+                    hostname_one_thursday = data.agent_one["thursday"][0];
+                }
+                
+                if(data.agent_one["friday"][0] > LIMIT) {
+                    hostname_one_friday = LIMIT;
+                } else {
+                    hostname_one_friday = data.agent_one["friday"][0];
+                }
+                
+                
                 ///////////////////////////////////////////////////////////////
                 //
                 //          HOST NAME 2
@@ -48,13 +93,57 @@ define(path, function(movementOverview) {
                 
                 
                 // saturday - friday
-                var hostname_two_saturday = data.agent_two["saturday"][0];
-                var hostname_two_sunday = data.agent_two["sunday"][0];
-                var hostname_two_monday = data.agent_two["monday"][0];
-                var hostname_two_tuesday = data.agent_two["tuesday"][0];
-                var hostname_two_wednesday = data.agent_two["wednesday"][0];
-                var hostname_two_thursday = data.agent_two["thursday"][0];
-                var hostname_two_friday = data.agent_two["friday"][0];
+                var hostname_two_saturday;
+                var hostname_two_sunday;
+                var hostname_two_monday;
+                var hostname_two_tuesday;
+                var hostname_two_wednesday;
+                var hostname_two_thursday;
+                var hostname_two_friday;
+                
+                // saturday - friday
+                if(data.agent_two["saturday"][0] > LIMIT) {
+                    hostname_two_saturday = LIMIT;
+                } else {
+                    hostname_two_saturday = data.agent_two["saturday"][0];
+                    console.log("hostname_two_saturday: " + hostname_two_saturday);
+                }
+                
+                if(data.agent_two["sunday"][0] > LIMIT) {
+                    hostname_two_sunday = LIMIT;
+                } else {
+                    hostname_two_sunday = data.agent_two["sunday"][0];
+                }
+                
+                if(data.agent_two["monday"][0] > LIMIT) {
+                    hostname_two_monday = LIMIT;
+                } else {
+                    hostname_two_monday = data.agent_two["monday"][0];
+                }
+                
+                if(data.agent_two["tuesday"][0] > LIMIT) {
+                    hostname_two_tuesday = LIMIT;
+                } else {
+                    hostname_two_tuesday = data.agent_two["tuesday"][0];
+                }
+                
+                if(data.agent_two["wednesday"][0] > LIMIT) {
+                    hostname_two_wednesday = LIMIT;
+                } else {
+                    hostname_two_wednesday = data.agent_two["wednesday"][0];
+                }
+                
+                if(data.agent_two["thursday"][0] > LIMIT) {
+                    hostname_two_thursday = LIMIT;
+                } else {
+                    hostname_two_thursday = data.agent_two["thursday"][0];
+                }
+                
+                if(data.agent_two["friday"][0] > LIMIT) {
+                    hostname_two_friday = LIMIT;
+                } else {
+                    hostname_two_friday = data.agent_two["friday"][0];
+                }
                 
 
                 ///////////////////////////////////////////////////////////////
@@ -89,7 +178,7 @@ define(path, function(movementOverview) {
                                    hostname_one_tuesday, 
                                    hostname_one_wednesday, 
                                    hostname_one_thursday,
-                                   hostname_one_friday] // 9, 10, 11am; 12, 1, 2, 3, 4, 5pm
+                                   hostname_one_friday] // 9, 10, 11am; 12, 1, 2, 3, 4pm
                         },
                         {
                             label: hostname_two,
@@ -105,7 +194,7 @@ define(path, function(movementOverview) {
                                    hostname_two_tuesday, 
                                    hostname_two_wednesday, 
                                    hostname_two_thursday,
-                                   hostname_two_friday] // 9, 10, 11am; 12, 1, 2, 3, 4, 5pm
+                                   hostname_two_friday] // 9, 10, 11am; 12, 1, 2, 3, 4pm
                         }
                     ]
                 };
@@ -122,5 +211,9 @@ define(path, function(movementOverview) {
             
         };
         
-    }
+    };
+    
+    // returning an instanceof this object is essential, otherwise it'll
+    // display a TypeError message
+    return new MovementOverview();
 });

@@ -57,6 +57,7 @@
 div.agents {
     color: #111;
     font-size: 24px;
+    padding-bottom: 50px;
 }
 span.agent-1 {
     color: #3498DB;

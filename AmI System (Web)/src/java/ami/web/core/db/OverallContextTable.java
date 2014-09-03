@@ -69,6 +69,55 @@ public class OverallContextTable implements IDatabase {
             ex.printStackTrace();
         }
     }
+    
+    public boolean maxLimit() {
+        boolean reachedLimit;
+        final int max_entries = 3000;
+        int no_entries = 0;
+        
+        System.out.println("maxLimit()");
+        
+        query = "SELECT * " +
+                "FROM " + tableName;
+        
+        try {
+            conn = DriverManager.getConnection(dbUrl, username, password);
+            qryStatement = conn.createStatement();
+            ResultSet rs = qryStatement.executeQuery(query);
+            while(rs.next()) {
+                no_entries++;
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        if(no_entries > max_entries) {
+            System.out.println("max reached");
+            reachedLimit = true;
+        } else {
+            System.out.println("max not reached " + no_entries);
+            reachedLimit = false;
+        }
+        
+        return reachedLimit;
+    }
+    
+    public void clean() {
+        deleteTable();
+    }
+    
+    public void deleteTable() {
+        query = "DROP TABLE " + tableName;
+        
+        try {
+            conn = DriverManager.getConnection(dbUrl, username, password);
+            qryStatement = conn.createStatement();
+            qryStatement.executeUpdate(query);
+            System.out.println("DELETED?");
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        } 
+    }
 
     /**
      * Creates a table if it doesn't exist
@@ -88,9 +137,9 @@ public class OverallContextTable implements IDatabase {
                 + "  Context        VARCHAR(20), "
                 + "  LinguisticType VARCHAR(30) "
                 + ")";
-
+        
         int status = 0;
-
+        
         try {
             qryStatement = conn.createStatement();
             status = qryStatement.executeUpdate(query);
@@ -98,44 +147,134 @@ public class OverallContextTable implements IDatabase {
             ex.printStackTrace();
         }
     }
-
+    
     /**
-     * Updates the OverallContextTable model
+     * Insert the OverallContextTable model
      *
      * @param overallContext
      * @return
      */
-    public int update(ArrayList<DataBase> overallContext) {
+    public int insert(ArrayList<DataBase> overallContext) throws SQLException {
         int result = 0;
-
+        PreparedStatement statement = null;
+        // insert statement
+            query = "INSERT INTO " + tableName + " " +
+                    "( " +
+                        "SessionId, " + 
+                        "Hostname, " + 
+                        "Hour, " + 
+                        "Minute, " + 
+                        "Day, " + 
+                        "Month, " + 
+                        "Year, " + 
+                        "Value, " + 
+                        "Context, " + 
+                        "LinguisticType" +
+                    ") " +                    
+                    "VALUES " +
+                    "( " +
+                        "?, " +
+                        "?," +
+                    
+                        "?, " +
+                        "?, " +
+                    
+                        "?, " +
+                        "?, " +
+                        "?, " +
+                    
+                        "?, " +
+                        "?, " +
+                        "?" +
+                    ");";
+                
+        
         // loop through each of the entries in overallContext
         // and write them to the table
-        for (DataBase entry : overallContext) {
+        try {            
+            statement = conn.prepareStatement(query);
             
-            // do we need an UPDATE statement or an INSERT INTO statement?!
-            query = "UPDATE " + tableName
-                    + "SET "
-                        + "SessionId= " + entry.getSessionId() + ", "
-                        + "Hostname= "  + entry.getHostname()  + ", "
-                        + "Hour= "      + entry.getHour()      + ", "
-                        + "Minute= "    + entry.getMinute()    + ", "
-                        + "Day= "       + entry.getDay()       + ", "
-                        + "Month= "     + entry.getMonth()     + ", "
-                        + "Year= "      + entry.getYear()      + ", "
-                        + "Value= "     + entry.getValue()     + ", "
-                        + "Context= "   + entry.getType()      + ", "
-                        + "LinguisticType= " + entry.getLinguisticType()
-                    + "WHERE SessionId= " + entry.getSessionId()
-                    + "; ";
-            
-            try {
-                qryStatement = conn.createStatement();
-                result = qryStatement.executeUpdate(query);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+            for (int i = 0; i < overallContext.size(); i++) {
+                DataBase entry = overallContext.get(i);
+                
+                statement.setInt(1, entry.getSessionId() );
+                statement.setString(2, entry.getHostname() );
+                
+                statement.setInt(3, entry.getHour() );
+                statement.setInt(4, entry.getMinute() );
+                
+                statement.setString(5, entry.getDay());
+                statement.setString(6, entry.getMonth());
+                statement.setInt(7, entry.getYear());
+                
+                statement.setInt(8, entry.getValue());
+                statement.setString(9, entry.getType());
+                statement.setString(10, entry.getLinguisticType());
+                statement.addBatch();
             }
+            
+            // write all values to the table
+            statement.executeBatch();
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(statement != null) {
+                    statement.close();
+                }
+            } catch(SQLException ex) {
+                ex.printStackTrace();
+            }            
         }
-
+        
         return result;
     }
+    
+    /**
+     * 
+     * @param field
+     * @return 
+     */
+    public ArrayList<DataBase> retrieveOverviewByName(String field) {
+        ArrayList<DataBase> entries = new ArrayList<DataBase>();
+        DataBase dataBase = new DataBase();
+        query = "SELECT * "
+                + "FROM " + tableName + " "
+                + "WHERE Context='" + field + "'";
+        
+        
+                System.out.println("overallContextTable.retrieveOverviewByName(fieldType)");
+
+        try {
+            conn = DriverManager.getConnection(dbUrl, username, password);
+            qryStatement = conn.createStatement();
+            ResultSet rs = qryStatement.executeQuery(query);
+
+            while (rs.next()) {
+                dataBase.setSessionId(rs.getInt("SessionId"));
+                dataBase.setHostname(rs.getString("Hostname"));
+                System.out.println("HOSTNAME: "+ rs.getString("Hostname"));
+
+                dataBase.setHour(rs.getInt("Hour"));
+                dataBase.setMinute(rs.getInt("Minute"));
+
+                dataBase.setDay(rs.getString("Day"));
+                dataBase.setMonth(rs.getString("Month"));
+                dataBase.setYear(rs.getInt("Year"));
+
+                dataBase.setValue(rs.getInt("Value"));
+                dataBase.setType(rs.getString("Context"));
+                dataBase.setLinguisticType(rs.getString("LinguisticType"));
+
+                entries.add(dataBase);
+            }
+
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return entries;
+    }
+    
 }

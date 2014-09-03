@@ -3,19 +3,19 @@
  * Jonathan Perry
  * Candidate No. 102235
  */
-//var path = "../jp373/js/app/views/temperature/TemperatureOverview";
-var path = "http://localhost:8080/AmI_System__Web_/js/app/views/temperature/TemperatureOverview.js";
+var path = "../jp373/js/app/views/temperature/TemperatureOverview";
+//var path = "http://localhost:8080/AmI_System__Web_/js/app/views/temperature/TemperatureOverview.js";
 
 define(path, function(temperatureOverview) {
     function TemperatureOverview() {
-
+        
         /**
          * Display an overview of temperature data collected from both agents
          */
         this.display = function() {
             // temporary
-//            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/temperature_overview.json";
-            var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/temperature_overview.json";
+            var path = "http://tomcat.inf.susx.ac.uk:8080/jp373/js/json/logs/temperature_overview.json";
+//            var path = "http://localhost:8080/AmI_System__Web_/js/json/logs/temperature_overview.json";
 
             // get JSON values
             $.getJSON(path, function(data) {
@@ -93,8 +93,8 @@ define(path, function(temperatureOverview) {
                         },
                         {
                             label: hostname_two,
-                            fillColor: "rgba(242,38,19, 0.9)",
-                            strokeColor: "rgba(242,38,19, 0.9)",
+                            fillColor: "rgba(242,38,19, 0.8)",
+                            strokeColor: "rgba(242,38,19, 0.8)",
                             pointColor: "rgba(242,38,19,1)",
                             pointStrokeColor: "#fff",
                             pointHighlightFill: "#fff",
@@ -119,7 +119,6 @@ define(path, function(temperatureOverview) {
                 });
 
             });
-
 
         };
 

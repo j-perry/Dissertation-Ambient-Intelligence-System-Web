@@ -71,13 +71,68 @@ public class InitialContextTable implements IDatabase {
     }
 
     /**
+     * Retrieves a small sample of data from the table
+     *
+     * (this will preserve bandwidth performance)
+     *
+     * @return
+     */
+    public ArrayList<DataBase> retrieveSample() {
+        ArrayList<DataBase> entries = new ArrayList<DataBase>();
+        DataBase dataBase;
+        query = "SELECT * "
+                + "FROM " + tableName;
+        final int SAMPLE_SIZE = 300;
+        int i = 0;
+
+        try {
+            conn = DriverManager.getConnection(dbUrl, username, password);
+            qryStatement = conn.createStatement();
+            ResultSet rs = qryStatement.executeQuery(query);
+            
+            while (rs.next()) {
+                if (i != SAMPLE_SIZE) {                    
+                    dataBase = new DataBase();
+                    System.out.println("SAMPLE SIZE: " + i);
+
+                    dataBase.setSessionId(rs.getInt("SessionId"));
+                    dataBase.setHostname(rs.getString("Hostname"));
+//                    System.out.println("HOSTNAME: " + rs.getString("Hostname"));
+
+                    dataBase.setHour(rs.getInt("Hour"));
+                    dataBase.setMinute(rs.getInt("Minute"));
+
+                    dataBase.setDay(rs.getString("Day"));
+                    dataBase.setMonth(rs.getString("Month"));
+                    dataBase.setYear(rs.getInt("Year"));
+
+                    dataBase.setValue(rs.getInt("Value"));
+                    dataBase.setType(rs.getString("Context"));
+                    dataBase.setLinguisticType(rs.getString("LinguisticType"));
+
+                    entries.add(dataBase);
+                    i++;
+                } else {
+                    break;
+                }
+            }
+
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return entries;
+    }
+
+    /**
      * Retrieves raw data from the table
      *
      * @return
      */
     public ArrayList<DataBase> retrieveAll() {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
-        DataBase dataBase = new DataBase();
+        DataBase dataBase;
         query = "SELECT * "
                 + "FROM " + tableName;
 
@@ -86,10 +141,13 @@ public class InitialContextTable implements IDatabase {
             qryStatement = conn.createStatement();
             ResultSet rs = qryStatement.executeQuery(query);
 
-            while (rs.next()) {                
+            while (rs.next()) {
+                dataBase = new DataBase();
+
                 dataBase.setSessionId(rs.getInt("SessionId"));
                 dataBase.setHostname(rs.getString("Hostname"));
-                
+                System.out.println("HOSTNAME: " + rs.getString("Hostname"));
+
                 dataBase.setHour(rs.getInt("Hour"));
                 dataBase.setMinute(rs.getInt("Minute"));
 
@@ -122,9 +180,9 @@ public class InitialContextTable implements IDatabase {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
         DataBase dataBase = new DataBase();
         query = "SELECT * "
-              + "FROM " + tableName + " "
-              + "WHERE Context = '" + field + "'";
-        
+                + "FROM " + tableName + " "
+                + "WHERE Context = '" + field + "'";
+
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
             qryStatement = conn.createStatement();
@@ -142,7 +200,7 @@ public class InitialContextTable implements IDatabase {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return entries;
     }
 
@@ -156,9 +214,9 @@ public class InitialContextTable implements IDatabase {
         ArrayList<DataBase> entries = new ArrayList<DataBase>();
         DataBase dataBase = new DataBase();
         query = "SELECT * "
-              + "FROM " + tableName + " "
-              + "WHERE Context = '" + field + "'";
-        
+                + "FROM " + tableName + " "
+                + "WHERE Context = '" + field + "'";
+
         try {
             conn = DriverManager.getConnection(dbUrl, username, password);
             qryStatement = conn.createStatement();
@@ -167,14 +225,14 @@ public class InitialContextTable implements IDatabase {
             while (rs.next()) {
                 dataBase.setSessionId(rs.getInt("SessionId"));
                 dataBase.setHostname(rs.getString("Hostname"));
-                
+
                 dataBase.setHour(rs.getInt("Hour"));
                 dataBase.setMinute(rs.getInt("Minute"));
-                
+
                 dataBase.setDay(rs.getString("Day"));
                 dataBase.setMonth(rs.getString("Month"));
                 dataBase.setYear(rs.getInt("Year"));
-                
+
                 dataBase.setValue(rs.getInt("Value"));
                 dataBase.setType(rs.getString("Context"));
                 dataBase.setLinguisticType(rs.getString("LinguisticType"));
